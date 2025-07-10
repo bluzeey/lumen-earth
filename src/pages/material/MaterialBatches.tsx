@@ -28,6 +28,11 @@ import { CalendarIcon } from "lucide-react";
 import { Pagination } from "@/components/ui/pagination";
 import AppLayout from "@/layouts/AppLayout";
 
+type DateRange = {
+  from: Date;
+  to: Date;
+};
+
 // Dummy batch list (replace with real API)
 const mockBatches = Array.from({ length: 37 }).map((_, i) => ({
   id: `BATCH-${1000 + i}`,
@@ -43,12 +48,12 @@ const materials = ["All", "Cotton", "Polyester", "Nylon"];
 
 export default function MaterialBatchesPage() {
   const navigate = useNavigate();
-  const [data] = useState(mockBatches); // ⛳️ removed unused setData
+  const [data] = useState(mockBatches);
   const [filtered, setFiltered] = useState(mockBatches);
 
   const [sourceFilter, setSourceFilter] = useState("All");
   const [materialFilter, setMaterialFilter] = useState("All");
-  const [dateRange, setDateRange] = useState<{ from?: Date; to?: Date }>({});
+  const [dateRange, setDateRange] = useState<DateRange | undefined>(undefined);
   const [sortBy, setSortBy] = useState<"date" | "weight">("date");
 
   const [page, setPage] = useState(1);
@@ -64,9 +69,9 @@ export default function MaterialBatchesPage() {
     if (materialFilter !== "All") {
       temp = temp.filter((b) => b.material === materialFilter);
     }
-    if (dateRange.from && dateRange.to) {
+    if (dateRange?.from && dateRange?.to) {
       temp = temp.filter(
-        (b) => b.date >= dateRange.from! && b.date <= dateRange.to!
+        (b) => b.date >= dateRange.from && b.date <= dateRange.to
       );
     }
     temp.sort((a, b) =>
@@ -131,7 +136,7 @@ export default function MaterialBatchesPage() {
                   className="w-60 justify-start text-left font-normal"
                 >
                   <CalendarIcon className="mr-2 h-4 w-4" />
-                  {dateRange.from && dateRange.to
+                  {dateRange?.from && dateRange?.to
                     ? `${format(dateRange.from, "MMM d")} – ${format(
                         dateRange.to,
                         "MMM d, yyyy"
@@ -143,7 +148,7 @@ export default function MaterialBatchesPage() {
                 <Calendar
                   mode="range"
                   selected={dateRange}
-                  onSelect={setDateRange}
+                  onSelect={(range) => setDateRange(range as DateRange)}
                   numberOfMonths={2}
                 />
               </PopoverContent>
