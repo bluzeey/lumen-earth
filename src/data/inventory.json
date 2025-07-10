@@ -1,0 +1,65 @@
+[
+    {
+      "inventory_id": "INV001",
+      "sku": "100% Recycled Cotton Yarn",
+      "material_type": "Cotton",
+      "region": "Karnataka",
+      "available_quantity": 3200,
+      "unit": "kg",
+      "expected_restock_date": "2025-07-10"
+    },
+    {
+      "inventory_id": "INV002",
+      "sku": "Cotton Poly Blends 80-20% Yarn",
+      "material_type": "Poly Blend",
+      "region": "Kerala",
+      "available_quantity": 2400,
+      "unit": "kg",
+      "expected_restock_date": "2025-07-15"
+    },
+    {
+      "inventory_id": "INV003",
+      "sku": "Cotton Poly Blends 60-40% Yarn",
+      "material_type": "Poly Blend",
+      "region": "Karnataka",
+      "available_quantity": 1800,
+      "unit": "kg",
+      "expected_restock_date": "2025-07-20"
+    },
+    {
+      "inventory_id": "INV004",
+      "sku": "Downcycles",
+      "material_type": "Recycled",
+      "region": "Kerala",
+      "available_quantity": 1000,
+      "unit": "kg",
+      "expected_restock_date": "2025-07-25"
+    },
+    {
+      "inventory_id": "INV005",
+      "sku": "Cotton Feedstock",
+      "material_type": "Cotton",
+      "region": "Karnataka",
+      "available_quantity": 2600,
+      "unit": "kg",
+      "expected_restock_date": "2025-07-28"
+    },
+    {
+      "inventory_id": "INV006",
+      "sku": "Manmade Upcycles",
+      "material_type": "Manmade",
+      "region": "Kerala",
+      "available_quantity": 1500,
+      "unit": "kg",
+      "expected_restock_date": "2025-08-01"
+    },
+    {
+      "inventory_id": "INV007",
+      "sku": "Cotton Poly Feedstock",
+      "material_type": "Poly Blend",
+      "region": "Karnataka",
+      "available_quantity": 2000,
+      "unit": "kg",
+      "expected_restock_date": "2025-08-05"
+    }
+  ]

@@ -1,0 +1,82 @@
+[
+  {
+    "order_id": "ORD1001",
+    "sku": "100% Recycled Cotton Yarn",
+    "order_quantity": 900,
+    "order_value": 11500,
+    "region": "Karnataka",
+    "risk_status": "Medium",
+    "delivery_due_week": 22,
+    "delivery_due_date": "2025-07-10"
+  },
+  {
+    "order_id": "ORD1002",
+    "sku": "Cotton Poly Blends 80-20% Yarn",
+    "order_quantity": 700,
+    "order_value": 9800,
+    "region": "Kerala",
+    "risk_status": "High",
+    "delivery_due_week": 23,
+    "delivery_due_date": "2025-07-17"
+  },
+  {
+    "order_id": "ORD1003",
+    "sku": "Cotton Poly Blends 60-40% Yarn",
+    "order_quantity": 1200,
+    "order_value": 15000,
+    "region": "Karnataka",
+    "risk_status": "High",
+    "delivery_due_week": 24,
+    "delivery_due_date": "2025-07-24"
+  },
+  {
+    "order_id": "ORD1004",
+    "sku": "Downcycles",
+    "order_quantity": 600,
+    "order_value": 7200,
+    "region": "Kerala",
+    "risk_status": "Low",
+    "delivery_due_week": 25,
+    "delivery_due_date": "2025-07-31"
+  },
+  {
+    "order_id": "ORD1005",
+    "sku": "Cotton Feedstock",
+    "order_quantity": 1100,
+    "order_value": 13000,
+    "region": "Karnataka",
+    "risk_status": "Medium",
+    "delivery_due_week": 26,
+    "delivery_due_date": "2025-08-07"
+  },
+  {
+    "order_id": "ORD1006",
+    "sku": "Manmade Upcycles",
+    "order_quantity": 950,
+    "order_value": 11800,
+    "region": "Kerala",
+    "risk_status": "Low",
+    "delivery_due_week": 27,
+    "delivery_due_date": "2025-08-14"
+  },
+  {
+    "order_id": "ORD1007",
+    "sku": "Cotton Poly Feedstock",
+    "order_quantity": 880,
+    "order_value": 10900,
+    "region": "Karnataka",
+    "risk_status": "Medium",
+    "delivery_due_week": 28,
+    "delivery_due_date": "2025-08-21"
+  },
+  {
+    "order_id": "ORD1008",
+    "sku": "Downcycles",
+    "order_quantity": 620,
+    "order_value": 7400,
+    "region": "Kerala",
+    "risk_status": "Low",
+    "delivery_due_week": 29,
+    "delivery_due_date": "2025-08-28"
+  }
+]

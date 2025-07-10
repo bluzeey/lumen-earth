@@ -1,0 +1,339 @@
+[
+    {
+      "week": 22,
+      "sku": "100% Recycled Cotton Yarn",
+      "projected_tonnage": 2.3,
+      "date": "2025-07-10"
+    },
+    {
+      "week": 23,
+      "sku": "100% Recycled Cotton Yarn",
+      "projected_tonnage": 2.3,
+      "date": "2025-07-17"
+    },
+    {
+      "week": 24,
+      "sku": "100% Recycled Cotton Yarn",
+      "projected_tonnage": 2.3,
+      "date": "2025-07-24"
+    },
+    {
+      "week": 25,
+      "sku": "100% Recycled Cotton Yarn",
+      "projected_tonnage": 2.3,
+      "date": "2025-07-31"
+    },
+    {
+      "week": 26,
+      "sku": "100% Recycled Cotton Yarn",
+      "projected_tonnage": 2.3,
+      "date": "2025-08-07"
+    },
+    {
+      "week": 27,
+      "sku": "100% Recycled Cotton Yarn",
+      "projected_tonnage": 2.3,
+      "date": "2025-08-14"
+    },
+    {
+      "week": 28,
+      "sku": "100% Recycled Cotton Yarn",
+      "projected_tonnage": 2.3,
+      "date": "2025-08-21"
+    },
+    {
+      "week": 29,
+      "sku": "100% Recycled Cotton Yarn",
+      "projected_tonnage": 2.3,
+      "date": "2025-08-28"
+    },
+    {
+      "week": 22,
+      "sku": "Cotton Poly Blends 80-20% Yarn",
+      "projected_tonnage": 2.4,
+      "date": "2025-07-10"
+    },
+    {
+      "week": 23,
+      "sku": "Cotton Poly Blends 80-20% Yarn",
+      "projected_tonnage": 1.7,
+      "date": "2025-07-17"
+    },
+    {
+      "week": 24,
+      "sku": "Cotton Poly Blends 80-20% Yarn",
+      "projected_tonnage": 1.7,
+      "date": "2025-07-24"
+    },
+    {
+      "week": 25,
+      "sku": "Cotton Poly Blends 80-20% Yarn",
+      "projected_tonnage": 1.7,
+      "date": "2025-07-31"
+    },
+    {
+      "week": 26,
+      "sku": "Cotton Poly Blends 80-20% Yarn",
+      "projected_tonnage": 1.7,
+      "date": "2025-08-07"
+    },
+    {
+      "week": 27,
+      "sku": "Cotton Poly Blends 80-20% Yarn",
+      "projected_tonnage": 1.7,
+      "date": "2025-08-14"
+    },
+    {
+      "week": 28,
+      "sku": "Cotton Poly Blends 80-20% Yarn",
+      "projected_tonnage": 1.7,
+      "date": "2025-08-21"
+    },
+    {
+      "week": 29,
+      "sku": "Cotton Poly Blends 80-20% Yarn",
+      "projected_tonnage": 1.7,
+      "date": "2025-08-28"
+    },
+    {
+      "week": 22,
+      "sku": "Cotton Poly Blends 60-40% Yarn",
+      "projected_tonnage": 1.8,
+      "date": "2025-07-10"
+    },
+    {
+      "week": 23,
+      "sku": "Cotton Poly Blends 60-40% Yarn",
+      "projected_tonnage": 1.8,
+      "date": "2025-07-17"
+    },
+    {
+      "week": 24,
+      "sku": "Cotton Poly Blends 60-40% Yarn",
+      "projected_tonnage": 0.6,
+      "date": "2025-07-24"
+    },
+    {
+      "week": 25,
+      "sku": "Cotton Poly Blends 60-40% Yarn",
+      "projected_tonnage": 0.6,
+      "date": "2025-07-31"
+    },
+    {
+      "week": 26,
+      "sku": "Cotton Poly Blends 60-40% Yarn",
+      "projected_tonnage": 0.6,
+      "date": "2025-08-07"
+    },
+    {
+      "week": 27,
+      "sku": "Cotton Poly Blends 60-40% Yarn",
+      "projected_tonnage": 0.6,
+      "date": "2025-08-14"
+    },
+    {
+      "week": 28,
+      "sku": "Cotton Poly Blends 60-40% Yarn",
+      "projected_tonnage": 0.6,
+      "date": "2025-08-21"
+    },
+    {
+      "week": 29,
+      "sku": "Cotton Poly Blends 60-40% Yarn",
+      "projected_tonnage": 0.6,
+      "date": "2025-08-28"
+    },
+    {
+      "week": 22,
+      "sku": "Downcycles",
+      "projected_tonnage": 1.0,
+      "date": "2025-07-10"
+    },
+    {
+      "week": 23,
+      "sku": "Downcycles",
+      "projected_tonnage": 1.0,
+      "date": "2025-07-17"
+    },
+    {
+      "week": 24,
+      "sku": "Downcycles",
+      "projected_tonnage": 1.0,
+      "date": "2025-07-24"
+    },
+    {
+      "week": 25,
+      "sku": "Downcycles",
+      "projected_tonnage": 0.4,
+      "date": "2025-07-31"
+    },
+    {
+      "week": 26,
+      "sku": "Downcycles",
+      "projected_tonnage": 0.4,
+      "date": "2025-08-07"
+    },
+    {
+      "week": 27,
+      "sku": "Downcycles",
+      "projected_tonnage": 0.4,
+      "date": "2025-08-14"
+    },
+    {
+      "week": 28,
+      "sku": "Downcycles",
+      "projected_tonnage": 0.4,
+      "date": "2025-08-21"
+    },
+    {
+      "week": 29,
+      "sku": "Downcycles",
+      "projected_tonnage": 0.0,
+      "date": "2025-08-28"
+    },
+    {
+      "week": 22,
+      "sku": "Cotton Feedstock",
+      "projected_tonnage": 2.6,
+      "date": "2025-07-10"
+    },
+    {
+      "week": 23,
+      "sku": "Cotton Feedstock",
+      "projected_tonnage": 2.6,
+      "date": "2025-07-17"
+    },
+    {
+      "week": 24,
+      "sku": "Cotton Feedstock",
+      "projected_tonnage": 2.6,
+      "date": "2025-07-24"
+    },
+    {
+      "week": 25,
+      "sku": "Cotton Feedstock",
+      "projected_tonnage": 2.6,
+      "date": "2025-07-31"
+    },
+    {
+      "week": 26,
+      "sku": "Cotton Feedstock",
+      "projected_tonnage": 1.5,
+      "date": "2025-08-07"
+    },
+    {
+      "week": 27,
+      "sku": "Cotton Feedstock",
+      "projected_tonnage": 1.5,
+      "date": "2025-08-14"
+    },
+    {
+      "week": 28,
+      "sku": "Cotton Feedstock",
+      "projected_tonnage": 1.5,
+      "date": "2025-08-21"
+    },
+    {
+      "week": 29,
+      "sku": "Cotton Feedstock",
+      "projected_tonnage": 1.5,
+      "date": "2025-08-28"
+    },
+    {
+      "week": 22,
+      "sku": "Manmade Upcycles",
+      "projected_tonnage": 1.5,
+      "date": "2025-07-10"
+    },
+    {
+      "week": 23,
+      "sku": "Manmade Upcycles",
+      "projected_tonnage": 1.5,
+      "date": "2025-07-17"
+    },
+    {
+      "week": 24,
+      "sku": "Manmade Upcycles",
+      "projected_tonnage": 1.5,
+      "date": "2025-07-24"
+    },
+    {
+      "week": 25,
+      "sku": "Manmade Upcycles",
+      "projected_tonnage": 1.5,
+      "date": "2025-07-31"
+    },
+    {
+      "week": 26,
+      "sku": "Manmade Upcycles",
+      "projected_tonnage": 1.5,
+      "date": "2025-08-07"
+    },
+    {
+      "week": 27,
+      "sku": "Manmade Upcycles",
+      "projected_tonnage": 0.55,
+      "date": "2025-08-14"
+    },
+    {
+      "week": 28,
+      "sku": "Manmade Upcycles",
+      "projected_tonnage": 0.55,
+      "date": "2025-08-21"
+    },
+    {
+      "week": 29,
+      "sku": "Manmade Upcycles",
+      "projected_tonnage": 0.55,
+      "date": "2025-08-28"
+    },
+    {
+      "week": 22,
+      "sku": "Cotton Poly Feedstock",
+      "projected_tonnage": 2.0,
+      "date": "2025-07-10"
+    },
+    {
+      "week": 23,
+      "sku": "Cotton Poly Feedstock",
+      "projected_tonnage": 2.0,
+      "date": "2025-07-17"
+    },
+    {
+      "week": 24,
+      "sku": "Cotton Poly Feedstock",
+      "projected_tonnage": 2.0,
+      "date": "2025-07-24"
+    },
+    {
+      "week": 25,
+      "sku": "Cotton Poly Feedstock",
+      "projected_tonnage": 2.0,
+      "date": "2025-07-31"
+    },
+    {
+      "week": 26,
+      "sku": "Cotton Poly Feedstock",
+      "projected_tonnage": 2.0,
+      "date": "2025-08-07"
+    },
+    {
+      "week": 27,
+      "sku": "Cotton Poly Feedstock",
+      "projected_tonnage": 2.0,
+      "date": "2025-08-14"
+    },
+    {
+      "week": 28,
+      "sku": "Cotton Poly Feedstock",
+      "projected_tonnage": 1.12,
+      "date": "2025-08-21"
+    },
+    {
+      "week": 29,
+      "sku": "Cotton Poly Feedstock",
+      "projected_tonnage": 1.12,
+      "date": "2025-08-28"
+    }
+  ]
+  
