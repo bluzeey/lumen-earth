@@ -19,7 +19,7 @@ export default function OnboardingPage() {
   const [step, setStep] = useState(0);
   const [orgName, setOrgName] = useState("");
   const [location, setLocation] = useState("");
-  const [materials, setMaterials] = useState([]);
+  const [materials, setMaterials] = useState<string[]>([]);
   const [accepted, setAccepted] = useState(false);
   const navigate = useNavigate();
 
@@ -101,9 +101,8 @@ export default function OnboardingPage() {
         {step === 3 && (
           <div className="flex items-center space-x-2">
             <Checkbox
-              id="terms"
               checked={accepted}
-              onCheckedChange={setAccepted}
+              onCheckedChange={(checked) => setAccepted(checked === true)}
             />
             <Label htmlFor="terms">
               I accept the{" "}

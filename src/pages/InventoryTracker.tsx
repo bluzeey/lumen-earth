@@ -144,7 +144,11 @@ const InventoryTracker = () => {
               excelEpoch.getTime() + r.date * 86400000
             );
             dateStr = formatISO(correctedDate, { representation: "date" });
-          } else if (r.date instanceof Date) {
+          } else if (
+            typeof r.date === "object" &&
+            r.date !== null &&
+            "getTime" in r.date
+          ) {
             dateStr = formatISO(r.date, { representation: "date" });
           } else {
             dateStr = String(r.date);

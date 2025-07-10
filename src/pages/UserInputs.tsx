@@ -130,7 +130,7 @@ export default function ExcelDataEditor() {
       const json = XLSX.utils.sheet_to_json(sheet, { defval: "" });
 
       const expected = expectedColumns[key];
-      const actual = json.length > 0 ? Object.keys(json[0]) : [];
+      const actual = json.length > 0 ? Object.keys(json[0] as object) : [];
       const missing = expected.filter((col) => !actual.includes(col));
 
       if (missing.length > 0) {
