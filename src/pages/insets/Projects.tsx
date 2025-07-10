@@ -25,7 +25,15 @@ import {
 } from "@/components/ui/select";
 import { useNavigate } from "@tanstack/react-router";
 import { Plus } from "lucide-react";
-import { Pagination } from "@/components/ui/pagination";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 import AppLayout from "@/layouts/AppLayout";
 
 // Dummy project data (replace with API later)
@@ -187,12 +195,45 @@ export default function InsetProjectsPage() {
           </Table>
         </div>
 
-        <Pagination
-          page={page}
-          onPageChange={setPage}
-          pageCount={pageCount}
-          className="justify-end"
-        />
+        {/* Pagination */}
+        <Pagination className="justify-end">
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (page > 1) setPage(page - 1);
+                }}
+              />
+            </PaginationItem>
+
+            {Array.from({ length: pageCount }).map((_, i) => (
+              <PaginationItem key={i}>
+                <PaginationLink
+                  href="#"
+                  isActive={page === i + 1}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setPage(i + 1);
+                  }}
+                >
+                  {i + 1}
+                </PaginationLink>
+              </PaginationItem>
+            ))}
+
+            <PaginationItem>
+              <PaginationNext
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (page < pageCount) setPage(page + 1);
+                }}
+              />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
       </div>
     </AppLayout>
   );
