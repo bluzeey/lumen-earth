@@ -11,7 +11,7 @@ import {
   TableCell,
   TableBody,
 } from "@/components/ui/table";
-import { Plus, FileDown } from "lucide-react";
+import { FileDown } from "lucide-react";
 import { format } from "date-fns";
 import { AddInventoryLogDialog } from "@/components/material/InventoryLogDialog"; // <-- import your dialog component
 import AppLayout from "@/layouts/AppLayout";

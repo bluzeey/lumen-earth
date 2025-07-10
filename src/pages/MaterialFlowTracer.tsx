@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CalendarIcon, Bell, User, LogOut } from "lucide-react";
@@ -14,6 +14,8 @@ import { format, parseISO, isWithinInterval, subDays } from "date-fns";
 import { cn } from "@/lib/utils";
 
 type EnrichedBatch = {
+  composition?: string;
+  sourceName?: string;
   batchId: string;
   materialName: string;
   supplierName?: string;
@@ -288,8 +290,8 @@ export default function MaterialFlowTracer() {
                   <tr key={batch.batchId} className="border-t">
                     <td className="p-2">{batch.batchId}</td>
                     <td className="p-2">{batch.materialName}</td>
-                    <td className="p-2">{batch.composition}</td>
-                    <td className="p-2">{batch.sourceName}</td>
+                    <td className="p-2">{batch?.composition}</td>
+                    <td className="p-2">{batch?.sourceName}</td>
                     <td className="p-2">
                       {safeParse(batch.rawMaterialQty).toFixed(2)} T
                     </td>
