@@ -11,11 +11,9 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-  SidebarTrigger,
 } from "@/components/ui/sidebar";
 import {
   LogOut,
-  Bell,
   Package,
   Layers3,
   BadgeDollarSign,
@@ -25,7 +23,7 @@ import {
   Handshake,
   ShieldCheck,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { type ReactNode } from "react";
 
 const sidebarNavigation = [
   {
@@ -67,7 +65,7 @@ const sidebarNavigation = [
   },
 ];
 
-export default function AppLayout({ children }) {
+export default function AppLayout(children: ReactNode) {
   const navigate = useNavigate();
 
   function handleLogout() {
