@@ -40,7 +40,7 @@ export default function OnboardingPage() {
     }
     if (step === 3) {
       toast.success("Welcome to Lumen!");
-      navigate({ to: "/app/traceability" });
+      navigate({ to: "/dashboard" });
     } else {
       setStep((s) => s + 1);
     }
