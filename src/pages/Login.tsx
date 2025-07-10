@@ -71,13 +71,3 @@ export default function LoginPage() {
     </div>
   );
 }
-
-// Fake login function (replace with actual API call)
-async function fakeLogin(email: string, password: string) {
-  await new Promise((r) => setTimeout(r, 1000));
-  if (email === "admin@lumen.com") return { role: "admin" };
-  if (email === "recycler@lumen.com") return { role: "recycler" };
-  if (email === "brand@lumen.com") return { role: "brand" };
-  if (email === "supplier@lumen.com") return { role: "supplier" };
-  throw new Error("Invalid credentials");
-}
