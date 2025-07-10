@@ -15,12 +15,7 @@ export default function LoginPage() {
     e.preventDefault();
     setLoading(true);
     try {
-      // Replace with real auth API call
-      const res = await fakeLogin(email, password);
-      const role = res.role; // 'admin', 'recycler', 'brand', 'supplier'
-
-      toast.success("Login successful");
-      navigate({ to: `/${role}` });
+      navigate({ to: `/dashboard` });
     } catch (err: any) {
       toast.error("Login failed: " + err.message);
     } finally {
