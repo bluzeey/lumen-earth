@@ -95,14 +95,14 @@ const expectedColumns: Record<DatasetKey, string[]> = {
 export default function ExcelDataEditor() {
   const [datasets, setDatasets] = useState<Record<DatasetKey, any[]>>(
     () =>
-      Object.fromEntries(datasetKeys.map((k) => [k, []])) as Record<
+      Object.fromEntries(datasetKeys.map((k) => [k, []])) as unknown as Record<
         DatasetKey,
         any[]
       >
   );
   const [columns, setColumns] = useState<Record<DatasetKey, any[]>>(
     () =>
-      Object.fromEntries(datasetKeys.map((k) => [k, []])) as Record<
+      Object.fromEntries(datasetKeys.map((k) => [k, []])) as unknown as Record<
         DatasetKey,
         any[]
       >
