@@ -11,7 +11,7 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { InsetProjectFormDialog } from "@/components/insets/InsetProjectDialog";
-import AppLayout from "@/layouts/AppLayout"; // Adjust path as needed
+import AppLayout from "@/layouts/AppLayout";
 
 // Mock GHG savings per material type (tonnes CO₂e per tonne processed)
 const MATERIAL_FACTORS: Record<string, number> = {
@@ -26,13 +26,10 @@ const DEFAULT_CREDIT_VALUE = 1500; // ₹ per tonne CO₂e
 export default function GHGValueEstimatorPage() {
   const [material, setMaterial] = useState<string>("");
   const [quantity, setQuantity] = useState<number>(0);
-  const [showDialog, setShowDialog] = useState(false);
 
   const ghgFactor = MATERIAL_FACTORS[material] || 0;
   const estimatedGHG = quantity * ghgFactor;
   const estimatedValue = estimatedGHG * DEFAULT_CREDIT_VALUE;
-
-  const handleSaveProject = () => setShowDialog(true);
 
   return (
     <AppLayout>
@@ -95,7 +92,7 @@ export default function GHGValueEstimatorPage() {
                 }}
                 onSubmit={(data) => {
                   console.log("Saved Project:", data);
-                  // Optionally trigger refresh or redirect
+                  // TODO: optionally redirect or show toast
                 }}
               />
             </CardContent>

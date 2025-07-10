@@ -46,7 +46,7 @@ function computeMetrics(input: number, output: number) {
 }
 
 export default function BatchDetailsPage() {
-  const { batchId } = useParams({ from: "/app/material/$batchId" }) as {
+  const { batchId } = useParams({ from: "/material/$batchId" }) as {
     batchId: string;
   };
   const [batch, setBatch] = useState<any>(null);
