@@ -9,7 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as UserInputRouteImport } from './routes/user-input'
+import { Route as UserInputsRouteImport } from './routes/user-inputs'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as MaterialFlowTracerRouteImport } from './routes/material-flow-tracer'
@@ -22,9 +22,9 @@ import { Route as MaterialNewRouteImport } from './routes/material/new'
 import { Route as MaterialBatchIdRouteImport } from './routes/material/$batchId'
 import { Route as InsetsProjectIdRouteImport } from './routes/insets/$projectId'
 
-const UserInputRoute = UserInputRouteImport.update({
-  id: '/user-input',
-  path: '/user-input',
+const UserInputsRoute = UserInputsRouteImport.update({
+  id: '/user-inputs',
+  path: '/user-inputs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RegisterRoute = RegisterRouteImport.update({
@@ -91,7 +91,7 @@ export interface FileRoutesByFullPath {
   '/material-flow-tracer': typeof MaterialFlowTracerRoute
   '/onboarding': typeof OnboardingRoute
   '/register': typeof RegisterRoute
-  '/user-input': typeof UserInputRoute
+  '/user-inputs': typeof UserInputsRoute
   '/insets/$projectId': typeof InsetsProjectIdRoute
   '/material/$batchId': typeof MaterialBatchIdRoute
   '/material/new': typeof MaterialNewRoute
@@ -105,7 +105,7 @@ export interface FileRoutesByTo {
   '/material-flow-tracer': typeof MaterialFlowTracerRoute
   '/onboarding': typeof OnboardingRoute
   '/register': typeof RegisterRoute
-  '/user-input': typeof UserInputRoute
+  '/user-inputs': typeof UserInputsRoute
   '/insets/$projectId': typeof InsetsProjectIdRoute
   '/material/$batchId': typeof MaterialBatchIdRoute
   '/material/new': typeof MaterialNewRoute
@@ -120,7 +120,7 @@ export interface FileRoutesById {
   '/material-flow-tracer': typeof MaterialFlowTracerRoute
   '/onboarding': typeof OnboardingRoute
   '/register': typeof RegisterRoute
-  '/user-input': typeof UserInputRoute
+  '/user-inputs': typeof UserInputsRoute
   '/insets/$projectId': typeof InsetsProjectIdRoute
   '/material/$batchId': typeof MaterialBatchIdRoute
   '/material/new': typeof MaterialNewRoute
@@ -136,7 +136,7 @@ export interface FileRouteTypes {
     | '/material-flow-tracer'
     | '/onboarding'
     | '/register'
-    | '/user-input'
+    | '/user-inputs'
     | '/insets/$projectId'
     | '/material/$batchId'
     | '/material/new'
@@ -150,7 +150,7 @@ export interface FileRouteTypes {
     | '/material-flow-tracer'
     | '/onboarding'
     | '/register'
-    | '/user-input'
+    | '/user-inputs'
     | '/insets/$projectId'
     | '/material/$batchId'
     | '/material/new'
@@ -164,7 +164,7 @@ export interface FileRouteTypes {
     | '/material-flow-tracer'
     | '/onboarding'
     | '/register'
-    | '/user-input'
+    | '/user-inputs'
     | '/insets/$projectId'
     | '/material/$batchId'
     | '/material/new'
@@ -179,7 +179,7 @@ export interface RootRouteChildren {
   MaterialFlowTracerRoute: typeof MaterialFlowTracerRoute
   OnboardingRoute: typeof OnboardingRoute
   RegisterRoute: typeof RegisterRoute
-  UserInputRoute: typeof UserInputRoute
+  UserInputsRoute: typeof UserInputsRoute
   InsetsProjectIdRoute: typeof InsetsProjectIdRoute
   MaterialBatchIdRoute: typeof MaterialBatchIdRoute
   MaterialNewRoute: typeof MaterialNewRoute
@@ -188,11 +188,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/user-input': {
-      id: '/user-input'
-      path: '/user-input'
-      fullPath: '/user-input'
-      preLoaderRoute: typeof UserInputRouteImport
+    '/user-inputs': {
+      id: '/user-inputs'
+      path: '/user-inputs'
+      fullPath: '/user-inputs'
+      preLoaderRoute: typeof UserInputsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/register': {
@@ -283,7 +283,7 @@ const rootRouteChildren: RootRouteChildren = {
   MaterialFlowTracerRoute: MaterialFlowTracerRoute,
   OnboardingRoute: OnboardingRoute,
   RegisterRoute: RegisterRoute,
-  UserInputRoute: UserInputRoute,
+  UserInputsRoute: UserInputsRoute,
   InsetsProjectIdRoute: InsetsProjectIdRoute,
   MaterialBatchIdRoute: MaterialBatchIdRoute,
   MaterialNewRoute: MaterialNewRoute,

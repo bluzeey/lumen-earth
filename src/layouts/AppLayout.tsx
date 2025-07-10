@@ -58,8 +58,8 @@ const sidebarNavigation = [
   {
     label: "Marketplace",
     items: [
-      { label: "User Inputs", path: "/app/user-inputs", icon: Sliders },
-      { label: "Marketplace", path: "/app/marketplace", icon: Handshake },
+      { label: "User Inputs", path: "/user-inputs", icon: Sliders },
+      { label: "Marketplace", path: "/marketplace", icon: Handshake },
       {
         label: "Green Certification & Finance",
         path: "/app/green-certification",
