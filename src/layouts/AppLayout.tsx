@@ -25,6 +25,10 @@ import {
 } from "lucide-react";
 import { type ReactNode } from "react";
 
+interface AppLayoutProps {
+  children: ReactNode;
+}
+
 const sidebarNavigation = [
   {
     label: "Navigation",
@@ -65,7 +69,7 @@ const sidebarNavigation = [
   },
 ];
 
-export default function AppLayout(children: ReactNode) {
+export default function AppLayout({ children }: AppLayoutProps) {
   const navigate = useNavigate();
 
   function handleLogout() {
