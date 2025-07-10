@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import AppLayout from "@/layouts/AppLayout";
 
 // Dummy data — replace with API
@@ -45,12 +46,14 @@ See [LCA Reference](https://example.com/lca.pdf) for details.`,
   },
 });
 
+type InsetProject = Awaited<ReturnType<typeof fetchInsetProject>>;
+
 export default function InsetProjectDetailsPage() {
-  const { projectId } = useParams({ from: "/app/insets/$projectId" }) as {
+  const { projectId } = useParams({ from: "/insets/$projectId" }) as {
     projectId: string;
   };
 
-  const [project, setProject] = useState<any>(null);
+  const [project, setProject] = useState<InsetProject | null>(null);
 
   useEffect(() => {
     fetchInsetProject(projectId).then(setProject);
@@ -134,7 +137,7 @@ export default function InsetProjectDetailsPage() {
             <CardHeader>Documentation</CardHeader>
             <CardContent className="space-y-4">
               <ul className="space-y-2">
-                {project.documents.map((doc: any, i: number) => (
+                {project.documents.map((doc, i) => (
                   <li key={i} className="flex justify-between items-center">
                     <span>{doc.name}</span>
                     <a

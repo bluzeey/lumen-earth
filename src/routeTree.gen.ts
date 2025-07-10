@@ -20,6 +20,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as MaterialIndexRouteImport } from './routes/material/index'
 import { Route as MaterialNewRouteImport } from './routes/material/new'
 import { Route as MaterialBatchIdRouteImport } from './routes/material/$batchId'
+import { Route as InsetsProjectIdRouteImport } from './routes/insets/$projectId'
 
 const UserInputRoute = UserInputRouteImport.update({
   id: '/user-input',
@@ -76,6 +77,11 @@ const MaterialBatchIdRoute = MaterialBatchIdRouteImport.update({
   path: '/material/$batchId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InsetsProjectIdRoute = InsetsProjectIdRouteImport.update({
+  id: '/insets/$projectId',
+  path: '/insets/$projectId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -86,6 +92,7 @@ export interface FileRoutesByFullPath {
   '/onboarding': typeof OnboardingRoute
   '/register': typeof RegisterRoute
   '/user-input': typeof UserInputRoute
+  '/insets/$projectId': typeof InsetsProjectIdRoute
   '/material/$batchId': typeof MaterialBatchIdRoute
   '/material/new': typeof MaterialNewRoute
   '/material': typeof MaterialIndexRoute
@@ -99,6 +106,7 @@ export interface FileRoutesByTo {
   '/onboarding': typeof OnboardingRoute
   '/register': typeof RegisterRoute
   '/user-input': typeof UserInputRoute
+  '/insets/$projectId': typeof InsetsProjectIdRoute
   '/material/$batchId': typeof MaterialBatchIdRoute
   '/material/new': typeof MaterialNewRoute
   '/material': typeof MaterialIndexRoute
@@ -113,6 +121,7 @@ export interface FileRoutesById {
   '/onboarding': typeof OnboardingRoute
   '/register': typeof RegisterRoute
   '/user-input': typeof UserInputRoute
+  '/insets/$projectId': typeof InsetsProjectIdRoute
   '/material/$batchId': typeof MaterialBatchIdRoute
   '/material/new': typeof MaterialNewRoute
   '/material/': typeof MaterialIndexRoute
@@ -128,6 +137,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/register'
     | '/user-input'
+    | '/insets/$projectId'
     | '/material/$batchId'
     | '/material/new'
     | '/material'
@@ -141,6 +151,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/register'
     | '/user-input'
+    | '/insets/$projectId'
     | '/material/$batchId'
     | '/material/new'
     | '/material'
@@ -154,6 +165,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/register'
     | '/user-input'
+    | '/insets/$projectId'
     | '/material/$batchId'
     | '/material/new'
     | '/material/'
@@ -168,6 +180,7 @@ export interface RootRouteChildren {
   OnboardingRoute: typeof OnboardingRoute
   RegisterRoute: typeof RegisterRoute
   UserInputRoute: typeof UserInputRoute
+  InsetsProjectIdRoute: typeof InsetsProjectIdRoute
   MaterialBatchIdRoute: typeof MaterialBatchIdRoute
   MaterialNewRoute: typeof MaterialNewRoute
   MaterialIndexRoute: typeof MaterialIndexRoute
@@ -252,6 +265,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MaterialBatchIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/insets/$projectId': {
+      id: '/insets/$projectId'
+      path: '/insets/$projectId'
+      fullPath: '/insets/$projectId'
+      preLoaderRoute: typeof InsetsProjectIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -264,6 +284,7 @@ const rootRouteChildren: RootRouteChildren = {
   OnboardingRoute: OnboardingRoute,
   RegisterRoute: RegisterRoute,
   UserInputRoute: UserInputRoute,
+  InsetsProjectIdRoute: InsetsProjectIdRoute,
   MaterialBatchIdRoute: MaterialBatchIdRoute,
   MaterialNewRoute: MaterialNewRoute,
   MaterialIndexRoute: MaterialIndexRoute,
