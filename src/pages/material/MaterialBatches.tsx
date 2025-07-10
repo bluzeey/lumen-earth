@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import {
   Table,
@@ -44,7 +43,7 @@ const materials = ["All", "Cotton", "Polyester", "Nylon"];
 
 export default function MaterialBatchesPage() {
   const navigate = useNavigate();
-  const [data, setData] = useState(mockBatches);
+  const [data] = useState(mockBatches); // ⛳️ removed unused setData
   const [filtered, setFiltered] = useState(mockBatches);
 
   const [sourceFilter, setSourceFilter] = useState("All");
@@ -57,13 +56,14 @@ export default function MaterialBatchesPage() {
   const pageCount = Math.ceil(filtered.length / pageSize);
   const paginated = filtered.slice((page - 1) * pageSize, page * pageSize);
 
-  // Filtering & sorting
   useEffect(() => {
     let temp = [...data];
-    if (sourceFilter !== "All")
+    if (sourceFilter !== "All") {
       temp = temp.filter((b) => b.source === sourceFilter);
-    if (materialFilter !== "All")
+    }
+    if (materialFilter !== "All") {
       temp = temp.filter((b) => b.material === materialFilter);
+    }
     if (dateRange.from && dateRange.to) {
       temp = temp.filter(
         (b) => b.date >= dateRange.from! && b.date <= dateRange.to!
@@ -75,7 +75,7 @@ export default function MaterialBatchesPage() {
         : b.weight - a.weight
     );
     setFiltered(temp);
-    setPage(1); // Reset to first page on filters
+    setPage(1);
   }, [sourceFilter, materialFilter, dateRange, sortBy, data]);
 
   return (
@@ -83,7 +83,7 @@ export default function MaterialBatchesPage() {
       <div className="max-w-7xl mx-auto px-4 py-10 space-y-6">
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-semibold">Material Batches</h1>
-          <Button onClick={() => navigate({ to: "/app/material/new" })}>
+          <Button onClick={() => navigate({ to: "/material/new" })}>
             + New Batch
           </Button>
         </div>
@@ -183,9 +183,7 @@ export default function MaterialBatchesPage() {
                   <TableRow
                     key={batch.id}
                     className="cursor-pointer hover:bg-muted/50"
-                    onClick={() =>
-                      navigate({ to: `/app/material/${batch.id}` })
-                    }
+                    onClick={() => navigate({ to: `/material/${batch.id}` })}
                   >
                     <TableCell>{batch.id}</TableCell>
                     <TableCell>{batch.source}</TableCell>
