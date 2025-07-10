@@ -47,14 +47,13 @@ type BatchFormValues = z.infer<typeof batchSchema>;
 
 export default function NewMaterialBatchPage() {
   const navigate = useNavigate();
-  const batchId = uuidv4().slice(0, 8); // short batch ID
+  const batchId = uuidv4().slice(0, 8);
 
   const {
     register,
     handleSubmit,
     control,
     setValue,
-    watch,
     formState: { errors },
   } = useForm<BatchFormValues>({
     resolver: zodResolver(batchSchema),
@@ -80,10 +79,9 @@ export default function NewMaterialBatchPage() {
     setPreviews(previewUrls);
   };
 
-  const onSubmit = (data: BatchFormValues) => {
-    // TODO: Submit form to backend
+  const onSubmit = () => {
     toast.success("Material batch created");
-    navigate({ to: `/app/material/${batchId}` });
+    navigate({ to: `/material/${batchId}` });
   };
 
   return (
@@ -120,7 +118,7 @@ export default function NewMaterialBatchPage() {
             )}
           </div>
 
-          {/* Material Type */}
+          {/* Material */}
           <div>
             <Label>Material Type</Label>
             <Controller
