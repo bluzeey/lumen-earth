@@ -3,13 +3,6 @@ import { useNavigate } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { toast } from "sonner";
 
 export default function RegisterPage() {
@@ -17,8 +10,6 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [role, setRole] = useState("");
-  const [organization, setOrganization] = useState("");
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -33,7 +24,7 @@ export default function RegisterPage() {
 
     setLoading(true);
     try {
-      await fakeRegister({ name, email, password, role, organization });
+      await fakeRegister({ name, email, password });
       toast.success("Registration successful");
       navigate({ to: "/onboarding" });
     } catch (err: any) {

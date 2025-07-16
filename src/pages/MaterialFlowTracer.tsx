@@ -134,10 +134,6 @@ export default function MaterialFlowTracer() {
 
   const collectedList = filteredBatches.map((b) => safeParse(b.collectedQty));
   const rawList = filteredBatches.map((b) => safeParse(b.rawMaterialQty));
-  const categorizedList = filteredBatches.map((b) =>
-    safeParse(b.categorizedQty)
-  );
-  const yieldPctList = filteredBatches.map((b) => safeParse(b.yieldPercentage));
 
   const totalIn = collectedList.reduce((acc, val) => acc + val, 0);
   const forecastIn = rawList.reduce((acc, val) => acc + val, 0);

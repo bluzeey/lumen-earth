@@ -14,7 +14,6 @@ import {
   Layers3,
   ClipboardList,
   Sliders,
-  PlusCircle,
   Handshake,
   ShieldCheck,
 } from "lucide-react";
