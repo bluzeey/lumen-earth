@@ -41,7 +41,7 @@ const sidebarNavigation = [
   { label: "Marketplace", path: "/marketplace", icon: Handshake },
   {
     label: "Green Certification & Finance",
-    path: "/app/green-certification",
+    path: "/green-certifications",
     icon: ShieldCheck,
   },
 ];

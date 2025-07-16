@@ -205,7 +205,10 @@ export default function ExcelDataEditor() {
         </p>
 
         {datasetKeys.map((key) => (
-          <div key={key} className="space-y-4 border p-4 rounded-md shadow-sm">
+          <div
+            key={key}
+            className="space-y-4 border p-4 rounded-md shadow-sm bg-white"
+          >
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-semibold">{datasetLabels[key]}</h2>
               <p className="text-sm text-gray-500 italic">

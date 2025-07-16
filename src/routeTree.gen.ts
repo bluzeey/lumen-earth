@@ -13,8 +13,10 @@ import { Route as UserInputsRouteImport } from './routes/user-inputs'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as MaterialFlowTracerRouteImport } from './routes/material-flow-tracer'
+import { Route as MarketplaceRouteImport } from './routes/marketplace'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as InventoryTrackerRouteImport } from './routes/inventory-tracker'
+import { Route as GreenCertificationsRouteImport } from './routes/green-certifications'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MaterialIndexRouteImport } from './routes/material/index'
@@ -42,6 +44,11 @@ const MaterialFlowTracerRoute = MaterialFlowTracerRouteImport.update({
   path: '/material-flow-tracer',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MarketplaceRoute = MarketplaceRouteImport.update({
+  id: '/marketplace',
+  path: '/marketplace',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
@@ -50,6 +57,11 @@ const LoginRoute = LoginRouteImport.update({
 const InventoryTrackerRoute = InventoryTrackerRouteImport.update({
   id: '/inventory-tracker',
   path: '/inventory-tracker',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GreenCertificationsRoute = GreenCertificationsRouteImport.update({
+  id: '/green-certifications',
+  path: '/green-certifications',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardRoute = DashboardRouteImport.update({
@@ -86,8 +98,10 @@ const InsetsProjectIdRoute = InsetsProjectIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
+  '/green-certifications': typeof GreenCertificationsRoute
   '/inventory-tracker': typeof InventoryTrackerRoute
   '/login': typeof LoginRoute
+  '/marketplace': typeof MarketplaceRoute
   '/material-flow-tracer': typeof MaterialFlowTracerRoute
   '/onboarding': typeof OnboardingRoute
   '/register': typeof RegisterRoute
@@ -100,8 +114,10 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
+  '/green-certifications': typeof GreenCertificationsRoute
   '/inventory-tracker': typeof InventoryTrackerRoute
   '/login': typeof LoginRoute
+  '/marketplace': typeof MarketplaceRoute
   '/material-flow-tracer': typeof MaterialFlowTracerRoute
   '/onboarding': typeof OnboardingRoute
   '/register': typeof RegisterRoute
@@ -115,8 +131,10 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
+  '/green-certifications': typeof GreenCertificationsRoute
   '/inventory-tracker': typeof InventoryTrackerRoute
   '/login': typeof LoginRoute
+  '/marketplace': typeof MarketplaceRoute
   '/material-flow-tracer': typeof MaterialFlowTracerRoute
   '/onboarding': typeof OnboardingRoute
   '/register': typeof RegisterRoute
@@ -131,8 +149,10 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/dashboard'
+    | '/green-certifications'
     | '/inventory-tracker'
     | '/login'
+    | '/marketplace'
     | '/material-flow-tracer'
     | '/onboarding'
     | '/register'
@@ -145,8 +165,10 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/dashboard'
+    | '/green-certifications'
     | '/inventory-tracker'
     | '/login'
+    | '/marketplace'
     | '/material-flow-tracer'
     | '/onboarding'
     | '/register'
@@ -159,8 +181,10 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/dashboard'
+    | '/green-certifications'
     | '/inventory-tracker'
     | '/login'
+    | '/marketplace'
     | '/material-flow-tracer'
     | '/onboarding'
     | '/register'
@@ -174,8 +198,10 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardRoute: typeof DashboardRoute
+  GreenCertificationsRoute: typeof GreenCertificationsRoute
   InventoryTrackerRoute: typeof InventoryTrackerRoute
   LoginRoute: typeof LoginRoute
+  MarketplaceRoute: typeof MarketplaceRoute
   MaterialFlowTracerRoute: typeof MaterialFlowTracerRoute
   OnboardingRoute: typeof OnboardingRoute
   RegisterRoute: typeof RegisterRoute
@@ -216,6 +242,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MaterialFlowTracerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/marketplace': {
+      id: '/marketplace'
+      path: '/marketplace'
+      fullPath: '/marketplace'
+      preLoaderRoute: typeof MarketplaceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
@@ -228,6 +261,13 @@ declare module '@tanstack/react-router' {
       path: '/inventory-tracker'
       fullPath: '/inventory-tracker'
       preLoaderRoute: typeof InventoryTrackerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/green-certifications': {
+      id: '/green-certifications'
+      path: '/green-certifications'
+      fullPath: '/green-certifications'
+      preLoaderRoute: typeof GreenCertificationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -278,8 +318,10 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardRoute: DashboardRoute,
+  GreenCertificationsRoute: GreenCertificationsRoute,
   InventoryTrackerRoute: InventoryTrackerRoute,
   LoginRoute: LoginRoute,
+  MarketplaceRoute: MarketplaceRoute,
   MaterialFlowTracerRoute: MaterialFlowTracerRoute,
   OnboardingRoute: OnboardingRoute,
   RegisterRoute: RegisterRoute,
