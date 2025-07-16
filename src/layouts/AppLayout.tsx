@@ -5,21 +5,16 @@ import {
   SidebarHeader,
   SidebarContent,
   SidebarFooter,
-  SidebarGroup,
-  SidebarGroupLabel,
-  SidebarGroupContent,
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
 import {
   LogOut,
-  Package,
   Layers3,
-  BadgeDollarSign,
   ClipboardList,
-  PlusCircle,
   Sliders,
+  PlusCircle,
   Handshake,
   ShieldCheck,
 } from "lucide-react";
@@ -31,41 +26,23 @@ interface AppLayoutProps {
 
 const sidebarNavigation = [
   {
-    label: "Navigation",
-    items: [
-      { label: "Traceability", path: "/traceability", icon: Layers3 },
-      { label: "Inventory", path: "/$1", icon: Package },
-      { label: "Credits", path: "/app/credits", icon: BadgeDollarSign },
-      {
-        label: "Material Flow Tracer",
-        path: "/material-flow-tracer",
-        icon: Layers3,
-      },
-      {
-        label: "Inventory Tracker",
-        path: "/inventory-tracker",
-        icon: ClipboardList,
-      },
-    ],
+    label: "Material Flow Tracer",
+    path: "/material-flow-tracer",
+    icon: Layers3,
   },
   {
-    label: "Material Traceability",
-    items: [
-      { label: "Batches", path: "/material", icon: ClipboardList },
-      { label: "New Batch", path: "/material/new", icon: PlusCircle },
-    ],
+    label: "Inventory Tracker",
+    path: "/inventory-tracker",
+    icon: ClipboardList,
   },
+  { label: "User Inputs", path: "/user-inputs", icon: Sliders },
+  { label: "Batches", path: "/material", icon: ClipboardList },
+  { label: "New Batch", path: "/material/new", icon: PlusCircle },
+  { label: "Marketplace", path: "/marketplace", icon: Handshake },
   {
-    label: "Marketplace",
-    items: [
-      { label: "User Inputs", path: "/user-inputs", icon: Sliders },
-      { label: "Marketplace", path: "/marketplace", icon: Handshake },
-      {
-        label: "Green Certification & Finance",
-        path: "/app/green-certification",
-        icon: ShieldCheck,
-      },
-    ],
+    label: "Green Certification & Finance",
+    path: "/app/green-certification",
+    icon: ShieldCheck,
   },
 ];
 
@@ -89,33 +66,32 @@ export default function AppLayout({ children }: AppLayoutProps) {
           </div>
         </SidebarHeader>
 
-        <SidebarContent>
-          {sidebarNavigation.map((group) => (
-            <SidebarGroup key={group.label}>
-              <SidebarGroupLabel>{group.label}</SidebarGroupLabel>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  {group.items.map((item) => (
-                    <SidebarMenuItem key={item.path}>
-                      <SidebarMenuButton asChild>
-                        <a href={item.path}>
-                          <item.icon className="h-4 w-4" />
-                          <span>{item.label}</span>
-                        </a>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  ))}
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </SidebarGroup>
-          ))}
+        <SidebarContent className="mt-4">
+          <SidebarMenu className="space-y-1.5">
+            {sidebarNavigation.map((item) => (
+              <SidebarMenuItem key={item.path}>
+                <SidebarMenuButton asChild>
+                  <a
+                    href={item.path}
+                    className="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-muted transition-colors"
+                  >
+                    <item.icon className="h-4 w-4" />
+                    <span>{item.label}</span>
+                  </a>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            ))}
+          </SidebarMenu>
         </SidebarContent>
 
         <SidebarFooter>
-          <SidebarMenu>
+          <SidebarMenu className="space-y-1.5">
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <button onClick={handleLogout}>
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-muted transition-colors w-full text-left"
+                >
                   <LogOut className="h-4 w-4" />
                   <span>Logout</span>
                 </button>
