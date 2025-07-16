@@ -1,4 +1,5 @@
 import UserInputPage from "@/pages/UserInputs";
+import UserInputsPage from "@/pages/UserInputsV2";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/user-inputs")({
@@ -6,5 +7,5 @@ export const Route = createFileRoute("/user-inputs")({
 });
 
 function RouteComponent() {
-  return <UserInputPage />;
+  return <UserInputsPage />;
 }

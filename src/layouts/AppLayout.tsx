@@ -36,8 +36,6 @@ const sidebarNavigation = [
     icon: ClipboardList,
   },
   { label: "User Inputs", path: "/user-inputs", icon: Sliders },
-  { label: "Batches", path: "/material", icon: ClipboardList },
-  { label: "New Batch", path: "/material/new", icon: PlusCircle },
   { label: "Marketplace", path: "/marketplace", icon: Handshake },
   {
     label: "Green Certification & Finance",
