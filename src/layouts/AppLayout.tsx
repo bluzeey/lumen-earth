@@ -80,7 +80,13 @@ export default function AppLayout({ children }: AppLayoutProps) {
     <SidebarProvider>
       <Sidebar>
         <SidebarHeader>
-          <div className="px-4 py-3 font-bold text-lg">Lumen</div>
+          <div className="flex justify-start">
+            <img
+              src="/logo.png"
+              alt="Lumen Logo"
+              className="h-10 md:h-12 object-contain"
+            />
+          </div>
         </SidebarHeader>
 
         <SidebarContent>

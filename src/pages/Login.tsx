@@ -24,45 +24,87 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
-      <form
-        onSubmit={handleLogin}
-        className="w-full max-w-md space-y-6 bg-white p-8 shadow-md rounded-xl"
-      >
-        <h1 className="text-2xl font-bold text-center">Login to Lumen</h1>
-
-        <div>
-          <Label htmlFor="email">Email</Label>
-          <Input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
+    <div className="min-h-screen bg-beige flex items-center justify-center px-6 py-12">
+      <div className="w-full max-w-7xl flex flex-col md:flex-row items-center justify-center gap-16">
+        {/* Illustration */}
+        <div className="w-full md:w-1/2 flex justify-center bg-lightgreen/40 p-6 rounded-2xl">
+          <img
+            src="/login.png"
+            alt="Login Illustration"
+            className="max-w-md w-full h-auto object-contain"
           />
         </div>
 
-        <div>
-          <Label htmlFor="password">Password</Label>
-          <Input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
+        {/* Login Form */}
+        <form
+          onSubmit={handleLogin}
+          className="w-full md:w-1/2 bg-white border border-lightgreen rounded-2xl shadow-xl p-10 space-y-6"
+        >
+          {/* Logo */}
+          <div className="flex justify-center">
+            <img
+              src="/logo.png"
+              alt="Lumen Logo"
+              className="h-10 md:h-12 object-contain"
+            />
+          </div>
 
-        <div className="text-right text-sm">
-          <a href="/forgot-password" className="text-blue-600 hover:underline">
-            Forgot Password?
-          </a>
-        </div>
+          {/* Email */}
+          <div>
+            <Label htmlFor="email" className="text-charcoal">
+              Email
+            </Label>
+            <Input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
 
-        <Button type="submit" className="w-full" disabled={loading}>
-          {loading ? "Logging in..." : "Login"}
-        </Button>
-      </form>
+          {/* Password */}
+          <div>
+            <Label htmlFor="password" className="text-charcoal">
+              Password
+            </Label>
+            <Input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+
+          {/* Forgot Password */}
+          <div className="text-right text-sm">
+            <a href="/forgot-password" className="text-yellow hover:underline">
+              Forgot Password?
+            </a>
+          </div>
+
+          {/* Submit */}
+          <Button
+            type="submit"
+            className="w-full bg-primary text-white hover:bg-primary/90 transition"
+            disabled={loading}
+          >
+            {loading ? "Logging in..." : "Login"}
+          </Button>
+
+          {/* Signup Link */}
+          <p className="text-sm text-center text-charcoal/70">
+            Don’t have an account?{" "}
+            <a
+              href="/signup"
+              className="text-primary font-medium hover:underline"
+            >
+              Sign up
+            </a>
+          </p>
+        </form>
+      </div>
     </div>
   );
 }

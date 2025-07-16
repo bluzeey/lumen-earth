@@ -96,9 +96,6 @@ export default function MaterialFlowTracer() {
           };
         });
 
-        console.log("Sample batch:", merged[0]);
-        console.log("Sample merged batch:", merged[0]);
-        console.log("All merged batches:", merged);
         setParsedBatches(merged);
       }
     );
@@ -112,14 +109,13 @@ export default function MaterialFlowTracer() {
   useEffect(() => {
     if (!dateRange && datesWithData.length > 0) {
       const defaultRange = getDefaultRange(datesWithData);
-      console.log("Setting default date range:", defaultRange);
       setDateRange(defaultRange);
     }
   }, [datesWithData, dateRange]);
 
   const filteredBatches = useMemo(() => {
     if (!dateRange) return [];
-    const filtered = parsedBatches.filter(
+    return parsedBatches.filter(
       (b) =>
         b.parsedDate &&
         isWithinInterval(b.parsedDate, {
@@ -127,8 +123,6 @@ export default function MaterialFlowTracer() {
           end: dateRange.to,
         })
     );
-    console.log("Filtered Batches:", filtered);
-    return filtered;
   }, [dateRange, parsedBatches]);
 
   const safeParse = (val: any): number => {
@@ -144,11 +138,6 @@ export default function MaterialFlowTracer() {
     safeParse(b.categorizedQty)
   );
   const yieldPctList = filteredBatches.map((b) => safeParse(b.yieldPercentage));
-
-  console.log("Collected Quantities:", collectedList);
-  console.log("Raw Material Quantities:", rawList);
-  console.log("Categorized Quantities:", categorizedList);
-  console.log("Yield Percentages:", yieldPctList);
 
   const totalIn = collectedList.reduce((acc, val) => acc + val, 0);
   const forecastIn = rawList.reduce((acc, val) => acc + val, 0);
@@ -166,19 +155,14 @@ export default function MaterialFlowTracer() {
   const yieldActual = totalIn ? (totalOut / totalIn) * 100 : 0;
   const yieldForecast = forecastIn ? (forecastOut / forecastIn) * 100 : 0;
 
-  console.log("Total In:", totalIn);
-  console.log("Forecast In:", forecastIn);
-  console.log("Total Out:", totalOut);
-  console.log("Forecast Out:", forecastOut);
-  console.log("Yield Actual:", yieldActual);
-  console.log("Yield Forecast:", yieldForecast);
-
   return (
     <AppLayout>
-      <div className="flex min-h-screen w-full bg-white">
+      <div className="flex min-h-screen w-full bg-beige text-charcoal">
         <main className="flex-1 p-6 space-y-6">
           <div className="flex justify-between items-start">
-            <h1 className="text-2xl font-semibold">Material Flow Tracer</h1>
+            <h1 className="text-2xl font-bold text-primary">
+              Material Flow Tracer
+            </h1>
             <div className="flex space-x-4">
               <Button variant="ghost" size="icon">
                 <Bell className="h-5 w-5" />
@@ -233,11 +217,11 @@ export default function MaterialFlowTracer() {
           <div className="grid grid-cols-4 gap-4">
             <Card className="text-center">
               <CardContent className="py-4">
-                <div className="text-gray-500 text-sm">Qty In</div>
-                <div className="text-2xl font-bold text-green-600">
+                <div className="text-muted-foreground text-sm">Qty In</div>
+                <div className="text-2xl font-bold text-primary">
                   {totalIn.toFixed(2)} T (A)
                 </div>
-                <div className="text-sm text-gray-500">
+                <div className="text-sm text-muted-foreground">
                   {forecastIn.toFixed(2)} T (F) (
                   {((totalIn / forecastIn) * 100 || 0).toFixed(1)}% accuracy)
                 </div>
@@ -245,11 +229,11 @@ export default function MaterialFlowTracer() {
             </Card>
             <Card className="text-center">
               <CardContent className="py-4">
-                <div className="text-gray-500 text-sm">Qty Out</div>
-                <div className="text-2xl font-bold text-green-600">
+                <div className="text-muted-foreground text-sm">Qty Out</div>
+                <div className="text-2xl font-bold text-primary">
                   {totalOut.toFixed(2)} T (A)
                 </div>
-                <div className="text-sm text-gray-500">
+                <div className="text-sm text-muted-foreground">
                   {forecastOut.toFixed(2)} T (F) (
                   {((totalOut / forecastOut) * 100 || 0).toFixed(1)}% accuracy)
                 </div>
@@ -257,26 +241,28 @@ export default function MaterialFlowTracer() {
             </Card>
             <Card className="text-center">
               <CardContent className="py-4">
-                <div className="text-gray-500 text-sm">Yield %</div>
-                <div className="text-2xl font-bold text-orange-600">
+                <div className="text-muted-foreground text-sm">Yield %</div>
+                <div className="text-2xl font-bold text-yellow">
                   {yieldActual.toFixed(1)}%
                 </div>
-                <div className="text-sm text-gray-500">
+                <div className="text-sm text-muted-foreground">
                   {yieldForecast.toFixed(1)}% (F)
                 </div>
               </CardContent>
             </Card>
-            <Card className="text-center border-red-500 border-2">
+            <Card className="text-center border-2 border-red">
               <CardContent className="py-4">
-                <div className="text-gray-500 text-sm">Orders At Risk</div>
-                <div className="text-2xl font-bold text-red-600">₹28.9K</div>
+                <div className="text-muted-foreground text-sm">
+                  Orders At Risk
+                </div>
+                <div className="text-2xl font-bold text-red">₹28.9K</div>
               </CardContent>
             </Card>
           </div>
 
           <div className="border rounded-lg overflow-x-auto">
             <table className="w-full text-sm text-left">
-              <thead className="bg-gray-100 text-gray-600">
+              <thead className="bg-lightgreen text-primary">
                 <tr>
                   <th className="p-2">Batch ID</th>
                   <th className="p-2">Material Name</th>
@@ -287,7 +273,10 @@ export default function MaterialFlowTracer() {
               </thead>
               <tbody>
                 {filteredBatches.map((batch) => (
-                  <tr key={batch.batchId} className="border-t">
+                  <tr
+                    key={batch.batchId}
+                    className="border-t hover:bg-muted/50"
+                  >
                     <td className="p-2">{batch.batchId}</td>
                     <td className="p-2">{batch.materialName}</td>
                     <td className="p-2">{batch?.composition}</td>

@@ -33,7 +33,6 @@ export default function RegisterPage() {
 
     setLoading(true);
     try {
-      // Replace with real API call
       await fakeRegister({ name, email, password, role, organization });
       toast.success("Registration successful");
       navigate({ to: "/onboarding" });
@@ -45,85 +44,90 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
-      <form
-        onSubmit={handleRegister}
-        className="w-full max-w-md space-y-6 bg-white p-8 shadow-md rounded-xl"
-      >
-        <h1 className="text-2xl font-bold text-center">
-          Create your Lumen account
-        </h1>
-
-        <div>
-          <Label htmlFor="name">Name</Label>
-          <Input
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
+    <div className="min-h-screen bg-beige flex items-center justify-center px-6 py-12">
+      <div className="w-full max-w-7xl flex flex-col md:flex-row items-center justify-center gap-16">
+        {/* Left illustration */}
+        <div className="w-full md:w-1/2 flex justify-center bg-lightgreen/40 p-6 rounded-2xl">
+          <img
+            src="/register.png"
+            alt="Register Illustration"
+            className="max-w-md w-full h-auto object-contain"
           />
         </div>
 
-        <div>
-          <Label htmlFor="email">Email</Label>
-          <Input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
+        {/* Register Form */}
+        <form
+          onSubmit={handleRegister}
+          className="w-full md:w-1/2 bg-white border border-lightgreen rounded-2xl shadow-xl p-10 space-y-6"
+        >
+          <div className="flex justify-center">
+            <img
+              src="/logo.png"
+              alt="Lumen Logo"
+              className="h-10 md:h-12 object-contain"
+            />
+          </div>
 
-        <div>
-          <Label htmlFor="password">Password</Label>
-          <Input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
+          <div>
+            <Label htmlFor="name" className="text-charcoal">
+              Name
+            </Label>
+            <Input
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
 
-        <div>
-          <Label htmlFor="confirmPassword">Confirm Password</Label>
-          <Input
-            id="confirmPassword"
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </div>
+          <div>
+            <Label htmlFor="email" className="text-charcoal">
+              Email
+            </Label>
+            <Input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
 
-        <div>
-          <Label>Role</Label>
-          <Select onValueChange={setRole} required>
-            <SelectTrigger>
-              <SelectValue placeholder="Select a role" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="recycler">Recycler</SelectItem>
-              <SelectItem value="brand">Brand</SelectItem>
-              <SelectItem value="supplier">Supplier</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
+          <div>
+            <Label htmlFor="password" className="text-charcoal">
+              Password
+            </Label>
+            <Input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
 
-        <div>
-          <Label htmlFor="organization">Organization Name (optional)</Label>
-          <Input
-            id="organization"
-            value={organization}
-            onChange={(e) => setOrganization(e.target.value)}
-          />
-        </div>
+          <div>
+            <Label htmlFor="confirmPassword" className="text-charcoal">
+              Confirm Password
+            </Label>
+            <Input
+              id="confirmPassword"
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+          </div>
 
-        <Button type="submit" className="w-full" disabled={loading}>
-          {loading ? "Registering..." : "Register"}
-        </Button>
-      </form>
+          <Button
+            type="submit"
+            className="w-full bg-primary text-white hover:bg-primary/90 transition"
+            disabled={loading}
+          >
+            {loading ? "Registering..." : "Register"}
+          </Button>
+        </form>
+      </div>
     </div>
   );
 }
