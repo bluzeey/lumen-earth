@@ -1,5 +1,3 @@
-// Updated UserInputsPage.tsx with Excel integration for multiple tabs and simplified upload section
-
 import { useEffect, useState } from "react";
 import * as XLSX from "xlsx";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -10,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import AppLayout from "@/layouts/AppLayout";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { DataGrid } from "react-data-grid";
+import { DataGrid, type Column } from "react-data-grid";
 import "react-data-grid/lib/styles.css";
 
 const TAB_CONFIGS = {
@@ -33,6 +31,8 @@ const TAB_CONFIGS = {
     expected: ["recyclingType", "weight", "reused", "atRisk"],
   },
 };
+
+type TabKey = keyof typeof TAB_CONFIGS;
 
 export default function UserInputsPage() {
   const insights = [
@@ -75,23 +75,25 @@ export default function UserInputsPage() {
     },
   ];
 
-  const [activeTab, setActiveTab] = useState("collection");
+  const [activeTab, setActiveTab] = useState<TabKey>("collection");
   const [dataset, setDataset] = useState<any[]>([]);
-  const [columns, setColumns] = useState<any[]>([]);
+  const [columns, setColumns] = useState<Column<any>[]>([]);
   const [error, setError] = useState<string>("");
   const [fileName, setFileName] = useState("(auto-loaded)");
   const [openTable, setOpenTable] = useState(false);
 
-  const loadExcel = async (file: File | Blob, tabKey: string) => {
+  const loadExcel = async (file: File | Blob, tabKey: TabKey) => {
     try {
       const data = await file.arrayBuffer();
       const workbook = XLSX.read(data, { type: "array" });
       const sheet = workbook.Sheets[workbook.SheetNames[0]];
-      const json = XLSX.utils.sheet_to_json(sheet, { defval: "" });
+      const json = XLSX.utils.sheet_to_json<Record<string, any>>(sheet, {
+        defval: "",
+      });
 
       const expected = TAB_CONFIGS[tabKey].expected;
       const actual = json.length > 0 ? Object.keys(json[0]) : [];
-      const missing = expected.filter((col) => !actual.includes(col));
+      const missing = expected.filter((col: string) => !actual.includes(col));
 
       if (missing.length > 0) {
         setError(`Missing columns: ${missing.join(", ")}`);
@@ -99,7 +101,7 @@ export default function UserInputsPage() {
       }
 
       setColumns(
-        expected.map((col) => ({ key: col, name: col, editable: true }))
+        expected.map((col: string) => ({ key: col, name: col, editable: true }))
       );
       setDataset(json);
       setError("");
@@ -132,7 +134,6 @@ export default function UserInputsPage() {
       <div className="p-6 space-y-6">
         <h2 className="text-2xl font-bold">User Inputs</h2>
 
-        {/* Insight Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {insights.map((item, i) => (
             <Card key={i} className="border bg-white">
@@ -160,7 +161,7 @@ export default function UserInputsPage() {
         <Tabs
           defaultValue="collection"
           className="w-full"
-          onValueChange={(val) => setActiveTab(val)}
+          onValueChange={(val) => setActiveTab(val as TabKey)}
         >
           <TabsList>
             <TabsTrigger value="collection">Collection</TabsTrigger>
@@ -204,7 +205,7 @@ export default function UserInputsPage() {
                           const file = e.target.files?.[0];
                           if (file) {
                             setFileName(file.name);
-                            loadExcel(file, tab);
+                            loadExcel(file, tab as TabKey);
                           }
                         }}
                       />
