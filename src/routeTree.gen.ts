@@ -20,6 +20,7 @@ import { Route as MarketplaceRouteImport } from './routes/marketplace'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as InventoryTrackerRouteImport } from './routes/inventory-tracker'
 import { Route as GreenCertificationsRouteImport } from './routes/green-certifications'
+import { Route as FinancializationRouteImport } from './routes/financialization'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as BoundaryRouteImport } from './routes/boundary'
 import { Route as IndexRouteImport } from './routes/index'
@@ -86,6 +87,11 @@ const GreenCertificationsRoute = GreenCertificationsRouteImport.update({
   path: '/green-certifications',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FinancializationRoute = FinancializationRouteImport.update({
+  id: '/financialization',
+  path: '/financialization',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -141,6 +147,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/boundary': typeof BoundaryRoute
   '/dashboard': typeof DashboardRoute
+  '/financialization': typeof FinancializationRoute
   '/green-certifications': typeof GreenCertificationsRoute
   '/inventory-tracker': typeof InventoryTrackerRoute
   '/login': typeof LoginRoute
@@ -164,6 +171,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/boundary': typeof BoundaryRoute
   '/dashboard': typeof DashboardRoute
+  '/financialization': typeof FinancializationRoute
   '/green-certifications': typeof GreenCertificationsRoute
   '/inventory-tracker': typeof InventoryTrackerRoute
   '/login': typeof LoginRoute
@@ -188,6 +196,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/boundary': typeof BoundaryRoute
   '/dashboard': typeof DashboardRoute
+  '/financialization': typeof FinancializationRoute
   '/green-certifications': typeof GreenCertificationsRoute
   '/inventory-tracker': typeof InventoryTrackerRoute
   '/login': typeof LoginRoute
@@ -213,6 +222,7 @@ export interface FileRouteTypes {
     | '/'
     | '/boundary'
     | '/dashboard'
+    | '/financialization'
     | '/green-certifications'
     | '/inventory-tracker'
     | '/login'
@@ -236,6 +246,7 @@ export interface FileRouteTypes {
     | '/'
     | '/boundary'
     | '/dashboard'
+    | '/financialization'
     | '/green-certifications'
     | '/inventory-tracker'
     | '/login'
@@ -259,6 +270,7 @@ export interface FileRouteTypes {
     | '/'
     | '/boundary'
     | '/dashboard'
+    | '/financialization'
     | '/green-certifications'
     | '/inventory-tracker'
     | '/login'
@@ -283,6 +295,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BoundaryRoute: typeof BoundaryRoute
   DashboardRoute: typeof DashboardRoute
+  FinancializationRoute: typeof FinancializationRoute
   GreenCertificationsRoute: typeof GreenCertificationsRoute
   InventoryTrackerRoute: typeof InventoryTrackerRoute
   LoginRoute: typeof LoginRoute
@@ -382,6 +395,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GreenCertificationsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/financialization': {
+      id: '/financialization'
+      path: '/financialization'
+      fullPath: '/financialization'
+      preLoaderRoute: typeof FinancializationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard': {
       id: '/dashboard'
       path: '/dashboard'
@@ -459,6 +479,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BoundaryRoute: BoundaryRoute,
   DashboardRoute: DashboardRoute,
+  FinancializationRoute: FinancializationRoute,
   GreenCertificationsRoute: GreenCertificationsRoute,
   InventoryTrackerRoute: InventoryTrackerRoute,
   LoginRoute: LoginRoute,
