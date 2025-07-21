@@ -17,14 +17,16 @@ const generateSankeyDataFromBatches = (batches: any[]): SankeyData => {
   const linksMap: Record<string, number> = {};
 
   for (const batch of Array.isArray(batches) ? batches : []) {
-    const source = safe(batch.sourceName);
-    const material = safe(batch.materialName);
-    const product = safe(batch.productItem);
-    const destination = safe(
-      batch.categorizedLocation ||
-        batch.destination ||
-        batch.contaminationCategory
-    );
+    const origin = "Origin: " + safe(batch.sourceName);
+    const collection =
+      "Collection: " + safe(batch.collectionLocation || batch.sourceName);
+    const categorization =
+      "Categorization: " + safe(batch.categorizedLocation || batch.destination);
+    const recycling =
+      "Recycling: " +
+      safe(batch.recyclingLocation || batch.categorizedLocation);
+    const dispatch =
+      "Dispatch: " + safe(batch.destination || batch.dispatchLocation);
 
     const qty =
       typeof batch.categorizedQty === "number"
@@ -32,23 +34,24 @@ const generateSankeyDataFromBatches = (batches: any[]): SankeyData => {
         : parseFloat(batch.categorizedQty || batch.rawMaterialQty || "0");
 
     if (
-      !source ||
-      !material ||
-      !product ||
-      !destination ||
+      !origin ||
+      !collection ||
+      !categorization ||
+      !recycling ||
+      !dispatch ||
       qty === undefined ||
       isNaN(qty)
-    ) {
+    )
       continue;
-    }
 
     const flows: [string, string][] = [
-      [source, material],
-      [material, product],
-      [product, destination],
+      [origin, collection],
+      [collection, categorization],
+      [categorization, recycling],
+      [recycling, dispatch],
     ];
 
-    [source, material, product, destination].forEach((node) =>
+    [origin, collection, categorization, recycling, dispatch].forEach((node) =>
       nodesSet.add(node)
     );
 
@@ -59,17 +62,21 @@ const generateSankeyDataFromBatches = (batches: any[]): SankeyData => {
   }
 
   const nodes: SankeyNode[] = Array.from(nodesSet).map((id) => ({ id }));
-  const links: SankeyLink[] = Object.entries(linksMap)
-    .filter(([key]) => {
-      const [src, tgt] = key.split("|||");
-      return nodesSet.has(src) && nodesSet.has(tgt);
-    })
-    .map(([key, value]) => {
-      const [source, target] = key.split("|||");
-      return { source, target, value: parseFloat(value.toFixed(2)) };
-    });
+  const links: SankeyLink[] = Object.entries(linksMap).map(([key, value]) => {
+    const [source, target] = key.split("|||");
+    return { source, target, value: parseFloat(value.toFixed(2)) };
+  });
 
   return { nodes, links };
+};
+
+const getStageColor = (id: string): string => {
+  if (id.startsWith("Origin:")) return "#1f77b4";
+  if (id.startsWith("Collection:")) return "#2ca02c";
+  if (id.startsWith("Categorization:")) return "#ff7f0e";
+  if (id.startsWith("Recycling:")) return "#9467bd";
+  if (id.startsWith("Dispatch:")) return "#d62728";
+  return "#7f7f7f";
 };
 
 export const SankeyChart: React.FC<Props> = ({ batches }) => {
@@ -84,28 +91,36 @@ export const SankeyChart: React.FC<Props> = ({ batches }) => {
   }
 
   return (
-    <div style={{ height: 500 }}>
+    <div
+      style={{
+        height: 450,
+        width: "100%",
+        maxWidth: "100vw",
+        overflowX: "auto",
+      }}
+    >
       <ResponsiveSankey
         data={data}
-        margin={{ top: 40, right: 160, bottom: 40, left: 200 }}
+        margin={{ top: 20, right: 60, bottom: 20, left: 60 }} // tighter margins
         align="justify"
-        colors={{ scheme: "category10" }}
         nodeOpacity={1}
-        nodeThickness={15}
-        nodeInnerPadding={6}
-        nodeSpacing={24}
+        nodeThickness={12}
+        nodeInnerPadding={6} // slightly more padding between vertical nodes
+        nodeSpacing={8} // tighter horizontal spacing between columns
         nodeBorderWidth={1}
         nodeBorderColor={{ from: "color", modifiers: [["darker", 0.8]] }}
-        linkOpacity={0.5}
-        linkHoverOpacity={0.6}
+        linkOpacity={1}
+        linkHoverOpacity={1}
         linkHoverOthersOpacity={0.1}
-        enableLinkGradient
-        labelPosition="outside"
+        enableLinkGradient={false}
+        labelPosition="inside"
         labelOrientation="horizontal"
-        labelPadding={16}
-        labelTextColor={{ from: "color", modifiers: [["darker", 1]] }}
+        labelPadding={20} // smaller label spacing
+        labelTextColor={{ from: "color", modifiers: [["darker", 1.2]] }}
         animate={true}
         motionConfig="gentle"
+        nodeColor={(node) => getStageColor(node.id)}
+        linkColor={(link) => getStageColor(link.source.id)}
       />
     </div>
   );
