@@ -10,7 +10,10 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as UserInputsRouteImport } from './routes/user-inputs'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as RegistryRouteImport } from './routes/registry'
 import { Route as RegisterRouteImport } from './routes/register'
+import { Route as OrderTrackerRouteImport } from './routes/order-tracker'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as MaterialFlowTracerRouteImport } from './routes/material-flow-tracer'
 import { Route as MarketplaceRouteImport } from './routes/marketplace'
@@ -18,20 +21,39 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as InventoryTrackerRouteImport } from './routes/inventory-tracker'
 import { Route as GreenCertificationsRouteImport } from './routes/green-certifications'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as BoundaryRouteImport } from './routes/boundary'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MaterialIndexRouteImport } from './routes/material/index'
 import { Route as MaterialNewRouteImport } from './routes/material/new'
 import { Route as MaterialBatchIdRouteImport } from './routes/material/$batchId'
 import { Route as InsetsProjectIdRouteImport } from './routes/insets/$projectId'
+import { Route as CreditsOffsetRouteImport } from './routes/credits/offset'
+import { Route as CreditsGrsRouteImport } from './routes/credits/grs'
+import { Route as CreditsComplyRouteImport } from './routes/credits/comply'
 
 const UserInputsRoute = UserInputsRouteImport.update({
   id: '/user-inputs',
   path: '/user-inputs',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegistryRoute = RegistryRouteImport.update({
+  id: '/registry',
+  path: '/registry',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RegisterRoute = RegisterRouteImport.update({
   id: '/register',
   path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrderTrackerRoute = OrderTrackerRouteImport.update({
+  id: '/order-tracker',
+  path: '/order-tracker',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -69,6 +91,11 @@ const DashboardRoute = DashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BoundaryRoute = BoundaryRouteImport.update({
+  id: '/boundary',
+  path: '/boundary',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -94,9 +121,25 @@ const InsetsProjectIdRoute = InsetsProjectIdRouteImport.update({
   path: '/insets/$projectId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CreditsOffsetRoute = CreditsOffsetRouteImport.update({
+  id: '/credits/offset',
+  path: '/credits/offset',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreditsGrsRoute = CreditsGrsRouteImport.update({
+  id: '/credits/grs',
+  path: '/credits/grs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreditsComplyRoute = CreditsComplyRouteImport.update({
+  id: '/credits/comply',
+  path: '/credits/comply',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/boundary': typeof BoundaryRoute
   '/dashboard': typeof DashboardRoute
   '/green-certifications': typeof GreenCertificationsRoute
   '/inventory-tracker': typeof InventoryTrackerRoute
@@ -104,8 +147,14 @@ export interface FileRoutesByFullPath {
   '/marketplace': typeof MarketplaceRoute
   '/material-flow-tracer': typeof MaterialFlowTracerRoute
   '/onboarding': typeof OnboardingRoute
+  '/order-tracker': typeof OrderTrackerRoute
   '/register': typeof RegisterRoute
+  '/registry': typeof RegistryRoute
+  '/settings': typeof SettingsRoute
   '/user-inputs': typeof UserInputsRoute
+  '/credits/comply': typeof CreditsComplyRoute
+  '/credits/grs': typeof CreditsGrsRoute
+  '/credits/offset': typeof CreditsOffsetRoute
   '/insets/$projectId': typeof InsetsProjectIdRoute
   '/material/$batchId': typeof MaterialBatchIdRoute
   '/material/new': typeof MaterialNewRoute
@@ -113,6 +162,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/boundary': typeof BoundaryRoute
   '/dashboard': typeof DashboardRoute
   '/green-certifications': typeof GreenCertificationsRoute
   '/inventory-tracker': typeof InventoryTrackerRoute
@@ -120,8 +170,14 @@ export interface FileRoutesByTo {
   '/marketplace': typeof MarketplaceRoute
   '/material-flow-tracer': typeof MaterialFlowTracerRoute
   '/onboarding': typeof OnboardingRoute
+  '/order-tracker': typeof OrderTrackerRoute
   '/register': typeof RegisterRoute
+  '/registry': typeof RegistryRoute
+  '/settings': typeof SettingsRoute
   '/user-inputs': typeof UserInputsRoute
+  '/credits/comply': typeof CreditsComplyRoute
+  '/credits/grs': typeof CreditsGrsRoute
+  '/credits/offset': typeof CreditsOffsetRoute
   '/insets/$projectId': typeof InsetsProjectIdRoute
   '/material/$batchId': typeof MaterialBatchIdRoute
   '/material/new': typeof MaterialNewRoute
@@ -130,6 +186,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/boundary': typeof BoundaryRoute
   '/dashboard': typeof DashboardRoute
   '/green-certifications': typeof GreenCertificationsRoute
   '/inventory-tracker': typeof InventoryTrackerRoute
@@ -137,8 +194,14 @@ export interface FileRoutesById {
   '/marketplace': typeof MarketplaceRoute
   '/material-flow-tracer': typeof MaterialFlowTracerRoute
   '/onboarding': typeof OnboardingRoute
+  '/order-tracker': typeof OrderTrackerRoute
   '/register': typeof RegisterRoute
+  '/registry': typeof RegistryRoute
+  '/settings': typeof SettingsRoute
   '/user-inputs': typeof UserInputsRoute
+  '/credits/comply': typeof CreditsComplyRoute
+  '/credits/grs': typeof CreditsGrsRoute
+  '/credits/offset': typeof CreditsOffsetRoute
   '/insets/$projectId': typeof InsetsProjectIdRoute
   '/material/$batchId': typeof MaterialBatchIdRoute
   '/material/new': typeof MaterialNewRoute
@@ -148,6 +211,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/boundary'
     | '/dashboard'
     | '/green-certifications'
     | '/inventory-tracker'
@@ -155,8 +219,14 @@ export interface FileRouteTypes {
     | '/marketplace'
     | '/material-flow-tracer'
     | '/onboarding'
+    | '/order-tracker'
     | '/register'
+    | '/registry'
+    | '/settings'
     | '/user-inputs'
+    | '/credits/comply'
+    | '/credits/grs'
+    | '/credits/offset'
     | '/insets/$projectId'
     | '/material/$batchId'
     | '/material/new'
@@ -164,6 +234,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/boundary'
     | '/dashboard'
     | '/green-certifications'
     | '/inventory-tracker'
@@ -171,8 +242,14 @@ export interface FileRouteTypes {
     | '/marketplace'
     | '/material-flow-tracer'
     | '/onboarding'
+    | '/order-tracker'
     | '/register'
+    | '/registry'
+    | '/settings'
     | '/user-inputs'
+    | '/credits/comply'
+    | '/credits/grs'
+    | '/credits/offset'
     | '/insets/$projectId'
     | '/material/$batchId'
     | '/material/new'
@@ -180,6 +257,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/boundary'
     | '/dashboard'
     | '/green-certifications'
     | '/inventory-tracker'
@@ -187,8 +265,14 @@ export interface FileRouteTypes {
     | '/marketplace'
     | '/material-flow-tracer'
     | '/onboarding'
+    | '/order-tracker'
     | '/register'
+    | '/registry'
+    | '/settings'
     | '/user-inputs'
+    | '/credits/comply'
+    | '/credits/grs'
+    | '/credits/offset'
     | '/insets/$projectId'
     | '/material/$batchId'
     | '/material/new'
@@ -197,6 +281,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BoundaryRoute: typeof BoundaryRoute
   DashboardRoute: typeof DashboardRoute
   GreenCertificationsRoute: typeof GreenCertificationsRoute
   InventoryTrackerRoute: typeof InventoryTrackerRoute
@@ -204,8 +289,14 @@ export interface RootRouteChildren {
   MarketplaceRoute: typeof MarketplaceRoute
   MaterialFlowTracerRoute: typeof MaterialFlowTracerRoute
   OnboardingRoute: typeof OnboardingRoute
+  OrderTrackerRoute: typeof OrderTrackerRoute
   RegisterRoute: typeof RegisterRoute
+  RegistryRoute: typeof RegistryRoute
+  SettingsRoute: typeof SettingsRoute
   UserInputsRoute: typeof UserInputsRoute
+  CreditsComplyRoute: typeof CreditsComplyRoute
+  CreditsGrsRoute: typeof CreditsGrsRoute
+  CreditsOffsetRoute: typeof CreditsOffsetRoute
   InsetsProjectIdRoute: typeof InsetsProjectIdRoute
   MaterialBatchIdRoute: typeof MaterialBatchIdRoute
   MaterialNewRoute: typeof MaterialNewRoute
@@ -221,11 +312,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UserInputsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/registry': {
+      id: '/registry'
+      path: '/registry'
+      fullPath: '/registry'
+      preLoaderRoute: typeof RegistryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/register': {
       id: '/register'
       path: '/register'
       fullPath: '/register'
       preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/order-tracker': {
+      id: '/order-tracker'
+      path: '/order-tracker'
+      fullPath: '/order-tracker'
+      preLoaderRoute: typeof OrderTrackerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/onboarding': {
@@ -277,6 +389,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/boundary': {
+      id: '/boundary'
+      path: '/boundary'
+      fullPath: '/boundary'
+      preLoaderRoute: typeof BoundaryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -312,11 +431,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InsetsProjectIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/credits/offset': {
+      id: '/credits/offset'
+      path: '/credits/offset'
+      fullPath: '/credits/offset'
+      preLoaderRoute: typeof CreditsOffsetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/credits/grs': {
+      id: '/credits/grs'
+      path: '/credits/grs'
+      fullPath: '/credits/grs'
+      preLoaderRoute: typeof CreditsGrsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/credits/comply': {
+      id: '/credits/comply'
+      path: '/credits/comply'
+      fullPath: '/credits/comply'
+      preLoaderRoute: typeof CreditsComplyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BoundaryRoute: BoundaryRoute,
   DashboardRoute: DashboardRoute,
   GreenCertificationsRoute: GreenCertificationsRoute,
   InventoryTrackerRoute: InventoryTrackerRoute,
@@ -324,8 +465,14 @@ const rootRouteChildren: RootRouteChildren = {
   MarketplaceRoute: MarketplaceRoute,
   MaterialFlowTracerRoute: MaterialFlowTracerRoute,
   OnboardingRoute: OnboardingRoute,
+  OrderTrackerRoute: OrderTrackerRoute,
   RegisterRoute: RegisterRoute,
+  RegistryRoute: RegistryRoute,
+  SettingsRoute: SettingsRoute,
   UserInputsRoute: UserInputsRoute,
+  CreditsComplyRoute: CreditsComplyRoute,
+  CreditsGrsRoute: CreditsGrsRoute,
+  CreditsOffsetRoute: CreditsOffsetRoute,
   InsetsProjectIdRoute: InsetsProjectIdRoute,
   MaterialBatchIdRoute: MaterialBatchIdRoute,
   MaterialNewRoute: MaterialNewRoute,

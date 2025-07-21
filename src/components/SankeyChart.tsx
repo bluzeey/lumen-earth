@@ -71,12 +71,12 @@ const generateSankeyDataFromBatches = (batches: any[]): SankeyData => {
 };
 
 const getStageColor = (id: string): string => {
-  if (id.startsWith("Origin:")) return "#1f77b4";
-  if (id.startsWith("Collection:")) return "#2ca02c";
-  if (id.startsWith("Categorization:")) return "#ff7f0e";
-  if (id.startsWith("Recycling:")) return "#9467bd";
-  if (id.startsWith("Dispatch:")) return "#d62728";
-  return "#7f7f7f";
+  if (id.startsWith("Origin:")) return "#1f77b4"; // Blue
+  if (id.startsWith("Collection:")) return "#2ca02c"; // Green
+  if (id.startsWith("Categorization:")) return "#ff7f0e"; // Orange
+  if (id.startsWith("Recycling:")) return "#9467bd"; // Purple
+  if (id.startsWith("Dispatch:")) return "#d62728"; // Red
+  return "#7f7f7f"; // Default gray
 };
 
 export const SankeyChart: React.FC<Props> = ({ batches }) => {
@@ -101,26 +101,29 @@ export const SankeyChart: React.FC<Props> = ({ batches }) => {
     >
       <ResponsiveSankey
         data={data}
-        margin={{ top: 20, right: 60, bottom: 20, left: 60 }} // tighter margins
+        margin={{ top: 20, right: 60, bottom: 20, left: 60 }}
         align="justify"
         nodeOpacity={1}
         nodeThickness={12}
-        nodeInnerPadding={6} // slightly more padding between vertical nodes
-        nodeSpacing={8} // tighter horizontal spacing between columns
+        nodeInnerPadding={6}
+        nodeSpacing={16}
         nodeBorderWidth={1}
         nodeBorderColor={{ from: "color", modifiers: [["darker", 0.8]] }}
         linkOpacity={1}
         linkHoverOpacity={1}
         linkHoverOthersOpacity={0.1}
         enableLinkGradient={false}
-        labelPosition="inside"
+        labelPosition="outside"
         labelOrientation="horizontal"
-        labelPadding={20} // smaller label spacing
+        labelPadding={6}
         labelTextColor={{ from: "color", modifiers: [["darker", 1.2]] }}
         animate={true}
         motionConfig="gentle"
-        nodeColor={(node) => getStageColor(node.id)}
-        linkColor={(link) => getStageColor(link.source.id)}
+        colors={(item) =>
+          "id" in item
+            ? getStageColor((item as SankeyNode).id)
+            : getStageColor((item as SankeyLink).source)
+        }
       />
     </div>
   );
