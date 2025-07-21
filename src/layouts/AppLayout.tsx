@@ -54,11 +54,11 @@ export default function AppLayout({ children }: AppLayoutProps) {
     <SidebarProvider>
       <Sidebar>
         <SidebarHeader>
-          <div className="flex justify-start">
+          <div className="flex justify-center">
             <img
               src="/logo.png"
               alt="Lumen Logo"
-              className="h-10 md:h-12 object-contain"
+              className="h-12 md:h-12 object-contain"
             />
           </div>
         </SidebarHeader>
