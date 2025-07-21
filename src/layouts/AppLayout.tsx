@@ -1,4 +1,4 @@
-import { useNavigate } from "@tanstack/react-router";
+import { useNavigate, Link } from "@tanstack/react-router";
 import {
   SidebarProvider,
   Sidebar,
@@ -34,7 +34,7 @@ import {
   CollapsibleTrigger,
   CollapsibleContent,
 } from "@/components/ui/collapsible";
-import { type ReactNode, useState } from "react";
+import { type ReactNode } from "react";
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -42,11 +42,6 @@ interface AppLayoutProps {
 
 export default function AppLayout({ children }: AppLayoutProps) {
   const navigate = useNavigate();
-  const [openGroup, setOpenGroup] = useState<string | null>(null);
-
-  function toggleGroup(label: string) {
-    setOpenGroup((prev) => (prev === label ? null : label));
-  }
 
   function handleLogout() {
     navigate({ to: "/login" });
@@ -82,26 +77,50 @@ export default function AppLayout({ children }: AppLayoutProps) {
                     <SidebarMenuSub>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
-                          <a href="/material-flow-tracer">
+                          <Link
+                            to="/material-flow-tracer"
+                            activeProps={{
+                              className: "text-primary font-medium",
+                            }}
+                            inactiveProps={{
+                              className: "text-muted-foreground",
+                            }}
+                          >
                             <Layers3 className="mr-2 h-4 w-4" />
                             Material Flow Trace
-                          </a>
+                          </Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
-                          <a href="/order-tracker">
+                          <Link
+                            to="/order-tracker"
+                            activeProps={{
+                              className: "text-primary font-medium",
+                            }}
+                            inactiveProps={{
+                              className: "text-muted-foreground",
+                            }}
+                          >
                             <ClipboardList className="mr-2 h-4 w-4" />
                             Order Track
-                          </a>
+                          </Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
-                          <a href="/user-inputs">
+                          <Link
+                            to="/user-inputs"
+                            activeProps={{
+                              className: "text-primary font-medium",
+                            }}
+                            inactiveProps={{
+                              className: "text-muted-foreground",
+                            }}
+                          >
                             <UploadCloud className="mr-2 h-4 w-4" />
                             Data Import
-                          </a>
+                          </Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                     </SidebarMenuSub>
@@ -123,34 +142,66 @@ export default function AppLayout({ children }: AppLayoutProps) {
                     <SidebarMenuSub>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
-                          <a href="/marketplace">
+                          <Link
+                            to="/marketplace"
+                            activeProps={{
+                              className: "text-primary font-medium",
+                            }}
+                            inactiveProps={{
+                              className: "text-muted-foreground",
+                            }}
+                          >
                             <Store className="mr-2 h-4 w-4" />
                             Goods Marketplace
-                          </a>
+                          </Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
-                          <a href="/credits/comply">
+                          <Link
+                            to="/credits/comply"
+                            activeProps={{
+                              className: "text-primary font-medium",
+                            }}
+                            inactiveProps={{
+                              className: "text-muted-foreground",
+                            }}
+                          >
                             <ShieldCheck className="mr-2 h-4 w-4" />
                             INCCTS Comply
-                          </a>
+                          </Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
-                          <a href="/credits/offset">
+                          <Link
+                            to="/credits/offset"
+                            activeProps={{
+                              className: "text-primary font-medium",
+                            }}
+                            inactiveProps={{
+                              className: "text-muted-foreground",
+                            }}
+                          >
                             <Leaf className="mr-2 h-4 w-4" />
                             INCCTS Offset
-                          </a>
+                          </Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
-                          <a href="/credits/grs">
+                          <Link
+                            to="/credits/grs"
+                            activeProps={{
+                              className: "text-primary font-medium",
+                            }}
+                            inactiveProps={{
+                              className: "text-muted-foreground",
+                            }}
+                          >
                             <Leaf className="mr-2 h-4 w-4" />
                             GRS
-                          </a>
+                          </Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                     </SidebarMenuSub>
@@ -172,18 +223,34 @@ export default function AppLayout({ children }: AppLayoutProps) {
                     <SidebarMenuSub>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
-                          <a href="/financialization">
+                          <Link
+                            to="/financialization"
+                            activeProps={{
+                              className: "text-primary font-medium",
+                            }}
+                            inactiveProps={{
+                              className: "text-muted-foreground",
+                            }}
+                          >
                             <BadgeDollarSign className="mr-2 h-4 w-4" />
                             Financialization
-                          </a>
+                          </Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
-                          <a href="/registry">
+                          <Link
+                            to="/registry"
+                            activeProps={{
+                              className: "text-primary font-medium",
+                            }}
+                            inactiveProps={{
+                              className: "text-muted-foreground",
+                            }}
+                          >
                             <Landmark className="mr-2 h-4 w-4" />
                             Registry
-                          </a>
+                          </Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                     </SidebarMenuSub>
@@ -205,18 +272,34 @@ export default function AppLayout({ children }: AppLayoutProps) {
                     <SidebarMenuSub>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
-                          <a href="/settings">
+                          <Link
+                            to="/settings"
+                            activeProps={{
+                              className: "text-primary font-medium",
+                            }}
+                            inactiveProps={{
+                              className: "text-muted-foreground",
+                            }}
+                          >
                             <Settings className="mr-2 h-4 w-4" />
                             Settings
-                          </a>
+                          </Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
-                          <a href="/boundary">
+                          <Link
+                            to="/boundary"
+                            activeProps={{
+                              className: "text-primary font-medium",
+                            }}
+                            inactiveProps={{
+                              className: "text-muted-foreground",
+                            }}
+                          >
                             <Map className="mr-2 h-4 w-4" />
                             Boundary
-                          </a>
+                          </Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                     </SidebarMenuSub>
