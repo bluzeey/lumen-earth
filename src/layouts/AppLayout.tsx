@@ -80,14 +80,14 @@ export default function AppLayout({ children }: AppLayoutProps) {
                           <Link
                             to="/material-flow-tracer"
                             activeProps={{
-                              className: "text-primary font-medium",
+                              className: "text-primary font-medium bg-lime-300",
                             }}
                             inactiveProps={{
                               className: "text-muted-foreground",
                             }}
                           >
                             <Layers3 className="mr-2 h-4 w-4" />
-                            Material Flow Trace
+                            Material Flow Tracer
                           </Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
@@ -96,7 +96,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
                           <Link
                             to="/order-tracker"
                             activeProps={{
-                              className: "text-primary font-medium",
+                              className: "text-primary font-medium bg-lime-300",
                             }}
                             inactiveProps={{
                               className: "text-muted-foreground",
@@ -112,7 +112,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
                           <Link
                             to="/user-inputs"
                             activeProps={{
-                              className: "text-primary font-medium",
+                              className: "text-primary font-medium bg-lime-300",
                             }}
                             inactiveProps={{
                               className: "text-muted-foreground",
@@ -145,7 +145,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
                           <Link
                             to="/marketplace"
                             activeProps={{
-                              className: "text-primary font-medium",
+                              className: "text-primary font-medium bg-lime-300",
                             }}
                             inactiveProps={{
                               className: "text-muted-foreground",
@@ -161,7 +161,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
                           <Link
                             to="/credits/comply"
                             activeProps={{
-                              className: "text-primary font-medium",
+                              className: "text-primary font-medium bg-lime-300",
                             }}
                             inactiveProps={{
                               className: "text-muted-foreground",
@@ -177,7 +177,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
                           <Link
                             to="/credits/offset"
                             activeProps={{
-                              className: "text-primary font-medium",
+                              className: "text-primary font-medium bg-lime-300",
                             }}
                             inactiveProps={{
                               className: "text-muted-foreground",
@@ -193,7 +193,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
                           <Link
                             to="/credits/grs"
                             activeProps={{
-                              className: "text-primary font-medium",
+                              className: "text-primary font-medium bg-lime-300",
                             }}
                             inactiveProps={{
                               className: "text-muted-foreground",
@@ -226,7 +226,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
                           <Link
                             to="/financialization"
                             activeProps={{
-                              className: "text-primary font-medium",
+                              className: "text-primary font-medium bg-lime-300",
                             }}
                             inactiveProps={{
                               className: "text-muted-foreground",
@@ -242,7 +242,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
                           <Link
                             to="/registry"
                             activeProps={{
-                              className: "text-primary font-medium",
+                              className: "text-primary font-medium bg-lime-300",
                             }}
                             inactiveProps={{
                               className: "text-muted-foreground",
@@ -275,7 +275,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
                           <Link
                             to="/settings"
                             activeProps={{
-                              className: "text-primary font-medium",
+                              className: "text-primary font-medium bg-lime-300",
                             }}
                             inactiveProps={{
                               className: "text-muted-foreground",
@@ -291,7 +291,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
                           <Link
                             to="/boundary"
                             activeProps={{
-                              className: "text-primary font-medium",
+                              className: "text-primary font-medium bg-lime-300",
                             }}
                             inactiveProps={{
                               className: "text-muted-foreground",
