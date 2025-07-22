@@ -82,7 +82,11 @@ const columns: ColumnDef<z.infer<typeof enrichedBatchSchema>>[] = [
   {
     id: "drag",
     header: () => null,
-    cell: ({ row }) => <DragHandle id={row.original.batchId} />,
+    cell: ({ row }) => (
+      <DragHandle
+        id={(row.original.batchId ?? crypto.randomUUID()).toString()}
+      />
+    ),
   },
   {
     id: "select",
@@ -107,11 +111,12 @@ const columns: ColumnDef<z.infer<typeof enrichedBatchSchema>>[] = [
   {
     accessorKey: "rawMaterialQty",
     header: "Raw Qty",
-    cell: ({ row }) => (
-      <DragHandle
-        id={(row.original.batchId ?? crypto.randomUUID()).toString()}
-      />
-    ),
+    cell: ({ getValue }) => {
+      const value = getValue();
+      return value !== undefined && value !== null
+        ? `${parseFloat(value as string).toFixed(2)} T`
+        : "-";
+    },
   },
   {
     accessorKey: "composition",
@@ -149,7 +154,7 @@ const columns: ColumnDef<z.infer<typeof enrichedBatchSchema>>[] = [
     enableHiding: true,
     cell: ({ getValue }) => {
       const value = getValue();
-      return value !== undefined ? `${value}%` : "-";
+      return value !== undefined && value !== null ? `${value}%` : "-";
     },
   },
   {
@@ -212,6 +217,7 @@ export function DataTable({
           ? new Date(b.parsedDate)
           : b.parsedDate,
     }));
+    console.log("Parsed Data:", parsed);
     return parsed;
   });
 
