@@ -107,10 +107,11 @@ const columns: ColumnDef<z.infer<typeof enrichedBatchSchema>>[] = [
   {
     accessorKey: "rawMaterialQty",
     header: "Raw Qty",
-    cell: ({ getValue }) => {
-      const value = getValue();
-      return value !== undefined ? `${parseFloat(value).toFixed(2)} T` : "-";
-    },
+    cell: ({ row }) => (
+      <DragHandle
+        id={(row.original.batchId ?? crypto.randomUUID()).toString()}
+      />
+    ),
   },
   {
     accessorKey: "composition",
