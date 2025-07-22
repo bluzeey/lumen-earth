@@ -146,7 +146,7 @@ export const SankeyChart: React.FC<Props> = ({ batches }) => {
         labelTextColor={{ from: "color", modifiers: [["darker", 1.2]] }}
         animate={true}
         motionConfig="gentle"
-        colors={(item) => {
+        colors={(item: SankeyNode | SankeyLink) => {
           if ("id" in item) {
             const id = item.id;
             if (id.startsWith("Origin:")) {
