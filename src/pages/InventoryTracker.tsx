@@ -181,7 +181,7 @@ const InventoryTracker = () => {
   ];
 
   return (
-    <AppLayout>
+    <AppLayout title="Inventory Tracker">
       <div className="p-6 space-y-6">
         {/* Filters */}
         <div className="flex flex-wrap gap-4 items-center justify-between">

@@ -1,7 +1,7 @@
 import { useMemo, useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { CalendarIcon, Bell, User, LogOut } from "lucide-react";
+import { CalendarIcon } from "lucide-react";
 import AppLayout from "@/layouts/AppLayout";
 import { SankeyChart } from "@/components/SankeyChart";
 import {
@@ -12,6 +12,7 @@ import {
 import { Calendar } from "@/components/ui/calendar";
 import { format, parseISO, isWithinInterval, subDays } from "date-fns";
 import { cn } from "@/lib/utils";
+import { DataTable } from "@/components/data-table";
 
 type EnrichedBatch = {
   composition?: string;
@@ -152,26 +153,9 @@ export default function MaterialFlowTracer() {
   const yieldForecast = forecastIn ? (forecastOut / forecastIn) * 100 : 0;
 
   return (
-    <AppLayout>
+    <AppLayout title="Material Flow Tracer">
       <div className="flex min-h-screen w-full bg-beige text-charcoal">
         <main className="flex-1 p-6 space-y-6">
-          <div className="flex justify-between items-start">
-            <h1 className="text-2xl font-bold text-primary">
-              Material Flow Tracer
-            </h1>
-            <div className="flex space-x-4">
-              <Button variant="ghost" size="icon">
-                <Bell className="h-5 w-5" />
-              </Button>
-              <Button variant="ghost" size="icon">
-                <User className="h-5 w-5" />
-              </Button>
-              <Button variant="ghost" size="icon">
-                <LogOut className="h-5 w-5" />
-              </Button>
-            </div>
-          </div>
-
           <div className="flex flex-wrap gap-4 items-center">
             <Popover>
               <PopoverTrigger asChild>
@@ -285,6 +269,8 @@ export default function MaterialFlowTracer() {
               </tbody>
             </table>
           </div>
+
+          <DataTable data={filteredBatches} />
 
           <Card>
             <SankeyChart batches={filteredBatches} />

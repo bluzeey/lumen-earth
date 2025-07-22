@@ -188,7 +188,7 @@ export default function ExcelDataEditor() {
   };
 
   return (
-    <AppLayout>
+    <AppLayout title="User Inputs">
       <div className="max-w-6xl mx-auto space-y-12">
         <h1 className="text-2xl font-bold">Excel Data Manager</h1>
         <p className="text-sm text-gray-700 leading-relaxed">

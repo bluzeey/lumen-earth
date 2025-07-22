@@ -13,7 +13,7 @@ import AppLayout from "@/layouts/AppLayout";
 
 export default function MaterialFlowTracer() {
   return (
-    <AppLayout>
+    <AppLayout title="Dashboard">
       <div className="flex min-h-screen bg-white">
         {/* Sidebar */}
         {/* Main Content */}

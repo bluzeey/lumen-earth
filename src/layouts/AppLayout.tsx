@@ -35,12 +35,17 @@ import {
   CollapsibleContent,
 } from "@/components/ui/collapsible";
 import { type ReactNode } from "react";
+import { SiteHeader } from "@/components/site-header";
 
 interface AppLayoutProps {
   children: ReactNode;
+  title: string;
 }
 
-export default function AppLayout({ children }: AppLayoutProps) {
+export default function AppLayout({
+  children,
+  title = "Documents",
+}: AppLayoutProps) {
   const navigate = useNavigate();
 
   function handleLogout() {
@@ -330,7 +335,10 @@ export default function AppLayout({ children }: AppLayoutProps) {
         </SidebarFooter>
       </Sidebar>
 
-      <div className="p-6 w-full h-full">{children}</div>
+      <div className="p-6 w-full h-full">
+        <SiteHeader title={title} />
+        {children}
+      </div>
     </SidebarProvider>
   );
 }
