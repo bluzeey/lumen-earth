@@ -126,6 +126,8 @@ export default function MaterialFlowTracer() {
     );
   }, [dateRange, parsedBatches]);
 
+  console.log(filteredBatches);
+
   const safeParse = (val: any): number => {
     if (typeof val === "string") {
       val = val.replace("%", "").trim();
@@ -162,7 +164,7 @@ export default function MaterialFlowTracer() {
                 <Button
                   variant="outline"
                   className={cn(
-                    "w-[250px] justify-start text-left font-normal"
+                    "w-[250px] justify-start text-left font-normal bg-white"
                   )}
                 >
                   <CalendarIcon className="mr-2 h-4 w-4" />
@@ -238,36 +240,6 @@ export default function MaterialFlowTracer() {
                 <div className="text-2xl font-bold text-red">₹28.9K</div>
               </CardContent>
             </Card>
-          </div>
-
-          <div className="border rounded-lg overflow-x-auto">
-            <table className="w-full text-sm text-left">
-              <thead className="bg-lightgreen text-primary">
-                <tr>
-                  <th className="p-2">Batch ID</th>
-                  <th className="p-2">Material Name</th>
-                  <th className="p-2">Composition</th>
-                  <th className="p-2">Supplier</th>
-                  <th className="p-2">Raw M Qty (T)</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredBatches.map((batch) => (
-                  <tr
-                    key={batch.batchId}
-                    className="border-t hover:bg-muted/50"
-                  >
-                    <td className="p-2">{batch.batchId}</td>
-                    <td className="p-2">{batch.materialName}</td>
-                    <td className="p-2">{batch?.composition}</td>
-                    <td className="p-2">{batch?.sourceName}</td>
-                    <td className="p-2">
-                      {safeParse(batch.rawMaterialQty).toFixed(2)} T
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
           </div>
 
           <DataTable data={filteredBatches} />

@@ -12,9 +12,31 @@ type Props = {
 const safe = (value: unknown): string =>
   typeof value === "string" && value.trim() !== "" ? value.trim() : "Unknown";
 
-const generateSankeyDataFromBatches = (batches: any[]): SankeyData => {
+// ✅ Light pastel palette for origin nodes
+const originColorsPalette = [
+  "#a6cee3",
+  "#b2df8a",
+  "#fdbf6f",
+  "#cab2d6",
+  "#fb9a99",
+  "#ffff99",
+  "#fdd0a2",
+  "#ccebc5",
+  "#e5d8bd",
+  "#d9d9d9",
+];
+const getOriginColor = (index: number): string =>
+  originColorsPalette[index % originColorsPalette.length];
+
+type SankeyResult = SankeyData & {
+  originColors: Record<string, string>;
+};
+
+const generateSankeyDataFromBatches = (batches: any[]): SankeyResult => {
   const nodesSet: Set<string> = new Set();
   const linksMap: Record<string, number> = {};
+  const originColors: Record<string, string> = {};
+  const uniqueOrigins: string[] = [];
 
   for (const batch of Array.isArray(batches) ? batches : []) {
     const origin = "Origin: " + safe(batch.sourceName);
@@ -44,6 +66,11 @@ const generateSankeyDataFromBatches = (batches: any[]): SankeyData => {
     )
       continue;
 
+    if (!originColors[origin]) {
+      originColors[origin] = getOriginColor(uniqueOrigins.length);
+      uniqueOrigins.push(origin);
+    }
+
     const flows: [string, string][] = [
       [origin, collection],
       [collection, categorization],
@@ -67,16 +94,16 @@ const generateSankeyDataFromBatches = (batches: any[]): SankeyData => {
     return { source, target, value: parseFloat(value.toFixed(2)) };
   });
 
-  return { nodes, links };
+  return { nodes, links, originColors };
 };
 
+// ✅ Light shades for fixed stages
 const getStageColor = (id: string): string => {
-  if (id.startsWith("Origin:")) return "#1f77b4"; // Blue
-  if (id.startsWith("Collection:")) return "#2ca02c"; // Green
-  if (id.startsWith("Categorization:")) return "#ff7f0e"; // Orange
-  if (id.startsWith("Recycling:")) return "#9467bd"; // Purple
-  if (id.startsWith("Dispatch:")) return "#d62728"; // Red
-  return "#7f7f7f"; // Default gray
+  if (id.startsWith("Collection:")) return "#c7e9c0"; // pale green
+  if (id.startsWith("Categorization:")) return "#fdd49e"; // light orange
+  if (id.startsWith("Recycling:")) return "#dadaeb"; // lavender
+  if (id.startsWith("Dispatch:")) return "#fcbba1"; // soft red
+  return "#eeeeee"; // default light gray
 };
 
 export const SankeyChart: React.FC<Props> = ({ batches }) => {
@@ -84,9 +111,9 @@ export const SankeyChart: React.FC<Props> = ({ batches }) => {
     return <div className="text-red-500">Error: Invalid batch data</div>;
   }
 
-  const data = generateSankeyDataFromBatches(batches);
+  const { nodes, links, originColors } = generateSankeyDataFromBatches(batches);
 
-  if (!data.nodes.length || !data.links.length) {
+  if (!nodes.length || !links.length) {
     return <div className="text-gray-500">No flows to visualize</div>;
   }
 
@@ -100,7 +127,7 @@ export const SankeyChart: React.FC<Props> = ({ batches }) => {
       }}
     >
       <ResponsiveSankey
-        data={data}
+        data={{ nodes, links }}
         margin={{ top: 20, right: 60, bottom: 20, left: 60 }}
         align="justify"
         nodeOpacity={1}
@@ -113,17 +140,23 @@ export const SankeyChart: React.FC<Props> = ({ batches }) => {
         linkHoverOpacity={1}
         linkHoverOthersOpacity={0.1}
         enableLinkGradient={false}
-        labelPosition="outside"
+        labelPosition="inside"
         labelOrientation="horizontal"
         labelPadding={6}
         labelTextColor={{ from: "color", modifiers: [["darker", 1.2]] }}
         animate={true}
         motionConfig="gentle"
-        colors={(item) =>
-          "id" in item
-            ? getStageColor((item as SankeyNode).id)
-            : getStageColor((item as SankeyLink).source)
-        }
+        colors={(item) => {
+          if ("id" in item) {
+            const id = item.id;
+            if (id.startsWith("Origin:")) {
+              return originColors[id] || "#a6cee3";
+            }
+            return getStageColor(id);
+          } else {
+            return getStageColor(item.source);
+          }
+        }}
       />
     </div>
   );
