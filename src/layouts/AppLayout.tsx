@@ -335,7 +335,7 @@ export default function AppLayout({
         </SidebarFooter>
       </Sidebar>
 
-      <div className="p-6 w-full h-full">
+      <div className="p-6 w-full h-screen">
         <SiteHeader title={title} />
         {children}
       </div>

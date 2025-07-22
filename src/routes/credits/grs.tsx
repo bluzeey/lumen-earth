@@ -1,9 +1,16 @@
-import { createFileRoute } from '@tanstack/react-router'
+import AppLayout from "@/layouts/AppLayout";
+import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/credits/grs')({
+export const Route = createFileRoute("/credits/grs")({
   component: RouteComponent,
-})
+});
 
 function RouteComponent() {
-  return <div>Hello "/credits/grs"!</div>
+  return (
+    <AppLayout title="GRS Credits">
+      <div className="flex justify-center items-center m-auto text-3xl font-bold h-full w-full">
+        Coming Soon!
+      </div>
+    </AppLayout>
+  );
 }

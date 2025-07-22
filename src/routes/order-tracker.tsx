@@ -1,9 +1,16 @@
-import { createFileRoute } from '@tanstack/react-router'
+import AppLayout from "@/layouts/AppLayout";
+import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/order-tracker')({
+export const Route = createFileRoute("/order-tracker")({
   component: RouteComponent,
-})
+});
 
 function RouteComponent() {
-  return <div>Hello "/order-tracker"!</div>
+  return (
+    <AppLayout title="Order Tracker">
+      <div className="flex justify-center items-center m-auto text-3xl font-bold h-full w-full">
+        Coming Soon!
+      </div>
+    </AppLayout>
+  );
 }
