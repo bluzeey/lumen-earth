@@ -62,7 +62,7 @@ export default function InsetProjectDetailsPage() {
   if (!project) return <div className="p-6">Loading...</div>;
 
   return (
-    <AppLayout>
+    <AppLayout title="Project Details">
       <div className="flex max-w-7xl mx-auto gap-6 px-4 py-10">
         {/* Main content */}
         <div className="flex-1 space-y-6">

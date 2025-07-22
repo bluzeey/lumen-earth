@@ -58,7 +58,7 @@ export default function BatchDetailsPage() {
   if (!batch) return <p className="p-6">Loading...</p>;
 
   return (
-    <AppLayout>
+    <AppLayout title="Batch Detail">
       <div className="flex max-w-7xl mx-auto px-4 py-10 gap-8">
         {/* Main Section */}
         <div className="flex-1 space-y-6">

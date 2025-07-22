@@ -91,7 +91,7 @@ export default function MaterialBatchesPage() {
   }, [sourceFilter, materialFilter, dateRange, sortBy, data]);
 
   return (
-    <AppLayout>
+    <AppLayout title="Material Batches">
       <div className="max-w-7xl mx-auto px-4 py-10 space-y-6">
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-semibold">Material Batches</h1>

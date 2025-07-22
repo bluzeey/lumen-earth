@@ -85,7 +85,7 @@ export default function NewMaterialBatchPage() {
   };
 
   return (
-    <AppLayout>
+    <AppLayout title="Add Materials">
       <div className="max-w-2xl mx-auto py-10 px-4 space-y-6">
         <h1 className="text-2xl font-semibold">Create New Material Batch</h1>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">

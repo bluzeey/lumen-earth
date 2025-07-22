@@ -32,7 +32,7 @@ export default function GHGValueEstimatorPage() {
   const estimatedValue = estimatedGHG * DEFAULT_CREDIT_VALUE;
 
   return (
-    <AppLayout>
+    <AppLayout title="GHG Value Estimator">
       <div className="max-w-2xl mx-auto space-y-6">
         <h1 className="text-xl font-semibold">GHG Inset Value Estimator</h1>
 

@@ -20,14 +20,15 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import {
   type ColumnDef,
+  type Row,
+  type VisibilityState,
+  type SortingState,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-  type Row,
   flexRender,
-  type VisibilityState,
 } from "@tanstack/react-table";
 import { z } from "zod";
 
@@ -42,6 +43,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
+// Schema
 export const enrichedBatchSchema = z.object({
   batchId: z.string(),
   materialName: z.string(),
@@ -59,6 +61,7 @@ export const enrichedBatchSchema = z.object({
   parsedDate: z.union([z.string(), z.date()]).optional(),
 });
 
+// Drag handle
 function DragHandle({ id }: { id: UniqueIdentifier }) {
   const { attributes, listeners } = useSortable({ id });
   return (
@@ -74,6 +77,7 @@ function DragHandle({ id }: { id: UniqueIdentifier }) {
   );
 }
 
+// Columns
 const columns: ColumnDef<z.infer<typeof enrichedBatchSchema>>[] = [
   {
     id: "drag",
@@ -108,7 +112,6 @@ const columns: ColumnDef<z.infer<typeof enrichedBatchSchema>>[] = [
       return value !== undefined ? `${parseFloat(value).toFixed(2)} T` : "-";
     },
   },
-  // Hidden fields (still available for programmatic use)
   {
     accessorKey: "composition",
     header: "Composition",
@@ -165,13 +168,14 @@ const columns: ColumnDef<z.infer<typeof enrichedBatchSchema>>[] = [
   },
 ];
 
+// Draggable row
 function DraggableRow({
   row,
 }: {
   row: Row<z.infer<typeof enrichedBatchSchema>>;
 }) {
   const { transform, transition, setNodeRef } = useSortable({
-    id: row.original.batchId ?? crypto.randomUUID(),
+    id: (row.original.batchId ?? crypto.randomUUID()).toString(),
   });
 
   return (
@@ -193,6 +197,7 @@ function DraggableRow({
   );
 }
 
+// DataTable
 export function DataTable({
   data: initialData,
 }: {
@@ -206,11 +211,10 @@ export function DataTable({
           ? new Date(b.parsedDate)
           : b.parsedDate,
     }));
-    console.log("Parsed Data:", parsed);
     return parsed;
   });
 
-  const [sorting, setSorting] = React.useState([]);
+  const [sorting, setSorting] = React.useState<SortingState>([]);
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({
@@ -235,9 +239,7 @@ export function DataTable({
   const dataIds = React.useMemo<UniqueIdentifier[]>(
     () =>
       data.map((row) =>
-        row.batchId && typeof row.batchId === "string"
-          ? row.batchId
-          : crypto.randomUUID()
+        typeof row.batchId === "string" ? row.batchId : crypto.randomUUID()
       ),
     [data]
   );
@@ -253,7 +255,7 @@ export function DataTable({
     onSortingChange: setSorting,
     onRowSelectionChange: setRowSelection,
     onColumnVisibilityChange: setColumnVisibility,
-    getRowId: (row) => row.batchId ?? crypto.randomUUID(),
+    getRowId: (row) => (row.batchId ?? crypto.randomUUID()).toString(),
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
@@ -312,14 +314,11 @@ export function DataTable({
                 ))}
               </SortableContext>
             ) : (
-              <>
-                {console.warn("No data rows found", table.getRowModel())}
-                <TableRow>
-                  <TableCell colSpan={columns.length} className="text-center">
-                    No data.
-                  </TableCell>
-                </TableRow>
-              </>
+              <TableRow>
+                <TableCell colSpan={columns.length} className="text-center">
+                  No data.
+                </TableCell>
+              </TableRow>
             )}
           </TableBody>
         </Table>

@@ -68,7 +68,7 @@ const recentProjects = [
 
 export default function CarbonDashboardPage() {
   return (
-    <AppLayout>
+    <AppLayout title="Carbon Dashboard">
       <div className="space-y-6">
         <h1 className="text-xl font-bold">Carbon Impact Dashboard</h1>
 
