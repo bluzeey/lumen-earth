@@ -3,18 +3,18 @@ import {
   DialogTrigger,
   DialogContent,
   DialogHeader,
-} from "src/components/ui/dialog";
-import { Input } from "src/components/ui/input";
-import { Label } from "src/components/ui/label";
-import { Textarea } from "src/components/ui/textarea";
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectTrigger,
   SelectValue,
   SelectContent,
   SelectItem,
-} from "src/components/ui/select";
-import { Button } from "src/components/ui/button";
+} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";

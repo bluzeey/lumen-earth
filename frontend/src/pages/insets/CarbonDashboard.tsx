@@ -1,9 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "src/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   BarChart,
   Bar,
@@ -19,8 +14,8 @@ import {
   TableHead,
   TableBody,
   TableCell,
-} from "src/components/ui/table";
-import AppLayout from "src/layouts/AppLayout";
+} from "@/components/ui/table";
+import AppLayout from "@/layouts/AppLayout";
 
 const summary = {
   totalGHG: 4825.7, // tonnes

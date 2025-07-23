@@ -1,17 +1,17 @@
 import { useState } from "react";
-import { Input } from "src/components/ui/input";
-import { Label } from "src/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectTrigger,
   SelectValue,
   SelectContent,
   SelectItem,
-} from "src/components/ui/select";
-import { Card, CardContent } from "src/components/ui/card";
-import { Button } from "src/components/ui/button";
-import { InsetProjectFormDialog } from "src/components/insets/InsetProjectDialog";
-import AppLayout from "src/layouts/AppLayout";
+} from "@/components/ui/select";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { InsetProjectFormDialog } from "@/components/insets/InsetProjectDialog";
+import AppLayout from "@/layouts/AppLayout";
 
 // Mock GHG savings per material type (tonnes CO₂e per tonne processed)
 const MATERIAL_FACTORS: Record<string, number> = {

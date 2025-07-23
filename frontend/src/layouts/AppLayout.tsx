@@ -12,7 +12,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubItem,
   SidebarMenuSubButton,
-} from "src/components/ui/sidebar";
+} from "@/components/ui/sidebar";
 import {
   LogOut,
   Layers3,
@@ -33,9 +33,9 @@ import {
   Collapsible,
   CollapsibleTrigger,
   CollapsibleContent,
-} from "src/components/ui/collapsible";
+} from "@/components/ui/collapsible";
 import { type ReactNode } from "react";
-import { SiteHeader } from "src/components/site-header";
+import { SiteHeader } from "@/components/site-header";
 
 interface AppLayoutProps {
   children: ReactNode;

@@ -1,4 +1,4 @@
-import AppLayout from "src/layouts/AppLayout";
+import AppLayout from "@/layouts/AppLayout";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/registry")({

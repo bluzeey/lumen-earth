@@ -1,18 +1,18 @@
 import { useMemo, useState, useEffect } from "react";
-import { Card, CardContent } from "src/components/ui/card";
-import { Button } from "src/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { CalendarIcon } from "lucide-react";
-import AppLayout from "src/layouts/AppLayout";
-import { SankeyChart } from "src/components/SankeyChart";
+import AppLayout from "@/layouts/AppLayout";
+import { SankeyChart } from "@/components/SankeyChart";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "src/components/ui/popover";
-import { Calendar } from "src/components/ui/calendar";
+} from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
 import { format, parseISO, isWithinInterval, subDays } from "date-fns";
 import { cn } from "@/lib/utils";
-import { DataTable } from "src/components/data-table";
+import { DataTable } from "@/components/data-table";
 
 type EnrichedBatch = {
   composition?: string;

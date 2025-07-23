@@ -1,8 +1,8 @@
 import { useParams } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Card, CardHeader, CardContent } from "src/components/ui/card";
-import { Button } from "src/components/ui/button";
-import { Progress } from "src/components/ui/progress";
+import { Card, CardHeader, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
 import {
   Table,
   TableHead,
@@ -10,11 +10,11 @@ import {
   TableRow,
   TableCell,
   TableBody,
-} from "src/components/ui/table";
+} from "@/components/ui/table";
 import { FileDown } from "lucide-react";
 import { format } from "date-fns";
-import { AddInventoryLogDialog } from "src/components/material/InventoryLogDialog"; // <-- import your dialog component
-import AppLayout from "src/layouts/AppLayout";
+import { AddInventoryLogDialog } from "@/components/material/InventoryLogDialog"; // <-- import your dialog component
+import AppLayout from "@/layouts/AppLayout";
 
 // Dummy API mocks
 const fetchBatchById = async (id: string) => {

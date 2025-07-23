@@ -3,17 +3,17 @@ import {
   DialogContent,
   DialogHeader,
   DialogTrigger,
-} from "src/components/ui/dialog";
-import { Button } from "src/components/ui/button";
-import { Input } from "src/components/ui/input";
-import { Label } from "src/components/ui/label";
-import { Textarea } from "src/components/ui/textarea";
-import { Calendar } from "src/components/ui/calendar";
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
   PopoverTrigger,
   PopoverContent,
-} from "src/components/ui/popover";
+} from "@/components/ui/popover";
 import { CalendarIcon } from "lucide-react";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";

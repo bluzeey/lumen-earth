@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
-import { Button } from "src/components/ui/button";
-import { Input } from "src/components/ui/input";
-import { Label } from "src/components/ui/label";
-import { Checkbox } from "src/components/ui/checkbox";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
-import { MultiSelect } from "src/components/ui/multiselect";
+import { MultiSelect } from "@/components/ui/multiselect";
 
 const materialOptions = [
   { label: "Cotton", value: "cotton" },
