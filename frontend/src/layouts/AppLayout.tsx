@@ -73,7 +73,7 @@ export default function AppLayout({
           <SidebarGroup>
             <SidebarMenu>
               {/* Group: Lumenosity */}
-              <Collapsible asChild defaultOpen>
+              <Collapsible asChild defaultOpen className="group/collapsible">
                 <SidebarMenuItem className="group mt-4">
                   <CollapsibleTrigger asChild>
                     <SidebarMenuButton tooltip="Lumenosity">
@@ -89,7 +89,8 @@ export default function AppLayout({
                           <Link
                             to="/material-flow-tracer"
                             activeProps={{
-                              className: "text-primary font-medium bg-[#D2E69A]",
+                              className:
+                                "text-primary font-medium bg-[#D2E69A]",
                             }}
                             inactiveProps={{
                               className: "text-muted-foreground",
@@ -105,7 +106,8 @@ export default function AppLayout({
                           <Link
                             to="/order-tracker"
                             activeProps={{
-                              className: "text-primary font-medium bg-[#D2E69A]",
+                              className:
+                                "text-primary font-medium bg-[#D2E69A]",
                             }}
                             inactiveProps={{
                               className: "text-muted-foreground",
@@ -121,7 +123,8 @@ export default function AppLayout({
                           <Link
                             to="/user-inputs"
                             activeProps={{
-                              className: "text-primary font-medium bg-[#D2E69A]",
+                              className:
+                                "text-primary font-medium bg-[#D2E69A]",
                             }}
                             inactiveProps={{
                               className: "text-muted-foreground",
@@ -139,7 +142,7 @@ export default function AppLayout({
               <SidebarSeparator className="my-2 bg-gray-200" />
 
               {/* Group: LumenScape */}
-              <Collapsible asChild defaultOpen>
+              <Collapsible asChild defaultOpen className="group/collapsible">
                 <SidebarMenuItem className="group mt-4">
                   <CollapsibleTrigger asChild>
                     <SidebarMenuButton tooltip="LumenScape">
@@ -155,7 +158,8 @@ export default function AppLayout({
                           <Link
                             to="/marketplace"
                             activeProps={{
-                              className: "text-primary font-medium bg-[#D2E69A]",
+                              className:
+                                "text-primary font-medium bg-[#D2E69A]",
                             }}
                             inactiveProps={{
                               className: "text-muted-foreground",
@@ -171,7 +175,8 @@ export default function AppLayout({
                           <Link
                             to="/credits/comply"
                             activeProps={{
-                              className: "text-primary font-medium bg-[#D2E69A]",
+                              className:
+                                "text-primary font-medium bg-[#D2E69A]",
                             }}
                             inactiveProps={{
                               className: "text-muted-foreground",
@@ -187,7 +192,8 @@ export default function AppLayout({
                           <Link
                             to="/credits/offset"
                             activeProps={{
-                              className: "text-primary font-medium bg-[#D2E69A]",
+                              className:
+                                "text-primary font-medium bg-[#D2E69A]",
                             }}
                             inactiveProps={{
                               className: "text-muted-foreground",
@@ -203,7 +209,8 @@ export default function AppLayout({
                           <Link
                             to="/credits/grs"
                             activeProps={{
-                              className: "text-primary font-medium bg-[#D2E69A]",
+                              className:
+                                "text-primary font-medium bg-[#D2E69A]",
                             }}
                             inactiveProps={{
                               className: "text-muted-foreground",
@@ -221,7 +228,7 @@ export default function AppLayout({
               <SidebarSeparator className="my-2 bg-gray-200" />
 
               {/* Group: LumenCredits */}
-              <Collapsible asChild defaultOpen>
+              <Collapsible asChild defaultOpen className="group/collapsible">
                 <SidebarMenuItem className="group mt-4">
                   <CollapsibleTrigger asChild>
                     <SidebarMenuButton tooltip="LumenCredits">
@@ -237,7 +244,8 @@ export default function AppLayout({
                           <Link
                             to="/financialization"
                             activeProps={{
-                              className: "text-primary font-medium bg-[#D2E69A]",
+                              className:
+                                "text-primary font-medium bg-[#D2E69A]",
                             }}
                             inactiveProps={{
                               className: "text-muted-foreground",
@@ -253,7 +261,8 @@ export default function AppLayout({
                           <Link
                             to="/registry"
                             activeProps={{
-                              className: "text-primary font-medium bg-[#D2E69A]",
+                              className:
+                                "text-primary font-medium bg-[#D2E69A]",
                             }}
                             inactiveProps={{
                               className: "text-muted-foreground",
@@ -271,7 +280,7 @@ export default function AppLayout({
               <SidebarSeparator className="my-2 bg-gray-200" />
 
               {/* Group: System */}
-              <Collapsible asChild defaultOpen>
+              <Collapsible asChild defaultOpen className="group/collapsible">
                 <SidebarMenuItem className="group mt-4">
                   <CollapsibleTrigger asChild>
                     <SidebarMenuButton tooltip="System">
@@ -287,7 +296,8 @@ export default function AppLayout({
                           <Link
                             to="/settings"
                             activeProps={{
-                              className: "text-primary font-medium bg-[#D2E69A]",
+                              className:
+                                "text-primary font-medium bg-[#D2E69A]",
                             }}
                             inactiveProps={{
                               className: "text-muted-foreground",
@@ -303,7 +313,8 @@ export default function AppLayout({
                           <Link
                             to="/boundary"
                             activeProps={{
-                              className: "text-primary font-medium bg-[#D2E69A]",
+                              className:
+                                "text-primary font-medium bg-[#D2E69A]",
                             }}
                             inactiveProps={{
                               className: "text-muted-foreground",
