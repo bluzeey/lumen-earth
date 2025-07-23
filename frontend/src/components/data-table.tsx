@@ -292,12 +292,12 @@ export function DataTable({
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow
                 key={headerGroup.id}
-                className="bg-[#204936] text-primary text-xs font-semibold uppercase tracking-wider shadow-sm"
+                className="bg-[#204936] text-white text-xs font-semibold uppercase tracking-wider shadow-sm"
               >
                 {headerGroup.headers.map((header) => (
                   <TableHead
                     key={header.id}
-                    className="p-3 border-b border-border text-left"
+                    className="p-3 border-b border-border text-white text-left"
                   >
                     {header.isPlaceholder
                       ? null
