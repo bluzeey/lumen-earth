@@ -55,7 +55,7 @@ export default function RegisterPage() {
             <img
               src="/logo.png"
               alt="Lumen Logo"
-              className="h-10 md:h-12 object-contain"
+              className="h-24 object-contain"
             />
           </div>
 

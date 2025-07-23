@@ -12,7 +12,8 @@ import {
   SidebarMenuSub,
   SidebarMenuSubItem,
   SidebarMenuSubButton,
-} from "@/components/ui/sidebar";
+  SidebarSeparator,
+} from "src/components/ui/sidebar";
 import {
   LogOut,
   Layers3,
@@ -60,7 +61,7 @@ export default function AppLayout({
             <img
               src="/logo.png"
               alt="Lumen Logo"
-              className="h-12 md:h-12 object-contain"
+              className="h-24 md:h-24 object-contain"
             />
             <span className="ml-12 italic font-semibold text-gray-500">
               for Respun
@@ -135,6 +136,7 @@ export default function AppLayout({
                   </CollapsibleContent>
                 </SidebarMenuItem>
               </Collapsible>
+              <SidebarSeparator className="my-2 bg-gray-200" />
 
               {/* Group: LumenScape */}
               <Collapsible asChild defaultOpen>
@@ -216,6 +218,7 @@ export default function AppLayout({
                   </CollapsibleContent>
                 </SidebarMenuItem>
               </Collapsible>
+              <SidebarSeparator className="my-2 bg-gray-200" />
 
               {/* Group: LumenCredits */}
               <Collapsible asChild defaultOpen>
@@ -265,6 +268,7 @@ export default function AppLayout({
                   </CollapsibleContent>
                 </SidebarMenuItem>
               </Collapsible>
+              <SidebarSeparator className="my-2 bg-gray-200" />
 
               {/* Group: System */}
               <Collapsible asChild defaultOpen>
