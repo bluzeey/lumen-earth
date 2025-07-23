@@ -292,7 +292,7 @@ export function DataTable({
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow
                 key={headerGroup.id}
-                className="bg-lime-300 text-primary text-xs font-semibold uppercase tracking-wider shadow-sm"
+                className="bg-[#204936] text-primary text-xs font-semibold uppercase tracking-wider shadow-sm"
               >
                 {headerGroup.headers.map((header) => (
                   <TableHead
