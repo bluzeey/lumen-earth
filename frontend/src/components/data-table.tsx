@@ -221,6 +221,17 @@ export function DataTable({
     return parsed;
   });
 
+  React.useEffect(() => {
+    const parsed = initialData.map((b) => ({
+      ...b,
+      parsedDate:
+        typeof b.parsedDate === "string"
+          ? new Date(b.parsedDate)
+          : b.parsedDate,
+    }));
+    setData(parsed);
+  }, [initialData]);
+
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] =
