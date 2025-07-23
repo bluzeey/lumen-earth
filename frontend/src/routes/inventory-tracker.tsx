@@ -1,4 +1,4 @@
-import InventoryTracker from "src/pages/InventoryTracker";
+import InventoryTracker from "@/pages/InventoryTracker";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/inventory-tracker")({

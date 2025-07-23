@@ -1,4 +1,4 @@
-import MaterialFlowTracer from "src/pages/MaterialFlowTracer";
+import MaterialFlowTracer from "@/pages/MaterialFlowTracer";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/material-flow-tracer")({
