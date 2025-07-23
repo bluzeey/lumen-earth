@@ -1,9 +1,5 @@
-import AppLayout from "@/layouts/AppLayout";
+import ComingSoon from "@/components/ComingSoon";
 
 export default function GreenCertifications() {
-  return (
-    <AppLayout title="Green Certifications">
-      <h1>Coming Soon!</h1>
-    </AppLayout>
-  );
+  return <ComingSoon title="Green Certifications" />;
 }

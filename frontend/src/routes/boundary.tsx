@@ -1,3 +1,4 @@
+import ComingSoon from "@/components/ComingSoon";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/boundary")({
@@ -5,5 +6,5 @@ export const Route = createFileRoute("/boundary")({
 });
 
 function RouteComponent() {
-  return <div>Hello "/boundary"!</div>;
+  return <ComingSoon title="Boundary" />;
 }
