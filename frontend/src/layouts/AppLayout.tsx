@@ -13,7 +13,7 @@ import {
   SidebarMenuSubItem,
   SidebarMenuSubButton,
   SidebarSeparator,
-} from "src/components/ui/sidebar";
+} from "@/components/ui/sidebar";
 import {
   LogOut,
   Layers3,
