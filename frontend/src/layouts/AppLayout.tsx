@@ -12,6 +12,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubItem,
   SidebarMenuSubButton,
+  SidebarSeparator,
 } from "src/components/ui/sidebar";
 import {
   LogOut,
@@ -60,7 +61,7 @@ export default function AppLayout({
             <img
               src="/logo.png"
               alt="Lumen Logo"
-              className="h-12 md:h-12 object-contain"
+              className="h-24 md:h-24 object-contain"
             />
             <span className="ml-12 italic font-semibold text-gray-500">
               for Respun
@@ -77,7 +78,7 @@ export default function AppLayout({
                   <CollapsibleTrigger asChild>
                     <SidebarMenuButton tooltip="Lumenosity">
                       <Aperture className="h-4 w-4" />
-                      <span className="text-base">Lumenosity</span>
+                      <span className="text-lg">Lumenosity</span>
                       <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                     </SidebarMenuButton>
                   </CollapsibleTrigger>
@@ -135,6 +136,7 @@ export default function AppLayout({
                   </CollapsibleContent>
                 </SidebarMenuItem>
               </Collapsible>
+              <SidebarSeparator className="my-2 bg-gray-200" />
 
               {/* Group: LumenScape */}
               <Collapsible asChild defaultOpen>
@@ -142,7 +144,7 @@ export default function AppLayout({
                   <CollapsibleTrigger asChild>
                     <SidebarMenuButton tooltip="LumenScape">
                       <LayoutGrid className="h-4 w-4" />
-                      <span className="text-base">LumenScape</span>
+                      <span className="text-lg">LumenScape</span>
                       <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                     </SidebarMenuButton>
                   </CollapsibleTrigger>
@@ -216,6 +218,7 @@ export default function AppLayout({
                   </CollapsibleContent>
                 </SidebarMenuItem>
               </Collapsible>
+              <SidebarSeparator className="my-2 bg-gray-200" />
 
               {/* Group: LumenCredits */}
               <Collapsible asChild defaultOpen>
@@ -223,7 +226,7 @@ export default function AppLayout({
                   <CollapsibleTrigger asChild>
                     <SidebarMenuButton tooltip="LumenCredits">
                       <BadgeDollarSign className="h-4 w-4" />
-                      <span className="text-base">LumenCredits</span>
+                      <span className="text-lg">LumenCredits</span>
                       <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                     </SidebarMenuButton>
                   </CollapsibleTrigger>
@@ -265,6 +268,7 @@ export default function AppLayout({
                   </CollapsibleContent>
                 </SidebarMenuItem>
               </Collapsible>
+              <SidebarSeparator className="my-2 bg-gray-200" />
 
               {/* Group: System */}
               <Collapsible asChild defaultOpen>
@@ -272,7 +276,7 @@ export default function AppLayout({
                   <CollapsibleTrigger asChild>
                     <SidebarMenuButton tooltip="System">
                       <Settings className="h-4 w-4" />
-                      <span className="text-base">System</span>
+                      <span className="text-lg">System</span>
                       <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                     </SidebarMenuButton>
                   </CollapsibleTrigger>
