@@ -1,4 +1,4 @@
-import Marketplace from "src/pages/Marketplace";
+import Marketplace from "@/pages/Marketplace";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/marketplace")({

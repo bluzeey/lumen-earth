@@ -1,23 +1,13 @@
 import { useEffect, useState } from "react";
 import * as XLSX from "xlsx";
-import {
-  Tabs,
-  TabsList,
-  TabsTrigger,
-  TabsContent,
-} from "src/components/ui/tabs";
-import {
-  Card,
-  CardContent,
-  CardTitle,
-  CardHeader,
-} from "src/components/ui/card";
-import { Button } from "src/components/ui/button";
-import { Input } from "src/components/ui/input";
-import { Label } from "src/components/ui/label";
-import { Separator } from "src/components/ui/separator";
-import AppLayout from "src/layouts/AppLayout";
-import { Dialog, DialogContent, DialogTrigger } from "src/components/ui/dialog";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Card, CardContent, CardTitle, CardHeader } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import AppLayout from "@/layouts/AppLayout";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { DataGrid, type Column } from "react-data-grid";
 import "react-data-grid/lib/styles.css";
 

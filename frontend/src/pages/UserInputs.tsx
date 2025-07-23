@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import * as XLSX from "xlsx";
-import { Button } from "src/components/ui/button";
-import { Input } from "src/components/ui/input";
-import AppLayout from "src/layouts/AppLayout";
-import { Dialog, DialogContent, DialogTrigger } from "src/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import AppLayout from "@/layouts/AppLayout";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { DataGrid } from "react-data-grid";
 import "react-data-grid/lib/styles.css";
 

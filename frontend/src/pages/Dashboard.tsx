@@ -1,15 +1,15 @@
-import { Card, CardContent } from "src/components/ui/card";
-import { Button } from "src/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectTrigger,
   SelectValue,
   SelectContent,
   SelectItem,
-} from "src/components/ui/select";
-import { Tabs, TabsList, TabsTrigger } from "src/components/ui/tabs";
+} from "@/components/ui/select";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Bell, User, LogOut } from "lucide-react";
-import AppLayout from "src/layouts/AppLayout";
+import AppLayout from "@/layouts/AppLayout";
 
 export default function MaterialFlowTracer() {
   return (

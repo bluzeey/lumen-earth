@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import { Button } from "src/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogTrigger,
   DialogContent,
   DialogHeader,
-} from "src/components/ui/dialog";
-import { Input } from "src/components/ui/input";
-import { Label } from "src/components/ui/label";
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Table,
   TableHeader,
@@ -15,14 +15,14 @@ import {
   TableRow,
   TableCell,
   TableHead,
-} from "src/components/ui/table";
+} from "@/components/ui/table";
 import {
   Select,
   SelectTrigger,
   SelectValue,
   SelectContent,
   SelectItem,
-} from "src/components/ui/select";
+} from "@/components/ui/select";
 import { useNavigate } from "@tanstack/react-router";
 import { Plus } from "lucide-react";
 import {
@@ -32,8 +32,8 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "src/components/ui/pagination";
-import AppLayout from "src/layouts/AppLayout";
+} from "@/components/ui/pagination";
+import AppLayout from "@/layouts/AppLayout";
 
 // Dummy project data (replace with API later)
 const mockProjects = Array.from({ length: 24 }).map((_, i) => ({

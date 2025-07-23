@@ -8,30 +8,25 @@ import {
   formatISO,
 } from "date-fns";
 import { type DateRange } from "react-day-picker";
-import { Calendar } from "src/components/ui/calendar";
-import { Button } from "src/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import { Button } from "@/components/ui/button";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "src/components/ui/popover";
+} from "@/components/ui/popover";
 import {
   Select,
   SelectTrigger,
   SelectValue,
   SelectContent,
   SelectItem,
-} from "src/components/ui/select";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-} from "src/components/ui/card";
+} from "@/components/ui/select";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { CalendarIcon } from "lucide-react";
 import { ResponsiveLine } from "@nivo/line";
 import { cn } from "@/lib/utils";
-import AppLayout from "src/layouts/AppLayout";
+import AppLayout from "@/layouts/AppLayout";
 import inventoryData from "@/data/inventory.json";
 import orderData from "@/data/orders.json";
 import forecastData from "@/data/inventory_forecast.json";

@@ -1,4 +1,4 @@
-import AppLayout from "src/layouts/AppLayout";
+import AppLayout from "@/layouts/AppLayout";
 
 export default function GreenCertifications() {
   return (

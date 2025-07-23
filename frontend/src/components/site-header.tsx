@@ -1,7 +1,7 @@
 // components/site-header.tsx
-import { Button } from "src/components/ui/button";
-import { Separator } from "src/components/ui/separator";
-import { SidebarTrigger } from "src/components/ui/sidebar";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Bell, LogOut, User } from "lucide-react";
 
 interface SiteHeaderProps {

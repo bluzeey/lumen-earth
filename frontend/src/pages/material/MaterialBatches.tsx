@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Button } from "src/components/ui/button";
-import { Card } from "src/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -8,22 +8,22 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "src/components/ui/table";
+} from "@/components/ui/table";
 import {
   Select,
   SelectTrigger,
   SelectValue,
   SelectContent,
   SelectItem,
-} from "src/components/ui/select";
+} from "@/components/ui/select";
 import { useNavigate } from "@tanstack/react-router";
 import { format } from "date-fns";
-import { Calendar } from "src/components/ui/calendar";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "src/components/ui/popover";
+} from "@/components/ui/popover";
 import { CalendarIcon } from "lucide-react";
 import {
   Pagination,
@@ -32,8 +32,8 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "src/components/ui/pagination";
-import AppLayout from "src/layouts/AppLayout";
+} from "@/components/ui/pagination";
+import AppLayout from "@/layouts/AppLayout";
 
 type DateRange = {
   from: Date;

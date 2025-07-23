@@ -32,8 +32,8 @@ import {
 } from "@tanstack/react-table";
 import { z } from "zod";
 
-import { Button } from "src/components/ui/button";
-import { Checkbox } from "src/components/ui/checkbox";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Table,
   TableBody,
@@ -41,7 +41,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "src/components/ui/table";
+} from "@/components/ui/table";
 
 // Schema
 export const enrichedBatchSchema = z.object({

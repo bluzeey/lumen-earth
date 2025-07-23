@@ -2,17 +2,17 @@ import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useNavigate } from "@tanstack/react-router";
-import { Input } from "src/components/ui/input";
-import { Label } from "src/components/ui/label";
-import { Button } from "src/components/ui/button";
-import { Textarea } from "src/components/ui/textarea";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectTrigger,
   SelectValue,
   SelectContent,
   SelectItem,
-} from "src/components/ui/select";
+} from "@/components/ui/select";
 import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
@@ -20,12 +20,12 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "src/components/ui/popover";
-import { Calendar } from "src/components/ui/calendar";
+} from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "sonner";
-import AppLayout from "src/layouts/AppLayout";
+import AppLayout from "@/layouts/AppLayout";
 
 const sources = ["Hotel", "Factory", "Hospital", "Warehouse"];
 const materials = ["Cotton", "Polyester", "Wool", "Nylon", "Recycled Plastic"];
