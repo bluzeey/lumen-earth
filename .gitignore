@@ -7,3 +7,8 @@ count.txt
 .env
 .nitro
 .tanstack
+# Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+venv/
