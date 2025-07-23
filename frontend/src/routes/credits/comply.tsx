@@ -1,4 +1,4 @@
-import AppLayout from "@/layouts/AppLayout";
+import ComingSoon from "@/components/ComingSoon";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/credits/comply")({
@@ -6,11 +6,5 @@ export const Route = createFileRoute("/credits/comply")({
 });
 
 function RouteComponent() {
-  return (
-    <AppLayout title="INCCTS Comply">
-      <div className="flex justify-center items-center m-auto text-3xl font-bold h-full w-full">
-        Coming Soon!
-      </div>
-    </AppLayout>
-  );
+  return <ComingSoon title="INCCTS Comply" />;
 }

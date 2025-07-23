@@ -1,9 +1,5 @@
-import AppLayout from "@/layouts/AppLayout";
+import ComingSoon from "@/components/ComingSoon";
 
 export default function Marketplace() {
-  return (
-    <AppLayout title="Marketplace">
-      <h1>Coming Soon!</h1>
-    </AppLayout>
-  );
+  return <ComingSoon title="Marketplace" />;
 }

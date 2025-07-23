@@ -1,4 +1,4 @@
-import AppLayout from "@/layouts/AppLayout";
+import ComingSoon from "@/components/ComingSoon";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/financialization")({
@@ -6,11 +6,5 @@ export const Route = createFileRoute("/financialization")({
 });
 
 function RouteComponent() {
-  return (
-    <AppLayout title="Financialization">
-      <div className="flex justify-center items-center m-auto text-3xl font-bold h-full w-full">
-        Coming Soon!
-      </div>
-    </AppLayout>
-  );
+  return <ComingSoon title="Financialization" />;
 }
