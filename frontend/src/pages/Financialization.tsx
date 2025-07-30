@@ -90,7 +90,7 @@ export default function FinancializationPage() {
     <AppLayout title="Green Certification & Finance">
       <div className="p-4 sm:p-6 space-y-4 text-charcoal">
         {/* Centralized Grid Layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-3 gap-2 items-center justify-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-2 gap-2 items-center justify-center mb-4">
           {/* Top row */}
           <Card className="p-4 bg-white border rounded-xl shadow-sm md:row-start-1 md:col-start-1 text-center">
             <CardTitle className="text-sm font-semibold">
@@ -171,7 +171,7 @@ export default function FinancializationPage() {
         </div>
 
         {/* Suggestions and Registry */}
-        <div className="flex flex-col lg:flex-row gap-2">
+        <div className="flex flex-col md:flex-col lg:flex-row gap-2">
           {/* Suggestions */}
           <div className="space-y-2 lg:w-1/3">
             <h2 className="text-lg font-semibold">
