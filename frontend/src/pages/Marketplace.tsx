@@ -79,7 +79,7 @@ export default function Marketplace() {
 
   return (
     <AppLayout title="Marketplace">
-      <div className="flex flex-col lg:flex-row gap-4">
+      <div className="flex flex-col lg:flex-row gap-4 mt-6">
         <div className="flex-1 space-y-4">
           <SearchFilterBar
             searchQuery={searchQuery}

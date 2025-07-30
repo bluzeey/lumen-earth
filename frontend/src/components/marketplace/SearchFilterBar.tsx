@@ -30,15 +30,15 @@ export default function SearchFilterBar({
   regions,
 }: SearchFilterBarProps) {
   return (
-    <div className="flex flex-col sm:flex-row gap-2">
+    <div className="flex flex-col sm:flex-row gap-2 bg-white p-4 rounded-md">
       <Input
         placeholder="Search materials, products or suppliers..."
         value={searchQuery}
         onChange={(e) => onSearchChange(e.target.value)}
-        className="bg-beige rounded-md p-2 w-full text-sm"
+        className="bg-white rounded-md p-2 w-full text-sm"
       />
       <Select value={selectedMaterial} onValueChange={onMaterialChange}>
-        <SelectTrigger className="bg-beige rounded-md p-2 w-full text-sm">
+        <SelectTrigger className="bg-white rounded-md p-2 w-full text-sm">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
@@ -50,7 +50,7 @@ export default function SearchFilterBar({
         </SelectContent>
       </Select>
       <Select value={selectedRegion} onValueChange={onRegionChange}>
-        <SelectTrigger className="bg-beige rounded-md p-2 w-full text-sm">
+        <SelectTrigger className="bg-white rounded-md p-2 w-full text-sm">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
