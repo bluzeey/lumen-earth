@@ -1,4 +1,4 @@
-import ComingSoon from "@/components/ComingSoon";
+import RegistryPage from "@/pages/Registry";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/registry")({
@@ -6,5 +6,5 @@ export const Route = createFileRoute("/registry")({
 });
 
 function RouteComponent() {
-  return <ComingSoon title="Registry" />;
+  return <RegistryPage />;
 }
