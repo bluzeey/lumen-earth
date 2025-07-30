@@ -157,7 +157,7 @@ export default function FinancializationPage() {
               {premiumSuggestions.map((suggestion) => (
                 <li
                   key={suggestion}
-                  className="flex items-start gap-2 bg-lightgreen rounded-xl shadow-md border p-4 hover:bg-lightgreen/70"
+                  className="flex items-start gap-2 bg-white rounded-xl shadow-md border p-4 hover:bg-gray-50"
                 >
                   <ArrowUpRight className="text-leaf" />
                   <span>{suggestion}</span>
@@ -171,7 +171,7 @@ export default function FinancializationPage() {
             <h2 className="text-lg font-semibold">Lumen Green Credit Insets Registry</h2>
             <div className="rounded-xl shadow-md border overflow-x-auto">
               <Table>
-                <TableHeader className="sticky top-0 bg-charcoal text-white z-10">
+                <TableHeader className="sticky top-0 bg-[#204936] text-white z-10">
                 <TableRow>
                   <TableHead className="text-white">Name</TableHead>
                   <TableHead className="text-white">Owner</TableHead>
@@ -182,7 +182,7 @@ export default function FinancializationPage() {
               </TableHeader>
               <TableBody>
                 {greenInsetsRegistry.map((row) => (
-                  <TableRow key={row.gciRegistration} className="even:bg-beige">
+                  <TableRow key={row.gciRegistration} className="bg-white">
                     <TableCell>{row.name}</TableCell>
                     <TableCell>{row.owner}</TableCell>
                     <TableCell>{row.impact}</TableCell>
