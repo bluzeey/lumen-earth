@@ -5,6 +5,7 @@ import {
   TableRow,
   TableHead,
   TableCell,
+  TableBody,
 } from "@/components/ui/table";
 import AppLayout from "@/layouts/AppLayout";
 import { ArrowUpRight } from "lucide-react";
@@ -128,6 +129,7 @@ export default function FinancializationPage() {
               {metrics.greenInsetProjects}
             </CardContent>
           </Card>
+
           <Card className="rounded-xl shadow-md border p-4 bg-white">
             <CardHeader className="p-0 pb-2">
               <CardTitle className="text-sm">Qualifying Products</CardTitle>
@@ -161,6 +163,8 @@ export default function FinancializationPage() {
             </div>
           </Card>
         </div>
+
+        {/* Suggestions and Registry */}
         <div className="flex flex-col lg:flex-row gap-4">
           {/* Suggestions */}
           <div className="space-y-2 lg:w-1/3">
@@ -188,14 +192,17 @@ export default function FinancializationPage() {
             <div className="rounded-xl shadow-md border overflow-x-auto">
               <Table>
                 <TableHeader className="sticky top-0 bg-[#204936] text-white z-10">
-                <TableRow>
-                  <TableHead className="text-white">Name</TableHead>
-                  <TableHead className="text-white">Owner</TableHead>
-                  <TableHead className="text-white">Impact</TableHead>
-                  <TableHead className="text-white">Credit Price</TableHead>
-                  <TableHead className="text-white">GCI Registration</TableHead>
-                </TableRow>
-              </TableHeader>
+                  <TableRow>
+                    <TableHead className="text-white">Name</TableHead>
+                    <TableHead className="text-white">Owner</TableHead>
+                    <TableHead className="text-white">Impact</TableHead>
+                    <TableHead className="text-white">Credit Price</TableHead>
+                    <TableHead className="text-white">
+                      GCI Registration
+                    </TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
                   {greenInsetsRegistry.map((row) => (
                     <TableRow
                       key={row.gciRegistration}
@@ -208,9 +215,12 @@ export default function FinancializationPage() {
                       <TableCell>{row.gciRegistration}</TableCell>
                     </TableRow>
                   ))}
+                </TableBody>
+              </Table>
             </div>
           </div>
         </div>
+      </div>
     </AppLayout>
   );
 }
