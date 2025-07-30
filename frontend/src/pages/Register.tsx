@@ -40,7 +40,7 @@ export default function RegisterPage() {
         {/* Left illustration */}
         <div className="w-full md:w-1/2 flex justify-center bg-lightgreen/40 p-6 rounded-2xl">
           <img
-            src="/register.png"
+            src="https://source.unsplash.com/800x600/?textile,factory&sig=1"
             alt="Register Illustration"
             className="max-w-md w-full h-auto object-contain"
           />
