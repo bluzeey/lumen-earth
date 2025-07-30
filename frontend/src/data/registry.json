@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Waste water management plant",
+    "owner": "Second Spin",
+    "impact": "3 tonnes water/month",
+    "creditPrice": "₹8.2L / 5 years",
+    "gciRegistration": "@DSA1280KFJASJA#1109274"
+  },
+  {
+    "name": "ZLD plant",
+    "owner": "Green worms",
+    "impact": "2 tonnes water/month",
+    "creditPrice": "₹8.2L / 5 years",
+    "gciRegistration": "@WSA1280KFJASJA#1512408"
+  },
+  {
+    "name": "Material composition detection",
+    "owner": "Sahas",
+    "impact": "1.2T Carbon/month",
+    "creditPrice": "₹8.2L / 5 years",
+    "gciRegistration": "@VFG1280KFJASJA#1760921"
+  },
+  {
+    "name": "ZLD plant",
+    "owner": "Sahas",
+    "impact": "1.5 tonnes water/month",
+    "creditPrice": "₹8.2L / 5 years",
+    "gciRegistration": "@IUER1280KFJASJA#1123983"
+  },
+  {
+    "name": "Self Solar Powered facility",
+    "owner": "Second Spin",
+    "impact": "500 kg Carbon/month",
+    "creditPrice": "₹8.2L / 5 years",
+    "gciRegistration": "@PO11280KFJASJA#708341"
+  },
+  {
+    "name": "Chemical cleaning plant",
+    "owner": "Green worms",
+    "impact": "1 tonnes water/month",
+    "creditPrice": "₹8.2L / 5 years",
+    "gciRegistration": "@YUJ1280KFJASJA#908123"
+  }
+]
