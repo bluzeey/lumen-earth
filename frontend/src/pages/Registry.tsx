@@ -18,8 +18,8 @@ export default function RegistryPage() {
         <h1 className="text-2xl font-semibold">Lumen Green Credit Insets Registry</h1>
         <div className="rounded-xl shadow-md border overflow-x-auto">
           <Table>
-            <TableHeader className="sticky top-0 bg-charcoal text-white z-10">
-              <TableRow>
+            <TableHeader className="sticky top-0 z-10">
+              <TableRow className="bg-[#204936] text-white text-xs font-semibold uppercase tracking-wider shadow-sm">
                 <TableHead className="text-white">Name</TableHead>
                 <TableHead className="text-white">Owner</TableHead>
                 <TableHead className="text-white">Impact</TableHead>
@@ -29,7 +29,7 @@ export default function RegistryPage() {
             </TableHeader>
             <TableBody>
               {data.map((row) => (
-                <TableRow key={row.gciRegistration} className="even:bg-beige">
+                <TableRow key={row.gciRegistration} className="bg-white">
                   <TableCell>{row.name}</TableCell>
                   <TableCell>{row.owner}</TableCell>
                   <TableCell>{row.impact}</TableCell>
