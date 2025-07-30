@@ -209,8 +209,6 @@ export default function FinancializationPage() {
                       <TableCell>{row.gciRegistration}</TableCell>
                     </TableRow>
                   ))}
-                </TableBody>
-              </Table>
             </div>
           </div>
         </div>
