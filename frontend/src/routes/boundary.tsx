@@ -1,4 +1,4 @@
-import ComingSoon from "@/components/ComingSoon";
+import BoundaryPage from "@/pages/Boundary";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/boundary")({
@@ -6,5 +6,5 @@ export const Route = createFileRoute("/boundary")({
 });
 
 function RouteComponent() {
-  return <ComingSoon title="Boundary" />;
+  return <BoundaryPage />;
 }
