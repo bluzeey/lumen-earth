@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import {
   Table,
   TableHeader,
@@ -89,79 +89,99 @@ export default function FinancializationPage() {
   return (
     <AppLayout title="Green Certification & Finance">
       <div className="p-6 space-y-6 text-charcoal">
-        {/* Metrics */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <Card className="rounded-xl shadow-md border p-4 bg-white">
-            <CardHeader className="p-0 pb-2">
-              <CardTitle className="text-sm">
+        {/* Metrics Overview */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+          {/* Left Side Metrics */}
+          <div className="flex flex-col gap-4">
+            <Card className="p-4 bg-white border rounded-xl shadow-sm">
+              <CardTitle className="text-sm font-semibold">
                 Green Premium Actualized
               </CardTitle>
-            </CardHeader>
-            <CardContent className="text-2xl font-bold text-primary">
-              ₹{(metrics.greenPremiumActualized / 100).toLocaleString()}K
-            </CardContent>
-          </Card>
+              <CardContent className="text-2xl font-bold text-red-600">
+                ₹1.7L
+              </CardContent>
+              <p className="text-xs text-muted-foreground mt-1">
+                Added revenues from Green premiums, EPR certificates
+              </p>
+            </Card>
 
-          <Card className="rounded-xl shadow-md border p-4 bg-white">
-            <CardHeader className="p-0 pb-2">
-              <CardTitle className="text-sm">Green Premium Potential</CardTitle>
-            </CardHeader>
-            <CardContent className="text-2xl font-bold text-primary">
-              ₹{(metrics.greenPremiumPotential / 100).toLocaleString()}K
-            </CardContent>
-          </Card>
+            <Card className="p-4 bg-white border rounded-xl shadow-sm">
+              <CardTitle className="text-sm font-semibold">
+                Green Certifications
+              </CardTitle>
+              <CardContent className="text-2xl font-bold text-purple-700">
+                1 / 4
+              </CardContent>
+              <p className="text-xs text-muted-foreground mt-1">
+                Active Green Recycling Standard Certificates present vs
+                potential
+              </p>
+            </Card>
+          </div>
 
-          <Card className="rounded-xl shadow-md border p-4 bg-white">
-            <CardHeader className="p-0 pb-2">
-              <CardTitle className="text-sm">Green Certifications</CardTitle>
-            </CardHeader>
-            <CardContent className="text-2xl font-bold text-blue-600">
-              {metrics.greenCertifications.current} /{" "}
-              {metrics.greenCertifications.potential}
-            </CardContent>
-          </Card>
+          {/* Center Donut */}
+          <div className="flex justify-center items-center p-4 bg-white rounded-xl shadow-sm aspect-square min-h-[250px]">
+            <ResponsivePie
+              data={metrics.donutChartData}
+              innerRadius={0.6}
+              margin={{ top: 10, right: 10, bottom: 50, left: 10 }}
+              colors={(d) => d.data.color as string}
+              enableArcLinkLabels={false}
+              legends={[
+                {
+                  anchor: "bottom",
+                  direction: "column",
+                  justify: false,
+                  translateY: 40,
+                  itemWidth: 140,
+                  itemHeight: 14,
+                  itemsSpacing: 4,
+                  symbolSize: 12,
+                },
+              ]}
+            />
+          </div>
 
-          <Card className="rounded-xl shadow-md border p-4 bg-white">
-            <CardHeader className="p-0 pb-2">
-              <CardTitle className="text-sm">Inset Projects</CardTitle>
-            </CardHeader>
-            <CardContent className="text-2xl font-bold text-purple-600">
-              {metrics.greenInsetProjects}
-            </CardContent>
-          </Card>
+          {/* Right Side Metrics */}
+          <div className="flex flex-col gap-4">
+            <Card className="p-4 bg-white border rounded-xl shadow-sm">
+              <CardTitle className="text-sm font-semibold">
+                Green Premium Potential
+              </CardTitle>
+              <CardContent className="text-2xl font-bold text-green-700">
+                ₹20.3L
+              </CardContent>
+              <p className="text-xs text-muted-foreground mt-1">
+                Key inputs on raw material supply by Institutional providers
+              </p>
+            </Card>
 
-          <Card className="rounded-xl shadow-md border p-4 bg-white">
-            <CardHeader className="p-0 pb-2">
-              <CardTitle className="text-sm">Qualifying Products</CardTitle>
-            </CardHeader>
-            <CardContent className="text-2xl font-bold text-red-600">
-              {metrics.qualifyingProductCount.current} /{" "}
-              {metrics.qualifyingProductCount.total}
-            </CardContent>
-          </Card>
+            <Card className="p-4 bg-white border rounded-xl shadow-sm">
+              <CardTitle className="text-sm font-semibold">
+                Green Insets Qualifying Product Count
+              </CardTitle>
+              <CardContent className="text-2xl font-bold text-blue-600">
+                2 / 4
+              </CardContent>
+              <p className="text-xs text-muted-foreground mt-1">
+                Number of products verifiably performing better than baseline
+                material PCF metrics
+              </p>
+            </Card>
 
-          <Card className="rounded-xl shadow-md border p-4 bg-white flex items-center justify-center">
-            <div className="w-full min-w-[200px] aspect-[1/1]">
-              <ResponsivePie
-                data={metrics.donutChartData}
-                margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
-                colors={(d) => d.data.color as string}
-                enableArcLinkLabels={false}
-                legends={[
-                  {
-                    anchor: "bottom",
-                    direction: "row",
-                    justify: false,
-                    translateY: 30,
-                    itemWidth: 100,
-                    itemHeight: 14,
-                    itemsSpacing: 4,
-                    symbolSize: 12,
-                  },
-                ]}
-              />
-            </div>
-          </Card>
+            <Card className="p-4 bg-white border rounded-xl shadow-sm">
+              <CardTitle className="text-sm font-semibold">
+                Green Inset Projects
+              </CardTitle>
+              <CardContent className="text-2xl font-bold text-blue-600">
+                4
+              </CardContent>
+              <p className="text-xs text-muted-foreground mt-1">
+                Total number of Green Inset Projects set up that are possible to
+                fund
+              </p>
+            </Card>
+          </div>
         </div>
 
         {/* Suggestions and Registry */}
@@ -177,7 +197,7 @@ export default function FinancializationPage() {
                   key={suggestion}
                   className="flex items-start gap-2 bg-white rounded-xl shadow-md border p-4 hover:bg-gray-50"
                 >
-                  <ArrowUpRight className="text-leaf" />
+                  <ArrowUpRight className="text-leaf mt-1" />
                   <span>{suggestion}</span>
                 </li>
               ))}
