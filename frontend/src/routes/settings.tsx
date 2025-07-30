@@ -1,4 +1,4 @@
-import ComingSoon from "@/components/ComingSoon";
+import SettingsPage from "@/pages/Settings";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/settings")({
@@ -6,5 +6,5 @@ export const Route = createFileRoute("/settings")({
 });
 
 function RouteComponent() {
-  return <ComingSoon title="Settings" />;
+  return <SettingsPage />;
 }
