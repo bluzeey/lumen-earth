@@ -88,11 +88,11 @@ const greenInsetsRegistry = [
 export default function FinancializationPage() {
   return (
     <AppLayout title="Green Certification & Finance">
-      <div className="p-6 space-y-6 text-charcoal">
+      <div className="p-4 sm:p-6 space-y-4 text-charcoal">
         {/* Centralized Grid Layout */}
-        <div className="grid grid-cols-3 grid-rows-3 gap-4 items-center justify-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-3 gap-2 items-center justify-center">
           {/* Top row */}
-          <Card className="p-4 bg-white border rounded-xl shadow-sm row-start-1 col-start-1 text-center">
+          <Card className="p-4 bg-white border rounded-xl shadow-sm md:row-start-1 md:col-start-1 text-center">
             <CardTitle className="text-sm font-semibold">
               Green Premium Actualized
             </CardTitle>
@@ -104,7 +104,7 @@ export default function FinancializationPage() {
             </p>
           </Card>
 
-          <Card className="p-4 bg-white border rounded-xl shadow-sm row-start-2 col-start-2 text-center">
+          <Card className="p-4 bg-white border rounded-xl shadow-sm md:row-start-2 md:col-start-2 text-center">
             <CardTitle className="text-sm font-semibold">
               Green Certifications
             </CardTitle>
@@ -116,7 +116,7 @@ export default function FinancializationPage() {
             </p>
           </Card>
 
-          <Card className="p-4 bg-white border rounded-xl shadow-sm row-start-1 col-start-3 text-center">
+          <Card className="p-4 bg-white border rounded-xl shadow-sm md:row-start-1 md:col-start-3 text-center">
             <CardTitle className="text-sm font-semibold">
               Green Premium Potential
             </CardTitle>
@@ -129,7 +129,7 @@ export default function FinancializationPage() {
           </Card>
 
           {/* Middle row */}
-          <Card className="p-4 bg-white border rounded-xl shadow-sm row-start-2 col-start-1 text-center">
+          <Card className="p-4 bg-white border rounded-xl shadow-sm md:row-start-2 md:col-start-1 text-center">
             <CardTitle className="text-sm font-semibold">
               Green Insets Qualifying Product Count
             </CardTitle>
@@ -144,7 +144,7 @@ export default function FinancializationPage() {
 
           {/* Donut chart in center */}
           {/* Donut chart in center with space for legend */}
-          <div className="row-start-1 col-start-2 flex justify-center items-center h-[360px] w-full">
+          <div className="md:row-start-1 md:col-start-2 flex justify-center items-center h-[360px] w-full">
             <div className="w-full h-full">
               <ResponsivePie
                 data={metrics.donutChartData}
@@ -156,7 +156,7 @@ export default function FinancializationPage() {
             </div>
           </div>
 
-          <Card className="p-4 bg-white border rounded-xl shadow-sm row-start-2 col-start-3 text-center">
+          <Card className="p-4 bg-white border rounded-xl shadow-sm md:row-start-2 md:col-start-3 text-center">
             <CardTitle className="text-sm font-semibold">
               Green Inset Projects
             </CardTitle>
@@ -171,7 +171,7 @@ export default function FinancializationPage() {
         </div>
 
         {/* Suggestions and Registry */}
-        <div className="flex flex-col lg:flex-row gap-4">
+        <div className="flex flex-col lg:flex-row gap-2">
           {/* Suggestions */}
           <div className="space-y-2 lg:w-1/3">
             <h2 className="text-lg font-semibold">
