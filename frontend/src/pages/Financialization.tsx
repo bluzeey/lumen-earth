@@ -104,7 +104,7 @@ export default function FinancializationPage() {
             </p>
           </Card>
 
-          <Card className="p-4 bg-white border rounded-xl shadow-sm row-start-1 col-start-2 text-center">
+          <Card className="p-4 bg-white border rounded-xl shadow-sm row-start-2 col-start-2 text-center">
             <CardTitle className="text-sm font-semibold">
               Green Certifications
             </CardTitle>
@@ -143,26 +143,17 @@ export default function FinancializationPage() {
           </Card>
 
           {/* Donut chart in center */}
-          <div className="row-start-2 col-start-2 flex justify-center items-center p-4 bg-white rounded-xl shadow-sm h-[250px] aspect-square">
-            <ResponsivePie
-              data={metrics.donutChartData}
-              innerRadius={0.6}
-              margin={{ top: 10, right: 10, bottom: 50, left: 10 }}
-              colors={(d) => d.data.color as string}
-              enableArcLinkLabels={false}
-              legends={[
-                {
-                  anchor: "bottom",
-                  direction: "column",
-                  justify: false,
-                  translateY: 40,
-                  itemWidth: 140,
-                  itemHeight: 14,
-                  itemsSpacing: 4,
-                  symbolSize: 12,
-                },
-              ]}
-            />
+          {/* Donut chart in center with space for legend */}
+          <div className="row-start-1 col-start-2 flex justify-center items-center h-[360px] w-full">
+            <div className="w-full h-full">
+              <ResponsivePie
+                data={metrics.donutChartData}
+                innerRadius={0.6}
+                margin={{ top: 80, right: 80, bottom: 80, left: 80 }} // leave bottom space for legend
+                colors={(d) => d.data.color as string}
+                enableArcLinkLabels={true}
+              />
+            </div>
           </div>
 
           <Card className="p-4 bg-white border rounded-xl shadow-sm row-start-2 col-start-3 text-center">
