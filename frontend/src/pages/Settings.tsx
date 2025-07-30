@@ -17,12 +17,13 @@ export default function SettingsPage() {
 
   return (
     <AppLayout title="Settings">
-      <Card className="max-w-xl">
-        <CardHeader>
-          <CardTitle>Account Settings</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSave} className="space-y-4">
+      <div className="max-w-xl mx-auto space-y-6 py-10">
+        <Card>
+          <CardHeader>
+            <CardTitle>Account Settings</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleSave} className="space-y-4">
             <div>
               <Label htmlFor="name">Name</Label>
               <Input id="name" value={name} onChange={(e) => setName(e.target.value)} />
@@ -45,10 +46,11 @@ export default function SettingsPage() {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <Button type="submit">Save Changes</Button>
-          </form>
-        </CardContent>
-      </Card>
+              <Button type="submit">Save Changes</Button>
+            </form>
+          </CardContent>
+        </Card>
+      </div>
     </AppLayout>
   );
 }

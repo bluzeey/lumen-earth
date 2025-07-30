@@ -16,12 +16,13 @@ export default function BoundaryPage() {
 
   return (
     <AppLayout title="Boundary">
-      <Card className="max-w-xl">
-        <CardHeader>
-          <CardTitle>Boundary Settings</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="max-w-xl mx-auto space-y-6 py-10">
+        <Card>
+          <CardHeader>
+            <CardTitle>Boundary Settings</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <Label htmlFor="project">Project Name</Label>
               <Input
@@ -38,10 +39,11 @@ export default function BoundaryPage() {
                 onChange={(e) => setFile(e.target.files?.[0] ?? null)}
               />
             </div>
-            <Button type="submit">Save</Button>
-          </form>
-        </CardContent>
-      </Card>
+              <Button type="submit">Save</Button>
+            </form>
+          </CardContent>
+        </Card>
+      </div>
     </AppLayout>
   );
 }
