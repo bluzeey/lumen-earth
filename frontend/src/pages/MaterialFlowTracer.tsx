@@ -1,7 +1,12 @@
 import { useMemo, useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { CalendarIcon } from "lucide-react";
+import {
+  CalendarIcon,
+  ArrowDownRight,
+  ArrowUpRight,
+  ArrowRightLeft,
+} from "lucide-react";
 import AppLayout from "@/layouts/AppLayout";
 import { SankeyChart } from "@/components/SankeyChart";
 import {
@@ -197,47 +202,120 @@ export default function MaterialFlowTracer() {
           </div>
 
           <div className="grid grid-cols-4 gap-4">
-            <Card className="text-center">
-              <CardContent className="py-4">
-                <div className="text-muted-foreground text-sm">Qty In</div>
-                <div className="text-2xl font-bold text-primary">
-                  {totalIn.toFixed(2)} T (A)
+            <Card>
+              <CardContent className="flex justify-between items-center p-4">
+                <div>
+                  <div className="text-sm text-muted-foreground">Qty In</div>
+                  <div className="text-lg font-medium text-muted-foreground">
+                    {forecastIn.toFixed(2)} T (Forecast)
+                  </div>
                 </div>
-                <div className="text-sm text-muted-foreground">
-                  {forecastIn.toFixed(2)} T (F) (
-                  {((totalIn / forecastIn) * 100 || 0).toFixed(1)}% accuracy)
+                <div className="text-right">
+                  <div className="text-3xl font-bold text-primary">
+                    {totalIn.toFixed(2)} T
+                  </div>
+                  <div
+                    className={cn(
+                      "text-sm font-medium flex items-center justify-end gap-1",
+                      ((totalIn / forecastIn) * 100 || 0) >= 100
+                        ? "text-green-600"
+                        : "text-red-600"
+                    )}
+                  >
+                    {((totalIn / forecastIn) * 100 || 0) === 100 ? (
+                      <ArrowRightLeft className="w-4 h-4" />
+                    ) : ((totalIn / forecastIn) * 100 || 0) > 100 ? (
+                      <ArrowUpRight className="w-4 h-4" />
+                    ) : (
+                      <ArrowDownRight className="w-4 h-4" />
+                    )}
+                    {((totalIn / forecastIn) * 100 - 100 || 0).toFixed(1)}%
+                    {((totalIn / forecastIn) * 100 || 0) >= 100
+                      ? " above"
+                      : " below"}
+                  </div>
                 </div>
               </CardContent>
             </Card>
-            <Card className="text-center">
-              <CardContent className="py-4">
-                <div className="text-muted-foreground text-sm">Qty Out</div>
-                <div className="text-2xl font-bold text-primary">
-                  {totalOut.toFixed(2)} T (A)
+            <Card>
+              <CardContent className="flex justify-between items-center p-4">
+                <div>
+                  <div className="text-sm text-muted-foreground">Qty Out</div>
+                  <div className="text-lg font-medium text-muted-foreground">
+                    {forecastOut.toFixed(2)} T (Forecast)
+                  </div>
                 </div>
-                <div className="text-sm text-muted-foreground">
-                  {forecastOut.toFixed(2)} T (F) (
-                  {((totalOut / forecastOut) * 100 || 0).toFixed(1)}% accuracy)
+                <div className="text-right">
+                  <div className="text-3xl font-bold text-primary">
+                    {totalOut.toFixed(2)} T
+                  </div>
+                  <div
+                    className={cn(
+                      "text-sm font-medium flex items-center justify-end gap-1",
+                      ((totalOut / forecastOut) * 100 || 0) >= 100
+                        ? "text-green-600"
+                        : "text-red-600"
+                    )}
+                  >
+                    {((totalOut / forecastOut) * 100 || 0) === 100 ? (
+                      <ArrowRightLeft className="w-4 h-4" />
+                    ) : ((totalOut / forecastOut) * 100 || 0) > 100 ? (
+                      <ArrowUpRight className="w-4 h-4" />
+                    ) : (
+                      <ArrowDownRight className="w-4 h-4" />
+                    )}
+                    {((totalOut / forecastOut) * 100 - 100 || 0).toFixed(1)}%
+                    {((totalOut / forecastOut) * 100 || 0) >= 100
+                      ? " above"
+                      : " below"}
+                  </div>
                 </div>
               </CardContent>
             </Card>
-            <Card className="text-center">
-              <CardContent className="py-4">
-                <div className="text-muted-foreground text-sm">Yield %</div>
-                <div className="text-2xl font-bold text-yellow">
-                  {yieldActual.toFixed(1)}%
+            <Card>
+              <CardContent className="flex justify-between items-center p-4">
+                <div>
+                  <div className="text-sm text-muted-foreground">Yield %</div>
+                  <div className="text-lg font-medium text-muted-foreground">
+                    {yieldForecast.toFixed(1)}% (Forecast)
+                  </div>
                 </div>
-                <div className="text-sm text-muted-foreground">
-                  {yieldForecast.toFixed(1)}% (F)
+                <div className="text-right">
+                  <div className="text-3xl font-bold text-yellow">
+                    {yieldActual.toFixed(1)}%
+                  </div>
+                  <div
+                    className={cn(
+                      "text-sm font-medium flex items-center justify-end gap-1",
+                      yieldActual >= yieldForecast
+                        ? "text-green-600"
+                        : "text-red-600"
+                    )}
+                  >
+                    {yieldActual === yieldForecast ? (
+                      <ArrowRightLeft className="w-4 h-4" />
+                    ) : yieldActual > yieldForecast ? (
+                      <ArrowUpRight className="w-4 h-4" />
+                    ) : (
+                      <ArrowDownRight className="w-4 h-4" />
+                    )}
+                    {(yieldActual - yieldForecast).toFixed(1)}%
+                    {yieldActual >= yieldForecast ? " above" : " below"}
+                  </div>
                 </div>
               </CardContent>
             </Card>
-            <Card className="text-center border-2 border-red">
-              <CardContent className="py-4">
-                <div className="text-muted-foreground text-sm">
-                  Orders At Risk
+            <Card className="border-2 border-red">
+              <CardContent className="flex justify-between items-center p-4">
+                <div>
+                  <div className="text-sm text-muted-foreground">Orders At Risk</div>
                 </div>
-                <div className="text-2xl font-bold text-red">₹28.9K</div>
+                <div className="text-right">
+                  <div className="text-3xl font-bold text-red">₹28.9K</div>
+                  <div className="text-sm font-medium text-muted-foreground flex items-center justify-end gap-1">
+                    <ArrowRightLeft className="w-4 h-4" />0%
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </div>
