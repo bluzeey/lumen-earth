@@ -55,6 +55,16 @@ const riskColor = (score: number) => {
   return "bg-green-300";
 };
 
+const chartColors = [
+  "#db1f26", // red
+  "#e95e27", // orange-red
+  "#c7d730", // yellow-green
+  "#6dc44a", // light green
+  "#66b8db", // sky blue
+  "#a95fd6", // purple
+  "#cc79a7", // pinkish
+];
+
 const OrderTracker = () => {
   const allInventory = useMemo(
     () =>
@@ -169,17 +179,6 @@ const OrderTracker = () => {
     }));
   }, [forecastData, dateRange]);
 
-  const chartColors = [
-    "#66c2a5",
-    "#fc8d62",
-    "#8da0cb",
-    "#e78ac3",
-    "#a6d854",
-    "#ffd92f",
-    "#e5c494",
-    "#b3b3b3",
-  ];
-
   return (
     <AppLayout title="Inventory Tracker">
       <div className="p-6 space-y-6">
@@ -284,7 +283,7 @@ const OrderTracker = () => {
               <table className="min-w-full text-sm text-center">
                 <thead>
                   <tr>
-                    <th className="border px-2 py-1 ">Week</th>
+                    <th className="border px-2 py-1">Week</th>
                     {skus.map((sku) => (
                       <th key={sku} className="border px-2 py-1">
                         {sku}
@@ -316,30 +315,15 @@ const OrderTracker = () => {
             </CardContent>
           </Card>
 
-          {/* Forecast Line Chart */}
+          {/* Line Chart */}
           <Card>
             <CardHeader>
               <CardTitle>End Product Inventory Risk Profile</CardTitle>
             </CardHeader>
-            <CardContent className="h-[480px]">
-              <div className="flex flex-wrap gap-4 mb-4">
-                {forecastChartData.map((line, index) => (
-                  <div key={line.id} className="flex items-center space-x-2">
-                    <span
-                      className="inline-block w-4 h-4 rounded"
-                      style={{
-                        backgroundColor:
-                          chartColors[index % chartColors.length],
-                      }}
-                    />
-                    <span className="text-sm whitespace-nowrap">{line.id}</span>
-                  </div>
-                ))}
-              </div>
-
+            <CardContent className="h-[500px]">
               <ResponsiveLine
                 data={forecastChartData}
-                margin={{ top: 10, right: 50, bottom: 100, left: 50 }}
+                margin={{ top: 20, right: 40, bottom: 60, left: 60 }}
                 xScale={{
                   type: "time",
                   format: "%Y-%m-%d",
@@ -350,17 +334,19 @@ const OrderTracker = () => {
                   format: "%b %d",
                   tickValues: "every 1 week",
                   legend: "Forecast Date",
-                  legendOffset: 36,
+                  legendOffset: 40,
                   legendPosition: "middle",
                 }}
                 axisLeft={{
                   legend: "Tonnage",
-                  legendOffset: -40,
+                  legendOffset: -50,
                   legendPosition: "middle",
                 }}
                 pointSize={6}
+                enablePoints={true}
                 useMesh
                 enableSlices="x"
+                lineWidth={4}
                 curve="monotoneX"
                 colors={chartColors}
               />
