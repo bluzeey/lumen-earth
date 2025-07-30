@@ -109,7 +109,7 @@ export default function OrderTracker() {
             </Popover>
 
             <Select value={region} onValueChange={setRegion}>
-              <SelectTrigger className="w-[160px]">
+              <SelectTrigger className="w-[160px] bg-white">
                 <SelectValue placeholder="Region" />
               </SelectTrigger>
               <SelectContent>
@@ -120,7 +120,7 @@ export default function OrderTracker() {
             </Select>
 
             <Select value={risk} onValueChange={setRisk}>
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className="w-[180px] bg-white">
                 <SelectValue placeholder="Risk" />
               </SelectTrigger>
               <SelectContent>
