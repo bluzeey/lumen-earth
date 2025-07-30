@@ -135,22 +135,23 @@ export default function UserInputsPage() {
       <div className="p-6 space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {insights.map((item, i) => (
-            <Card key={i} className="border bg-white">
-              <CardHeader>
-                <CardTitle>{item.label}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex justify-between items-center">
-                  <p className="text-sm text-muted-foreground">
-                    {item.description}
-                  </p>
-                  <div
-                    className={`rounded-full border-4 ${item.color} w-16 h-16 flex items-center justify-center text-base font-bold`}
-                  >
-                    {item.score}/10
-                  </div>
-                </div>
-              </CardContent>
+            <Card
+              key={i}
+              className="border bg-white p-4 flex items-center justify-between"
+            >
+              <div className="flex flex-col">
+                <CardTitle className="text-base font-bold">
+                  {item.label}
+                </CardTitle>
+                <p className="text-sm text-muted-foreground mt-1">
+                  {item.description}
+                </p>
+              </div>
+              <div
+                className={`w-16 h-16 rounded-full border-4 ${item.color} flex items-center justify-center text-sm font-bold`}
+              >
+                {item.score}/10
+              </div>
             </Card>
           ))}
         </div>
@@ -163,10 +164,7 @@ export default function UserInputsPage() {
           className="w-full"
         >
           <TabsList>
-            <TabsTrigger
-              value="collection"
-              className="flex items-center gap-2"
-            >
+            <TabsTrigger value="collection" className="flex items-center gap-2">
               <Folder className="w-4 h-4" /> Collection
             </TabsTrigger>
             <TabsTrigger
@@ -175,10 +173,7 @@ export default function UserInputsPage() {
             >
               <Folder className="w-4 h-4" /> Categorization
             </TabsTrigger>
-            <TabsTrigger
-              value="recycling"
-              className="flex items-center gap-2"
-            >
+            <TabsTrigger value="recycling" className="flex items-center gap-2">
               <Folder className="w-4 h-4" /> Recycling
             </TabsTrigger>
           </TabsList>
