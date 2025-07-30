@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "EcoTextiles Ltd",
+    "material": "Cotton Scrap",
+    "ratePerTonne": 1250,
+    "location": "Mumbai"
+  },
+  {
+    "id": 2,
+    "name": "Green Fibers Co",
+    "material": "Polyester Waste",
+    "ratePerTonne": 980,
+    "location": "Delhi"
+  },
+  {
+    "id": 3,
+    "name": "Recycle Hub",
+    "material": "Mixed Fabric",
+    "ratePerTonne": 1100,
+    "location": "Bengaluru"
+  },
+  {
+    "id": 4,
+    "name": "Textile Renew",
+    "material": "Nylon Scrap",
+    "ratePerTonne": 1350,
+    "location": "Hyderabad"
+  }
+]
