@@ -15,7 +15,7 @@ const marketplaceListings = [
     availability: "2.4T/month available",
     supplier: "Taj Hotels, Karnataka",
     imageUrl:
-      "https://images.unsplash.com/photo-1580164632633-d626b4d92ebe?auto=format&w=400&q=80",
+      "https://source.unsplash.com/400x300/?textile,factory&sig=1",
     eligibilityTags: ["epr", "circular"],
     ctaEnabled: true,
   },
@@ -27,7 +27,7 @@ const marketplaceListings = [
     availability: "4.8T/month available",
     supplier: "Independent Chains",
     imageUrl:
-      "https://images.unsplash.com/photo-1598032897743-9ef9c7e7e0b1?auto=format&w=400&q=80",
+      "https://source.unsplash.com/400x300/?textile,factory&sig=2",
     eligibilityTags: ["sdg12"],
     ctaEnabled: true,
   },
@@ -39,7 +39,7 @@ const marketplaceListings = [
     availability: "5.1T/month available",
     supplier: "Mixed Collection, South IN",
     imageUrl:
-      "https://images.unsplash.com/photo-1514995669114-2458152f7776?auto=format&w=400&q=80",
+      "https://source.unsplash.com/400x300/?textile,factory&sig=3",
     eligibilityTags: ["epr"],
     ctaEnabled: false,
   },
@@ -51,7 +51,7 @@ const marketplaceListings = [
     availability: "3.2T/month available",
     supplier: "GreenHarvest, North IN",
     imageUrl:
-      "https://images.unsplash.com/photo-1522336572468-47b4211c7848?auto=format&w=400&q=80",
+      "https://source.unsplash.com/400x300/?textile,factory&sig=4",
     eligibilityTags: ["organic"],
     ctaEnabled: true,
   },
@@ -63,7 +63,7 @@ const marketplaceListings = [
     availability: "6T/month available",
     supplier: "Waste Solutions, South IN",
     imageUrl:
-      "https://images.unsplash.com/photo-1581092160611-fd5a9951d072?auto=format&w=400&q=80",
+      "https://source.unsplash.com/400x300/?textile,factory&sig=5",
     eligibilityTags: ["epr"],
     ctaEnabled: true,
   },
@@ -75,7 +75,7 @@ const marketplaceListings = [
     availability: "4T/month available",
     supplier: "FibreWorks Co., Karnataka",
     imageUrl:
-      "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&w=400&q=80",
+      "https://source.unsplash.com/400x300/?textile,factory&sig=6",
     eligibilityTags: ["circular"],
     ctaEnabled: false,
   },
