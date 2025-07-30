@@ -35,10 +35,10 @@ export default function SearchFilterBar({
         placeholder="Search materials, products or suppliers..."
         value={searchQuery}
         onChange={(e) => onSearchChange(e.target.value)}
-        className="bg-white rounded-md p-2 w-full text-sm"
+        className="bg-beige rounded-md p-2 w-full text-sm"
       />
       <Select value={selectedMaterial} onValueChange={onMaterialChange}>
-        <SelectTrigger className="bg-white rounded-md p-2 w-full text-sm">
+        <SelectTrigger className="bg-beige rounded-md p-2 w-full text-sm">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
@@ -50,7 +50,7 @@ export default function SearchFilterBar({
         </SelectContent>
       </Select>
       <Select value={selectedRegion} onValueChange={onRegionChange}>
-        <SelectTrigger className="bg-white rounded-md p-2 w-full text-sm">
+        <SelectTrigger className="bg-beige rounded-md p-2 w-full text-sm">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>

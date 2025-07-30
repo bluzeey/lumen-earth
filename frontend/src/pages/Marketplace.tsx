@@ -43,16 +43,55 @@ const marketplaceListings = [
     eligibilityTags: ["epr"],
     ctaEnabled: false,
   },
+  {
+    id: 4,
+    name: "Organic Hemp Fibers",
+    description: "Sustainably grown hemp fibres, coarse quality",
+    pricePerKg: 90,
+    availability: "3.2T/month available",
+    supplier: "GreenHarvest, North IN",
+    imageUrl:
+      "https://images.unsplash.com/photo-1522336572468-47b4211c7848?auto=format&w=400&q=80",
+    eligibilityTags: ["organic"],
+    ctaEnabled: true,
+  },
+  {
+    id: 5,
+    name: "Recycled Polyester Chips",
+    description: "PET chips from post-consumer bottles",
+    pricePerKg: 60,
+    availability: "6T/month available",
+    supplier: "Waste Solutions, South IN",
+    imageUrl:
+      "https://images.unsplash.com/photo-1581092160611-fd5a9951d072?auto=format&w=400&q=80",
+    eligibilityTags: ["epr"],
+    ctaEnabled: true,
+  },
+  {
+    id: 6,
+    name: "Viscose Staple Fibres",
+    description: "Regenerated cellulose fibre for textiles",
+    pricePerKg: 70,
+    availability: "4T/month available",
+    supplier: "FibreWorks Co., Karnataka",
+    imageUrl:
+      "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&w=400&q=80",
+    eligibilityTags: ["circular"],
+    ctaEnabled: false,
+  },
 ];
 
 const marketActivity = {
-  activeListings: 2,
+  activeListings: 5,
   transactionsThisMonth: 3,
   totalVolumes: "12.3T",
   scatterPoints: [
     { pricePerKg: 85, score: 5 },
     { pricePerKg: 72, score: 4 },
     { pricePerKg: 65, score: 3 },
+    { pricePerKg: 90, score: 5 },
+    { pricePerKg: 60, score: 2 },
+    { pricePerKg: 70, score: 4 },
   ],
 };
 
