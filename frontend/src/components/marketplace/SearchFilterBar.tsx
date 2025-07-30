@@ -30,7 +30,7 @@ export default function SearchFilterBar({
   regions,
 }: SearchFilterBarProps) {
   return (
-    <div className="flex flex-col sm:flex-row gap-2">
+    <div className="flex flex-col sm:flex-row gap-2 bg-white p-4 rounded-md">
       <Input
         placeholder="Search materials, products or suppliers..."
         value={searchQuery}
