@@ -1,4 +1,4 @@
-import ComingSoon from "@/components/ComingSoon";
+import INCCTSComplyPage from "@/pages/credits/INCCTSComply";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/credits/comply")({
@@ -6,5 +6,5 @@ export const Route = createFileRoute("/credits/comply")({
 });
 
 function RouteComponent() {
-  return <ComingSoon title="INCCTS Comply" />;
+  return <INCCTSComplyPage />;
 }
