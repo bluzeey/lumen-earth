@@ -1,4 +1,4 @@
-import ComingSoon from "@/components/ComingSoon";
+import FinancializationPage from "@/pages/Financialization";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/financialization")({
@@ -6,5 +6,5 @@ export const Route = createFileRoute("/financialization")({
 });
 
 function RouteComponent() {
-  return <ComingSoon title="Financialization" />;
+  return <FinancializationPage />;
 }
