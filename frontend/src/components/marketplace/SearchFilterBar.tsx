@@ -6,7 +6,6 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
-import React from "react";
 
 interface SearchFilterBarProps {
   searchQuery: string;

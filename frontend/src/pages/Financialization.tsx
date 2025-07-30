@@ -1,5 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
+import {
+  Table,
+  TableHeader,
+  TableRow,
+  TableHead,
+  TableBody,
+  TableCell,
+} from "@/components/ui/table";
 import AppLayout from "@/layouts/AppLayout";
 import { ArrowUpRight } from "lucide-react";
 import { ResponsivePie } from "@nivo/pie";
@@ -86,7 +93,9 @@ export default function FinancializationPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <Card className="rounded-xl shadow-md border p-4 bg-white">
             <CardHeader className="p-0 pb-2">
-              <CardTitle className="text-sm">Green Premium Actualized</CardTitle>
+              <CardTitle className="text-sm">
+                Green Premium Actualized
+              </CardTitle>
             </CardHeader>
             <CardContent className="text-2xl font-bold text-primary">
               ₹{(metrics.greenPremiumActualized / 100).toLocaleString()}K
@@ -107,7 +116,8 @@ export default function FinancializationPage() {
               <CardTitle className="text-sm">Green Certifications</CardTitle>
             </CardHeader>
             <CardContent className="text-2xl font-bold text-blue-600">
-              {metrics.greenCertifications.current} / {metrics.greenCertifications.potential}
+              {metrics.greenCertifications.current} /{" "}
+              {metrics.greenCertifications.potential}
             </CardContent>
           </Card>
 
@@ -124,7 +134,8 @@ export default function FinancializationPage() {
               <CardTitle className="text-sm">Qualifying Products</CardTitle>
             </CardHeader>
             <CardContent className="text-2xl font-bold text-red-600">
-              {metrics.qualifyingProductCount.current} / {metrics.qualifyingProductCount.total}
+              {metrics.qualifyingProductCount.current} /{" "}
+              {metrics.qualifyingProductCount.total}
             </CardContent>
           </Card>
 
@@ -135,16 +146,18 @@ export default function FinancializationPage() {
                 margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
                 colors={(d) => d.data.color as string}
                 enableArcLinkLabels={false}
-                legends={[{
-                  anchor: 'bottom',
-                  direction: 'row',
-                  justify: false,
-                  translateY: 30,
-                  itemWidth: 100,
-                  itemHeight: 14,
-                  itemsSpacing: 4,
-                  symbolSize: 12,
-                }]}
+                legends={[
+                  {
+                    anchor: "bottom",
+                    direction: "row",
+                    justify: false,
+                    translateY: 30,
+                    itemWidth: 100,
+                    itemHeight: 14,
+                    itemsSpacing: 4,
+                    symbolSize: 12,
+                  },
+                ]}
               />
             </div>
           </Card>
@@ -152,7 +165,9 @@ export default function FinancializationPage() {
         <div className="flex flex-col lg:flex-row gap-4">
           {/* Suggestions */}
           <div className="space-y-2 lg:w-1/3">
-            <h2 className="text-lg font-semibold">Premium Potential Suggestions</h2>
+            <h2 className="text-lg font-semibold">
+              Premium Potential Suggestions
+            </h2>
             <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2">
               {premiumSuggestions.map((suggestion) => (
                 <li
@@ -168,30 +183,38 @@ export default function FinancializationPage() {
 
           {/* Registry Table */}
           <div className="space-y-2 flex-1">
-            <h2 className="text-lg font-semibold">Lumen Green Credit Insets Registry</h2>
+            <h2 className="text-lg font-semibold">
+              Lumen Green Credit Insets Registry
+            </h2>
             <div className="rounded-xl shadow-md border overflow-x-auto">
               <Table>
                 <TableHeader className="sticky top-0 bg-charcoal text-white z-10">
-                <TableRow>
-                  <TableHead className="text-white">Name</TableHead>
-                  <TableHead className="text-white">Owner</TableHead>
-                  <TableHead className="text-white">Impact</TableHead>
-                  <TableHead className="text-white">Credit Price</TableHead>
-                  <TableHead className="text-white">GCI Registration</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {greenInsetsRegistry.map((row) => (
-                  <TableRow key={row.gciRegistration} className="even:bg-beige">
-                    <TableCell>{row.name}</TableCell>
-                    <TableCell>{row.owner}</TableCell>
-                    <TableCell>{row.impact}</TableCell>
-                    <TableCell>{row.creditPrice}</TableCell>
-                    <TableCell>{row.gciRegistration}</TableCell>
+                  <TableRow>
+                    <TableHead className="text-white">Name</TableHead>
+                    <TableHead className="text-white">Owner</TableHead>
+                    <TableHead className="text-white">Impact</TableHead>
+                    <TableHead className="text-white">Credit Price</TableHead>
+                    <TableHead className="text-white">
+                      GCI Registration
+                    </TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                </TableHeader>
+                <TableBody>
+                  {greenInsetsRegistry.map((row) => (
+                    <TableRow
+                      key={row.gciRegistration}
+                      className="even:bg-beige"
+                    >
+                      <TableCell>{row.name}</TableCell>
+                      <TableCell>{row.owner}</TableCell>
+                      <TableCell>{row.impact}</TableCell>
+                      <TableCell>{row.creditPrice}</TableCell>
+                      <TableCell>{row.gciRegistration}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
           </div>
         </div>
       </div>

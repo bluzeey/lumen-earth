@@ -7,7 +7,6 @@ import {
   Tooltip,
 } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import React from "react";
 
 interface ScatterPoint {
   pricePerKg: number;
@@ -46,14 +45,22 @@ export default function MarketActivityChart({
               type="number"
               dataKey="score"
               name="Score"
-              label={{ value: "Sourcing ethics and Sustainability Score", position: "insideBottom", dy: 10 }}
+              label={{
+                value: "Sourcing ethics and Sustainability Score",
+                position: "insideBottom",
+                dy: 10,
+              }}
             />
             <YAxis
               type="number"
               dataKey="pricePerKg"
               name="Price"
               unit="₹"
-              label={{ value: "Price per Kg", angle: -90, position: "insideLeft" }}
+              label={{
+                value: "Price per Kg",
+                angle: -90,
+                position: "insideLeft",
+              }}
             />
             <Tooltip cursor={{ strokeDasharray: "3 3" }} />
             <Scatter data={scatterPoints} fill="#2C543F" />
