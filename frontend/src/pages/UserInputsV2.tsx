@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import * as XLSX from "xlsx";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Folder } from "lucide-react";
 import { Card, CardContent, CardTitle, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -158,107 +159,139 @@ export default function UserInputsPage() {
 
         <Tabs
           defaultValue="collection"
-          className="w-full"
           onValueChange={(val) => setActiveTab(val as TabKey)}
+          className="w-full"
         >
           <TabsList>
-            <TabsTrigger value="collection">Collection</TabsTrigger>
-            <TabsTrigger value="categorization">Categorization</TabsTrigger>
-            <TabsTrigger value="recycling">Recycling</TabsTrigger>
+            <TabsTrigger
+              value="collection"
+              className="flex items-center gap-2"
+            >
+              <Folder className="w-4 h-4" /> Collection
+            </TabsTrigger>
+            <TabsTrigger
+              value="categorization"
+              className="flex items-center gap-2"
+            >
+              <Folder className="w-4 h-4" /> Categorization
+            </TabsTrigger>
+            <TabsTrigger
+              value="recycling"
+              className="flex items-center gap-2"
+            >
+              <Folder className="w-4 h-4" /> Recycling
+            </TabsTrigger>
           </TabsList>
 
           {Object.keys(TAB_CONFIGS).map((tab) => (
             <TabsContent key={tab} value={tab} className="pt-4 space-y-4">
-              <h3 className="text-lg font-semibold">
-                Manual Inputs & Excel Table
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2 bg-white p-4 rounded-md">
-                  <Label>Batch ID</Label>
-                  <Input placeholder="XA00024" />
-                  <Label>Material Type</Label>
-                  <Input placeholder="Cotton / Polyester" />
-                  <Label>Weight (Kg)</Label>
-                  <Input placeholder="Enter weight" />
-                  <Label>Quality Grade</Label>
-                  <Input placeholder="Grade A / B / C" />
-                  <Button className="mt-4">Submit</Button>
-                  <div className="text-sm text-muted-foreground mt-4">
-                    Updates by: <strong>User ABC</strong>
-                    <br />
-                    Ledger ID: <code>#ASD128OKFJASJAH324529</code>
-                    <br />
-                    Date: <strong>June 11 2025</strong>
-                  </div>
-                </div>
+              <Tabs defaultValue="manual" className="w-full">
+                <TabsList>
+                  <TabsTrigger value="manual">Manual Inputs</TabsTrigger>
+                  <TabsTrigger value="rfid">RFID / Mahota Edits</TabsTrigger>
+                </TabsList>
 
-                <div className="space-y-2 bg-white p-4 rounded-md">
-                  <div className="flex justify-between items-center">
-                    <h4 className="font-semibold">{tab} Table</h4>
-                    <div className="flex gap-2">
-                      <Input
-                        type="file"
-                        accept=".xlsx,.xls"
-                        onChange={(e) => {
-                          const file = e.target.files?.[0];
-                          if (file) {
-                            setFileName(file.name);
-                            loadExcel(file, tab as TabKey);
-                          }
-                        }}
-                      />
-                      <Button onClick={exportExcel} variant="outline">
-                        Export
-                      </Button>
-                      <Dialog>
-                        <DialogTrigger asChild>
-                          <Button onClick={() => setOpenTable(true)}>
-                            Edit
+                <TabsContent value="manual" className="space-y-4">
+                  <h3 className="text-lg font-semibold">
+                    Manual Inputs & Excel Table
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2 bg-white p-4 rounded-md">
+                      <Label>Batch ID</Label>
+                      <Input placeholder="XA00024" />
+                      <Label>Material Type</Label>
+                      <Input placeholder="Cotton / Polyester" />
+                      <Label>Weight (Kg)</Label>
+                      <Input placeholder="Enter weight" />
+                      <Label>Quality Grade</Label>
+                      <Input placeholder="Grade A / B / C" />
+                      <Button className="mt-4">Submit</Button>
+                      <div className="text-sm text-muted-foreground mt-4">
+                        Updates by: <strong>User ABC</strong>
+                        <br />
+                        Ledger ID: <code>#ASD128OKFJASJAH324529</code>
+                        <br />
+                        Date: <strong>June 11 2025</strong>
+                      </div>
+                    </div>
+
+                    <div className="space-y-2 bg-white p-4 rounded-md">
+                      <div className="flex justify-between items-center">
+                        <h4 className="font-semibold">{tab} Table</h4>
+                        <div className="flex gap-2">
+                          <Input
+                            type="file"
+                            accept=".xlsx,.xls"
+                            onChange={(e) => {
+                              const file = e.target.files?.[0];
+                              if (file) {
+                                setFileName(file.name);
+                                loadExcel(file, tab as TabKey);
+                              }
+                            }}
+                          />
+                          <Button onClick={exportExcel} variant="outline">
+                            Export
                           </Button>
-                        </DialogTrigger>
-                        <DialogContent className="max-w-6xl">
-                          <h3 className="text-lg font-semibold mb-2">
-                            {tab} Table (Full)
-                          </h3>
-                          {error && (
-                            <p className="text-red-500 text-sm mb-2">{error}</p>
-                          )}
-                          {openTable &&
-                            dataset.length > 0 &&
-                            columns.length > 0 && (
-                              <DataGrid
-                                className="rdg-light"
-                                rowHeight={35}
-                                columns={columns}
-                                rows={dataset}
-                                onRowsChange={(rows) => setDataset(rows)}
-                              />
-                            )}
-                        </DialogContent>
-                      </Dialog>
+                          <Dialog>
+                            <DialogTrigger asChild>
+                              <Button onClick={() => setOpenTable(true)}>
+                                Edit
+                              </Button>
+                            </DialogTrigger>
+                            <DialogContent className="max-w-6xl">
+                              <h3 className="text-lg font-semibold mb-2">
+                                {tab} Table (Full)
+                              </h3>
+                              {error && (
+                                <p className="text-red-500 text-sm mb-2">
+                                  {error}
+                                </p>
+                              )}
+                              {openTable &&
+                                dataset.length > 0 &&
+                                columns.length > 0 && (
+                                  <DataGrid
+                                    className="rdg-light"
+                                    rowHeight={35}
+                                    columns={columns}
+                                    rows={dataset}
+                                    onRowsChange={(rows) => setDataset(rows)}
+                                  />
+                                )}
+                            </DialogContent>
+                          </Dialog>
+                        </div>
+                      </div>
+                      {error && (
+                        <p className="text-red-500 text-sm mb-2">{error}</p>
+                      )}
+                      {dataset.length > 0 && columns.length > 0 ? (
+                        <DataGrid
+                          className="rdg-light"
+                          rowHeight={35}
+                          columns={columns}
+                          rows={dataset}
+                          onRowsChange={(rows) => setDataset(rows)}
+                        />
+                      ) : (
+                        <p className="text-sm italic text-muted-foreground">
+                          No data loaded.
+                        </p>
+                      )}
+                      <p className="text-xs mt-1 text-muted-foreground font-mono">
+                        File: {fileName}
+                      </p>
                     </div>
                   </div>
-                  {error && (
-                    <p className="text-red-500 text-sm mb-2">{error}</p>
-                  )}
-                  {dataset.length > 0 && columns.length > 0 ? (
-                    <DataGrid
-                      className="rdg-light"
-                      rowHeight={35}
-                      columns={columns}
-                      rows={dataset}
-                      onRowsChange={(rows) => setDataset(rows)}
-                    />
-                  ) : (
-                    <p className="text-sm italic text-muted-foreground">
-                      No data loaded.
-                    </p>
-                  )}
-                  <p className="text-xs mt-1 text-muted-foreground font-mono">
-                    File: {fileName}
-                  </p>
-                </div>
-              </div>
+                </TabsContent>
+
+                <TabsContent value="rfid">
+                  <div className="p-4 bg-white rounded-md text-sm text-muted-foreground">
+                    RFID and Mahota editing coming soon.
+                  </div>
+                </TabsContent>
+              </Tabs>
             </TabsContent>
           ))}
         </Tabs>
