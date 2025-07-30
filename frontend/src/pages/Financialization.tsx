@@ -119,7 +119,6 @@ export default function FinancializationPage() {
               {metrics.greenInsetProjects}
             </CardContent>
           </Card>
-
           <Card className="rounded-xl shadow-md border p-4 bg-white">
             <CardHeader className="p-0 pb-2">
               <CardTitle className="text-sm">Qualifying Products</CardTitle>
@@ -150,7 +149,6 @@ export default function FinancializationPage() {
             </div>
           </Card>
         </div>
-
         <div className="flex flex-col lg:flex-row gap-4">
           {/* Suggestions */}
           <div className="space-y-2 lg:w-1/3">
