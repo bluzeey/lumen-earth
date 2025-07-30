@@ -172,7 +172,7 @@ export default function FinancializationPage() {
               {premiumSuggestions.map((suggestion) => (
                 <li
                   key={suggestion}
-                  className="flex items-start gap-2 bg-lightgreen rounded-xl shadow-md border p-4 hover:bg-lightgreen/70"
+                  className="flex items-start gap-2 bg-white rounded-xl shadow-md border p-4 hover:bg-gray-50"
                 >
                   <ArrowUpRight className="text-leaf" />
                   <span>{suggestion}</span>
@@ -188,18 +188,15 @@ export default function FinancializationPage() {
             </h2>
             <div className="rounded-xl shadow-md border overflow-x-auto">
               <Table>
-                <TableHeader className="sticky top-0 bg-charcoal text-white z-10">
-                  <TableRow>
-                    <TableHead className="text-white">Name</TableHead>
-                    <TableHead className="text-white">Owner</TableHead>
-                    <TableHead className="text-white">Impact</TableHead>
-                    <TableHead className="text-white">Credit Price</TableHead>
-                    <TableHead className="text-white">
-                      GCI Registration
-                    </TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
+                <TableHeader className="sticky top-0 bg-[#204936] text-white z-10">
+                <TableRow>
+                  <TableHead className="text-white">Name</TableHead>
+                  <TableHead className="text-white">Owner</TableHead>
+                  <TableHead className="text-white">Impact</TableHead>
+                  <TableHead className="text-white">Credit Price</TableHead>
+                  <TableHead className="text-white">GCI Registration</TableHead>
+                </TableRow>
+              </TableHeader>
                   {greenInsetsRegistry.map((row) => (
                     <TableRow
                       key={row.gciRegistration}
@@ -217,7 +214,6 @@ export default function FinancializationPage() {
             </div>
           </div>
         </div>
-      </div>
     </AppLayout>
   );
 }

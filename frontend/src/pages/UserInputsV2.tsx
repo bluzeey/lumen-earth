@@ -145,7 +145,7 @@ export default function UserInputsPage() {
                     {item.description}
                   </p>
                   <div
-                    className={`rounded-full border-4 ${item.color} w-12 h-12 flex items-center justify-center text-sm font-bold`}
+                    className={`rounded-full border-4 ${item.color} w-16 h-16 flex items-center justify-center text-base font-bold`}
                   >
                     {item.score}/10
                   </div>
