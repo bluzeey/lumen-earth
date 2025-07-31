@@ -15,7 +15,7 @@ const marketplaceListings = [
     availability: "2.4T/month available",
     supplier: "Taj Hotels, Karnataka",
     imageUrl:
-      "https://source.unsplash.com/400x300/?textile,factory&sig=1",
+      "https://images.unsplash.com/photo-1585386959984-a41552261c79?auto=format&fit=crop&w=600&q=80", // Cotton fibers close-up
     eligibilityTags: ["epr", "circular"],
     ctaEnabled: true,
   },
@@ -27,7 +27,7 @@ const marketplaceListings = [
     availability: "4.8T/month available",
     supplier: "Independent Chains",
     imageUrl:
-      "https://source.unsplash.com/400x300/?textile,factory&sig=2",
+      "https://images.unsplash.com/photo-1602004615743-07c3736c0210?auto=format&fit=crop&w=600&q=80", // Yarn cones
     eligibilityTags: ["sdg12"],
     ctaEnabled: true,
   },
@@ -39,7 +39,7 @@ const marketplaceListings = [
     availability: "5.1T/month available",
     supplier: "Mixed Collection, South IN",
     imageUrl:
-      "https://source.unsplash.com/400x300/?textile,factory&sig=3",
+      "https://images.unsplash.com/photo-1592928307234-216a53c9a389?auto=format&fit=crop&w=600&q=80", // Mixed textile scraps
     eligibilityTags: ["epr"],
     ctaEnabled: false,
   },
@@ -51,7 +51,7 @@ const marketplaceListings = [
     availability: "3.2T/month available",
     supplier: "GreenHarvest, North IN",
     imageUrl:
-      "https://source.unsplash.com/400x300/?textile,factory&sig=4",
+      "https://images.unsplash.com/photo-1621262360726-96b3b5353c52?auto=format&fit=crop&w=600&q=80", // Hemp stalks and threads
     eligibilityTags: ["organic"],
     ctaEnabled: true,
   },
@@ -63,7 +63,7 @@ const marketplaceListings = [
     availability: "6T/month available",
     supplier: "Waste Solutions, South IN",
     imageUrl:
-      "https://source.unsplash.com/400x300/?textile,factory&sig=5",
+      "https://images.unsplash.com/photo-1603052875535-11e7f7fc1ca4?auto=format&fit=crop&w=600&q=80", // Recycled plastic flakes
     eligibilityTags: ["epr"],
     ctaEnabled: true,
   },
@@ -75,7 +75,7 @@ const marketplaceListings = [
     availability: "4T/month available",
     supplier: "FibreWorks Co., Karnataka",
     imageUrl:
-      "https://source.unsplash.com/400x300/?textile,factory&sig=6",
+      "https://images.unsplash.com/photo-1588251861564-cb52dfc86db3?auto=format&fit=crop&w=600&q=80", // Viscose fiber macro
     eligibilityTags: ["circular"],
     ctaEnabled: false,
   },
