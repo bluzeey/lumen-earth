@@ -1,4 +1,4 @@
-import ComingSoon from "@/components/ComingSoon";
+import INCCTSOffsetPage from "@/pages/credits/INCCTSOffset";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/credits/offset")({
@@ -6,5 +6,5 @@ export const Route = createFileRoute("/credits/offset")({
 });
 
 function RouteComponent() {
-  return <ComingSoon title="INCCTS Offset" />;
+  return <INCCTSOffsetPage />;
 }
