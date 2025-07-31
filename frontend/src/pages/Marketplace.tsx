@@ -15,7 +15,7 @@ const marketplaceListings = [
     availability: "2.4T/month available",
     supplier: "Taj Hotels, Karnataka",
     imageUrl:
-      "https://images.unsplash.com/photo-1585386959984-a41552261c79?auto=format&fit=crop&w=600&q=80", // Cotton fibers close-up
+      "https://images.unsplash.com/photo-1524292332709-b33366a7f165?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Cotton fibers close-up
     eligibilityTags: ["epr", "circular"],
     ctaEnabled: true,
   },
@@ -27,7 +27,7 @@ const marketplaceListings = [
     availability: "4.8T/month available",
     supplier: "Independent Chains",
     imageUrl:
-      "https://images.unsplash.com/photo-1602004615743-07c3736c0210?auto=format&fit=crop&w=600&q=80", // Yarn cones
+      "https://unsplash.com/photos/packaging-bag-production-workshop-the-production-workshop-of-woven-belt-a-factory-workshop-where-textile-belts-are-produced-_ne4XT7R8xI", // Yarn cones
     eligibilityTags: ["sdg12"],
     ctaEnabled: true,
   },
@@ -39,7 +39,7 @@ const marketplaceListings = [
     availability: "5.1T/month available",
     supplier: "Mixed Collection, South IN",
     imageUrl:
-      "https://images.unsplash.com/photo-1592928307234-216a53c9a389?auto=format&fit=crop&w=600&q=80", // Mixed textile scraps
+      "https://unsplash.com/photos/a-group-of-men-working-on-a-machine-in-a-factory-Hl_u7TutlFw", // Mixed textile scraps
     eligibilityTags: ["epr"],
     ctaEnabled: false,
   },
@@ -50,8 +50,7 @@ const marketplaceListings = [
     pricePerKg: 90,
     availability: "3.2T/month available",
     supplier: "GreenHarvest, North IN",
-    imageUrl:
-      "https://images.unsplash.com/photo-1621262360726-96b3b5353c52?auto=format&fit=crop&w=600&q=80", // Hemp stalks and threads
+    imageUrl: "https://unsplash.com/photos/white-textile-lot-kgC99X3WH1w", // Hemp stalks and threads
     eligibilityTags: ["organic"],
     ctaEnabled: true,
   },
@@ -63,7 +62,7 @@ const marketplaceListings = [
     availability: "6T/month available",
     supplier: "Waste Solutions, South IN",
     imageUrl:
-      "https://images.unsplash.com/photo-1603052875535-11e7f7fc1ca4?auto=format&fit=crop&w=600&q=80", // Recycled plastic flakes
+      "https://unsplash.com/photos/packaging-bag-production-workshop-the-production-workshop-of-woven-belt-a-factory-workshop-where-textile-belts-are-produced-BbBEZw7w1yI", // Recycled plastic flakes
     eligibilityTags: ["epr"],
     ctaEnabled: true,
   },
@@ -75,7 +74,7 @@ const marketplaceListings = [
     availability: "4T/month available",
     supplier: "FibreWorks Co., Karnataka",
     imageUrl:
-      "https://images.unsplash.com/photo-1588251861564-cb52dfc86db3?auto=format&fit=crop&w=600&q=80", // Viscose fiber macro
+      "https://unsplash.com/photos/white-rolled-paper-on-brown-wooden-surface-aR_A9IDRhfg", // Viscose fiber macro
     eligibilityTags: ["circular"],
     ctaEnabled: false,
   },
