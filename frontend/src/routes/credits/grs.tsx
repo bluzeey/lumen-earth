@@ -1,4 +1,4 @@
-import ComingSoon from "@/components/ComingSoon";
+import GRSCreditsPage from "@/pages/credits/GRSCredits";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/credits/grs")({
@@ -6,5 +6,5 @@ export const Route = createFileRoute("/credits/grs")({
 });
 
 function RouteComponent() {
-  return <ComingSoon title="GRS Credits" />;
+  return <GRSCreditsPage />;
 }
