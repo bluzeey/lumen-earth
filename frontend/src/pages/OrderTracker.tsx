@@ -1,47 +1,6 @@
-import { useMemo, useState } from "react";
-import {
-  addDays,
-  format,
-  isAfter,
-  isBefore,
-  parseISO,
-  formatISO,
-} from "date-fns";
-import { type DateRange } from "react-day-picker";
-import { Calendar } from "@/components/ui/calendar";
-import { Button } from "@/components/ui/button";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from "@/components/ui/select";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { CalendarIcon } from "lucide-react";
-import { ResponsiveLine } from "@nivo/line";
-import { cn } from "@/lib/utils";
-import AppLayout from "@/layouts/AppLayout";
-import inventoryData from "@/data/inventory.json";
-import orderData from "@/data/orders.json";
-import forecastData from "@/data/inventory_forecast.json";
+import InventoryTracker from "./InventoryTracker";
 
-function groupByKey<T>(
-  array: T[],
-  keyFn: (item: T) => string
-): Record<string, T[]> {
-  return array.reduce((acc, item) => {
-    const key = keyFn(item);
-    if (!acc[key]) acc[key] = [];
-    acc[key].push(item);
-    return acc;
-  }, {} as Record<string, T[]>);
-}
+export default InventoryTracker;
 
 function getDefaultRange(dates: Date[]): DateRange | undefined {
   if (dates.length === 0) return undefined;
@@ -351,3 +310,4 @@ const OrderTracker = () => {
 };
 
 export default OrderTracker;
+

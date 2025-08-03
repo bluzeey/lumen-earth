@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   addDays,
   format,
@@ -23,7 +23,8 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { CalendarIcon } from "lucide-react";
+import { CalendarIcon, ArrowDown, ArrowUp } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
 import { ResponsiveLine } from "@nivo/line";
 import { cn } from "@/lib/utils";
 import AppLayout from "@/layouts/AppLayout";
@@ -54,6 +55,13 @@ const riskColor = (score: number) => {
   if (score >= 2) return "bg-[#afd14d] text-black";
   return "bg-[#ff4e4e] text-white";
 };
+
+function interpolateColor(color1: string, color2: string, factor: number) {
+  const c1 = color1.match(/\w\w/g)!.map((c) => parseInt(c, 16));
+  const c2 = color2.match(/\w\w/g)!.map((c) => parseInt(c, 16));
+  const result = c1.map((c, i) => Math.round(c + (c2[i] - c) * factor));
+  return `rgb(${result[0]}, ${result[1]}, ${result[2]})`;
+}
 
 const InventoryTracker = () => {
   const allInventory = useMemo(
@@ -111,6 +119,43 @@ const InventoryTracker = () => {
     (sum, o) => sum + (o.order_quantity || 0),
     0
   );
+
+  const prevDateRange = useMemo(() => {
+    if (!dateRange?.from || !dateRange?.to) return undefined;
+    return {
+      from: addDays(dateRange.from, -7),
+      to: addDays(dateRange.to, -7),
+    };
+  }, [dateRange]);
+
+  const prevFilteredOrders = useMemo(() => {
+    if (!prevDateRange) return [];
+    return allOrders.filter((order) => {
+      const inRange =
+        (!prevDateRange.from || !isBefore(order.parsedDate, prevDateRange.from)) &&
+        (!prevDateRange.to || !isAfter(order.parsedDate, prevDateRange.to));
+      const regionMatch = region === "All" || order.region === region;
+      const riskMatch =
+        riskCategory === "All" || order.risk_status === riskCategory;
+      return inRange && regionMatch && riskMatch;
+    });
+  }, [allOrders, prevDateRange, region, riskCategory]);
+
+  const prevTotalAtRiskValue = prevFilteredOrders.reduce(
+    (sum, o) => sum + (o.order_value || 0),
+    0
+  );
+  const prevTotalAtRiskQty = prevFilteredOrders.reduce(
+    (sum, o) => sum + (o.order_quantity || 0),
+    0
+  );
+
+  const valueDelta = prevTotalAtRiskValue
+    ? ((totalAtRiskValue - prevTotalAtRiskValue) / prevTotalAtRiskValue) * 100
+    : 0;
+  const qtyDelta = prevTotalAtRiskQty
+    ? ((totalAtRiskQty - prevTotalAtRiskQty) / prevTotalAtRiskQty) * 100
+    : 0;
 
   const weeks = Array.from(
     new Set(filteredOrders.map((o) => o.delivery_due_week))
@@ -171,192 +216,260 @@ const InventoryTracker = () => {
 
   const chartColors = ["#cc9aff", "#afd14d", "#ff4e4e"];
 
+  const colorMap = useMemo(() => {
+    const map: Record<string, string> = {};
+    forecastChartData.forEach((line, index) => {
+      map[line.id] = chartColors[index % chartColors.length];
+    });
+    return map;
+  }, [forecastChartData]);
+
+  const [visibleSkus, setVisibleSkus] = useState<string[]>([]);
+
+  useEffect(() => {
+    setVisibleSkus(forecastChartData.map((line) => line.id));
+  }, [forecastChartData]);
+
+  const toggleSku = (sku: string) => {
+    setVisibleSkus((prev) =>
+      prev.includes(sku) ? prev.filter((s) => s !== sku) : [...prev, sku]
+    );
+  };
+
+  const displayedForecastData = forecastChartData.filter((line) =>
+    visibleSkus.includes(line.id)
+  );
+
+  const today = formatISO(new Date(), { representation: "date" });
+
+  const DeltaIndicator = ({ delta }: { delta: number }) => {
+    const positive = delta >= 0;
+    const Icon = positive ? ArrowUp : ArrowDown;
+    return (
+      <div
+        className={cn(
+          "flex items-center",
+          positive ? "text-green-600" : "text-red-600"
+        )}
+      >
+        <Icon className="h-4 w-4 mr-1" />
+        <span className="text-sm">{Math.abs(delta).toFixed(1)}% vs last week</span>
+      </div>
+    );
+  };
+
   return (
-    <AppLayout title="Inventory Tracker">
-      <div className="p-6 space-y-6">
-        {/* Filters */}
-        <div className="flex flex-wrap gap-4 items-center justify-between">
-          <h1 className="text-xl font-semibold">Inventory and Order Tracker</h1>
-          <div className="flex flex-wrap gap-4">
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button
-                  variant="outline"
-                  className="w-[260px] justify-start text-left font-normal"
-                >
-                  <CalendarIcon className="mr-2 h-4 w-4" />
-                  {dateRange?.from ? (
-                    dateRange.to ? (
-                      <>
-                        {format(dateRange.from, "LLL dd, y")} -{" "}
-                        {format(dateRange.to, "LLL dd, y")}
-                      </>
+    <AppLayout title="Inventory and Order Tracker">
+      <div className="p-6">
+        <div className="grid grid-cols-4 gap-6">
+          <div className="col-span-1">
+            <Card className="bg-white p-4 rounded-lg shadow-sm space-y-4">
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start text-left font-normal"
+                  >
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    {dateRange?.from ? (
+                      dateRange.to ? (
+                        <>
+                          {format(dateRange.from, "LLL dd, y")} -{" "}
+                          {format(dateRange.to, "LLL dd, y")}
+                        </>
+                      ) : (
+                        format(dateRange.from, "LLL dd, y")
+                      )
                     ) : (
-                      format(dateRange.from, "LLL dd, y")
-                    )
-                  ) : (
-                    <span>Pick a date range</span>
-                  )}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0">
-                <Calendar
-                  initialFocus
-                  mode="range"
-                  defaultMonth={dateRange?.from}
-                  selected={dateRange}
-                  onSelect={setDateRange}
-                  numberOfMonths={2}
-                />
-              </PopoverContent>
-            </Popover>
+                      <span>Pick a date range</span>
+                    )}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0">
+                  <Calendar
+                    initialFocus
+                    mode="range"
+                    defaultMonth={dateRange?.from}
+                    selected={dateRange}
+                    onSelect={setDateRange}
+                    numberOfMonths={2}
+                  />
+                </PopoverContent>
+              </Popover>
 
-            <Select value={region} onValueChange={setRegion}>
-              <SelectTrigger className="w-[160px]">
-                <SelectValue placeholder="Select Region" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="All">All</SelectItem>
-                <SelectItem value="Karnataka">Karnataka</SelectItem>
-                <SelectItem value="Kerala">Kerala</SelectItem>
-              </SelectContent>
-            </Select>
+              <Select value={region} onValueChange={setRegion}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select Region" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="All">All</SelectItem>
+                  <SelectItem value="Karnataka">Karnataka</SelectItem>
+                  <SelectItem value="Kerala">Kerala</SelectItem>
+                </SelectContent>
+              </Select>
 
-            <Select value={riskCategory} onValueChange={setRiskCategory}>
-              <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Select Risk" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="All">All</SelectItem>
-                <SelectItem value="Low">Low</SelectItem>
-                <SelectItem value="Medium">Medium</SelectItem>
-                <SelectItem value="High">High</SelectItem>
-              </SelectContent>
-            </Select>
+              <Select value={riskCategory} onValueChange={setRiskCategory}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select Risk" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="All">All</SelectItem>
+                  <SelectItem value="Low">Low</SelectItem>
+                  <SelectItem value="Medium">Medium</SelectItem>
+                  <SelectItem value="High">High</SelectItem>
+                </SelectContent>
+              </Select>
+            </Card>
           </div>
-        </div>
+          <div className="col-span-3 space-y-6">
+            <div className="grid grid-cols-2 gap-4">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-sm font-medium">
+                    Orders At Risk (Value)
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="flex flex-col items-center justify-center space-y-2">
+                  <p className="text-5xl font-bold text-red-600">
+                    ₹{(totalAtRiskValue / 1000).toFixed(1)}K
+                  </p>
+                  <DeltaIndicator delta={valueDelta} />
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-sm font-medium">
+                    Orders At Risk (Qty)
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="flex flex-col items-center justify-center space-y-2">
+                  <p className="text-5xl font-bold text-red-600">
+                    ₹{(totalAtRiskQty / 1000).toFixed(1)}K
+                  </p>
+                  <DeltaIndicator delta={qtyDelta} />
+                </CardContent>
+              </Card>
+            </div>
 
-        {/* Summary */}
-        <div className="grid grid-cols-2 gap-4">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-sm font-medium">
-                Orders At Risk (Value)
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-2xl font-bold text-red-600">
-                ₹{(totalAtRiskValue / 1000).toFixed(1)}K
-              </p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-sm font-medium">
-                Orders At Risk (Qty)
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-2xl font-bold text-red-600">
-                ₹{(totalAtRiskQty / 1000).toFixed(1)}K
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Charts */}
-        <div className="grid grid-cols-2 gap-6">
-          {/* Heatmap */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Orders Risk Heatmap</CardTitle>
-            </CardHeader>
-            <CardContent className="overflow-auto rounded">
-              <table className="min-w-full text-sm text-center">
-                <thead>
-                  <tr>
-                    <th className="border px-2 py-1 ">Week</th>
-                    {skus.map((sku) => (
-                      <th key={sku} className="border px-2 py-1">
-                        {sku}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {heatmapData.map((row) => (
-                    <tr key={row.week}>
-                      <td className="border px-2 py-1 font-medium">
-                        {row.week}
-                      </td>
-                      {skus.map((sku) => (
-                        <td
-                          key={sku}
-                          className={cn(
-                            "border px-2 py-1",
-                            riskColor(row[sku])
-                          )}
-                        >
-                          {row[sku]?.toFixed(1) || "-"}
-                        </td>
+            <div className="grid grid-cols-2 gap-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Orders Risk Heatmap</CardTitle>
+                </CardHeader>
+                <CardContent className="overflow-auto rounded">
+                  <table className="min-w-full text-sm text-center">
+                    <thead>
+                      <tr>
+                        <th className="border px-2 py-1 ">Week</th>
+                        {skus.map((sku) => (
+                          <th key={sku} className="border px-2 py-1">
+                            {sku}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {heatmapData.map((row) => (
+                        <tr key={row.week}>
+                          <td className="border px-2 py-1 font-medium">
+                            {row.week}
+                          </td>
+                          {skus.map((sku) => (
+                            <td
+                              key={sku}
+                              className="border px-2 py-1"
+                              style={{
+                                backgroundColor: riskColor(row[sku]),
+                                color: row[sku] >= 4 ? "#fff" : "#000",
+                              }}
+                              title={`SKU: ${sku}\nWeek: ${row.week}\nAvg Risk Score: ${row[sku]?.toFixed(1) ?? "-"}`}
+                            >
+                              {row[sku]?.toFixed(1) || "-"}
+                            </td>
+                          ))}
+                        </tr>
                       ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </CardContent>
-          </Card>
+                    </tbody>
+                  </table>
+                </CardContent>
+              </Card>
 
-          {/* Forecast Line Chart */}
-          <Card>
-            <CardHeader>
-              <CardTitle>End Product Inventory Risk Profile</CardTitle>
-            </CardHeader>
-            <CardContent className="h-[480px]">
-              <div className="flex flex-wrap gap-4 mb-4">
-                {forecastChartData.map((line, index) => (
-                  <div key={line.id} className="flex items-center space-x-2">
-                    <span
-                      className="inline-block w-4 h-4 rounded"
-                      style={{
-                        backgroundColor:
-                          chartColors[index % chartColors.length],
-                      }}
-                    />
-                    <span className="text-sm whitespace-nowrap">{line.id}</span>
+              <Card>
+                <CardHeader>
+                  <CardTitle>End Product Inventory Risk Profile</CardTitle>
+                </CardHeader>
+                <CardContent className="h-[480px]">
+                  <div className="flex flex-wrap gap-4 mb-4">
+                    {forecastChartData.map((line) => (
+                      <div key={line.id} className="flex items-center space-x-2">
+                        <Checkbox
+                          id={`chk-${line.id}`}
+                          checked={visibleSkus.includes(line.id)}
+                          onCheckedChange={() => toggleSku(line.id)}
+                        />
+                        <label
+                          htmlFor={`chk-${line.id}`}
+                          className="flex items-center space-x-2"
+                        >
+                          <span
+                            className="inline-block w-4 h-4 rounded"
+                            style={{ backgroundColor: colorMap[line.id] }}
+                          />
+                          <span className="text-sm whitespace-nowrap">
+                            {line.id}
+                          </span>
+                        </label>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
 
-              <ResponsiveLine
-                data={forecastChartData}
-                margin={{ top: 10, right: 50, bottom: 100, left: 50 }}
-                xScale={{
-                  type: "time",
-                  format: "%Y-%m-%d",
-                  precision: "day",
-                }}
-                yScale={{ type: "linear", min: 0 }}
-                axisBottom={{
-                  format: "%b %d",
-                  tickValues: "every 1 week",
-                  legend: "Forecast Date",
-                  legendOffset: 36,
-                  legendPosition: "middle",
-                }}
-                axisLeft={{
-                  legend: "Tonnage",
-                  legendOffset: -40,
-                  legendPosition: "middle",
-                }}
-                pointSize={6}
-                useMesh
-                enableSlices="x"
-                curve="monotoneX"
-                colors={chartColors}
-              />
-            </CardContent>
-          </Card>
+                  <ResponsiveLine
+                    data={displayedForecastData}
+                    margin={{ top: 10, right: 50, bottom: 100, left: 50 }}
+                    xScale={{
+                      type: "time",
+                      format: "%Y-%m-%d",
+                      precision: "day",
+                    }}
+                    yScale={{ type: "linear", min: 0 }}
+                    axisBottom={{
+                      format: "%b %d",
+                      tickValues: "every 1 week",
+                      legend: "Forecast Date",
+                      legendOffset: 36,
+                      legendPosition: "middle",
+                    }}
+                    axisLeft={{
+                      legend: "Tonnage",
+                      legendOffset: -40,
+                      legendPosition: "middle",
+                    }}
+                    pointSize={6}
+                    useMesh
+                    enableSlices="x"
+                    curve="monotoneX"
+                    colors={({ id }) => colorMap[id as string]}
+                    sliceTooltip={({ slice }) => (
+                      <div className="bg-white p-2 rounded shadow text-xs">
+                        {slice.points.map((point) => (
+                          <div key={point.id}>
+                            <strong>{(point as any).serieId}</strong>: {point.data.yFormatted}t on {format(parseISO(point.data.x as string), "MMM d")}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    markers={[
+                      {
+                        axis: "x",
+                        value: today,
+                        lineStyle: { stroke: "#000", strokeWidth: 1, strokeDasharray: "4 4" },
+                      },
+                    ]}
+                  />
+                </CardContent>
+              </Card>
+            </div>
+          </div>
         </div>
       </div>
     </AppLayout>
