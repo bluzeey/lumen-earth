@@ -50,20 +50,12 @@ function getDefaultRange(dates: Date[]): DateRange | undefined {
 }
 
 const riskColor = (score: number) => {
-  if (score >= 4) return "bg-red-500 text-white";
-  if (score >= 2) return "bg-yellow-300";
-  return "bg-green-300";
+  if (score >= 4) return "bg-[#cc9aff] text-black";
+  if (score >= 2) return "bg-[#afd14d] text-black";
+  return "bg-[#ff4e4e] text-white";
 };
 
-const chartColors = [
-  "#db1f26", // red
-  "#e95e27", // orange-red
-  "#c7d730", // yellow-green
-  "#6dc44a", // light green
-  "#66b8db", // sky blue
-  "#a95fd6", // purple
-  "#cc79a7", // pinkish
-];
+const chartColors = ["#cc9aff", "#afd14d", "#ff4e4e"];
 
 const OrderTracker = () => {
   const allInventory = useMemo(
