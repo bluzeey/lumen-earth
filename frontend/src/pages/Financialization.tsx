@@ -88,9 +88,9 @@ const greenInsetsRegistry = [
 export default function FinancializationPage() {
   return (
     <AppLayout title="Green Certification & Finance">
-      <div className="p-4 sm:p-6 space-y-4 text-charcoal">
+      <div className="p-4 sm:p-6 text-charcoal">
         {/* Centralized Grid Layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-2 gap-2 items-center justify-center mb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-2 gap-x-8 gap-y-12 items-center justify-center my-8">
           {/* Top row */}
           <Card className="p-4 bg-white border rounded-xl shadow-sm md:row-start-1 md:col-start-1 text-center">
             <CardTitle className="text-sm font-semibold">
@@ -144,8 +144,8 @@ export default function FinancializationPage() {
 
           {/* Donut chart in center */}
           {/* Donut chart in center with space for legend */}
-          <div className="md:row-start-1 md:col-start-2 flex justify-center items-center h-[360px] w-full">
-            <div className="w-full h-full">
+          <div className="md:row-start-1 md:col-start-2 flex justify-center items-center h-full w-full">
+            <div className="w-2/5 h-2/5 absolute">
               <ResponsivePie
                 data={metrics.donutChartData}
                 innerRadius={0.6}
@@ -171,10 +171,9 @@ export default function FinancializationPage() {
         </div>
 
         {/* Suggestions and Registry */}
-        <div className="flex flex-col md:flex-col lg:flex-row gap-2">
-          {/* Suggestions */}
-          <div className="space-y-2 lg:w-1/3">
-            <h2 className="text-lg font-semibold">
+        <div className="flex flex-col md:flex-col lg:flex-row gap-x-8 mt-8">
+          <div className="space-y-2 lg:w-1/3 overflow-y-auto pr-2">
+            <h2 className="text-lg font-semibold sticky top-0 bg-[#f9f9f6] z-10 py-2">
               Premium Potential Suggestions
             </h2>
             <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2">
@@ -191,11 +190,11 @@ export default function FinancializationPage() {
           </div>
 
           {/* Registry Table */}
-          <div className="space-y-2 flex-1">
-            <h2 className="text-lg font-semibold">
+          <div className="space-y-2 flex-1 overflow-y-auto pr-2">
+            <h2 className="text-lg font-semibold sticky top-0 bg-[#f9f9f6] z-10 py-2">
               Lumen Green Credit Insets Registry
             </h2>
-            <div className="rounded-xl shadow-md border overflow-x-auto">
+            <div className="rounded-xl shadow-md border min-w-full">
               <Table>
                 <TableHeader className="sticky top-0 bg-[#204936] text-white z-10">
                   <TableRow>
@@ -210,10 +209,7 @@ export default function FinancializationPage() {
                 </TableHeader>
                 <TableBody>
                   {greenInsetsRegistry.map((row) => (
-                    <TableRow
-                      key={row.gciRegistration}
-                      className="even:bg-beige"
-                    >
+                    <TableRow key={row.gciRegistration} className="bg-white">
                       <TableCell>{row.name}</TableCell>
                       <TableCell>{row.owner}</TableCell>
                       <TableCell>{row.impact}</TableCell>

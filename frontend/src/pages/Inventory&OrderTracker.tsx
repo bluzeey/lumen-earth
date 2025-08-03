@@ -132,7 +132,8 @@ const InventoryTracker = () => {
     if (!prevDateRange) return [];
     return allOrders.filter((order) => {
       const inRange =
-        (!prevDateRange.from || !isBefore(order.parsedDate, prevDateRange.from)) &&
+        (!prevDateRange.from ||
+          !isBefore(order.parsedDate, prevDateRange.from)) &&
         (!prevDateRange.to || !isAfter(order.parsedDate, prevDateRange.to));
       const regionMatch = region === "All" || order.region === region;
       const riskMatch =
@@ -253,7 +254,9 @@ const InventoryTracker = () => {
         )}
       >
         <Icon className="h-4 w-4 mr-1" />
-        <span className="text-sm">{Math.abs(delta).toFixed(1)}% vs last week</span>
+        <span className="text-sm">
+          {Math.abs(delta).toFixed(1)}% vs last week
+        </span>
       </div>
     );
   };
@@ -261,65 +264,63 @@ const InventoryTracker = () => {
   return (
     <AppLayout title="Inventory and Order Tracker">
       <div className="p-6">
-        <div className="grid grid-cols-4 gap-6">
-          <div className="col-span-1">
-            <Card className="bg-white p-4 rounded-lg shadow-sm space-y-4">
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button
-                    variant="outline"
-                    className="w-full justify-start text-left font-normal"
-                  >
-                    <CalendarIcon className="mr-2 h-4 w-4" />
-                    {dateRange?.from ? (
-                      dateRange.to ? (
-                        <>
-                          {format(dateRange.from, "LLL dd, y")} -{" "}
-                          {format(dateRange.to, "LLL dd, y")}
-                        </>
-                      ) : (
-                        format(dateRange.from, "LLL dd, y")
-                      )
+        <div className="gap-6">
+          <div className="flex gap-2 w-full pb-6">
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="outline"
+                  className="justify-start text-left font-normal bg-white"
+                >
+                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  {dateRange?.from ? (
+                    dateRange.to ? (
+                      <>
+                        {format(dateRange.from, "LLL dd, y")} -{" "}
+                        {format(dateRange.to, "LLL dd, y")}
+                      </>
                     ) : (
-                      <span>Pick a date range</span>
-                    )}
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0">
-                  <Calendar
-                    initialFocus
-                    mode="range"
-                    defaultMonth={dateRange?.from}
-                    selected={dateRange}
-                    onSelect={setDateRange}
-                    numberOfMonths={2}
-                  />
-                </PopoverContent>
-              </Popover>
+                      format(dateRange.from, "LLL dd, y")
+                    )
+                  ) : (
+                    <span>Pick a date range</span>
+                  )}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0">
+                <Calendar
+                  initialFocus
+                  mode="range"
+                  defaultMonth={dateRange?.from}
+                  selected={dateRange}
+                  onSelect={setDateRange}
+                  numberOfMonths={2}
+                />
+              </PopoverContent>
+            </Popover>
 
-              <Select value={region} onValueChange={setRegion}>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select Region" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="All">All</SelectItem>
-                  <SelectItem value="Karnataka">Karnataka</SelectItem>
-                  <SelectItem value="Kerala">Kerala</SelectItem>
-                </SelectContent>
-              </Select>
+            <Select value={region} onValueChange={setRegion}>
+              <SelectTrigger className="w-full bg-white">
+                <SelectValue placeholder="Select Region" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="All">All</SelectItem>
+                <SelectItem value="Karnataka">Karnataka</SelectItem>
+                <SelectItem value="Kerala">Kerala</SelectItem>
+              </SelectContent>
+            </Select>
 
-              <Select value={riskCategory} onValueChange={setRiskCategory}>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select Risk" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="All">All</SelectItem>
-                  <SelectItem value="Low">Low</SelectItem>
-                  <SelectItem value="Medium">Medium</SelectItem>
-                  <SelectItem value="High">High</SelectItem>
-                </SelectContent>
-              </Select>
-            </Card>
+            <Select value={riskCategory} onValueChange={setRiskCategory}>
+              <SelectTrigger className="w-full bg-white">
+                <SelectValue placeholder="Select Risk" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="All">All</SelectItem>
+                <SelectItem value="Low">Low</SelectItem>
+                <SelectItem value="Medium">Medium</SelectItem>
+                <SelectItem value="High">High</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
           <div className="col-span-3 space-y-6">
             <div className="grid grid-cols-2 gap-4">
@@ -352,47 +353,68 @@ const InventoryTracker = () => {
             </div>
 
             <div className="grid grid-cols-2 gap-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Orders Risk Heatmap</CardTitle>
-                </CardHeader>
-                <CardContent className="overflow-auto rounded">
-                  <table className="min-w-full text-sm text-center">
+              <div className="grid grid-cols-2 gap-6">
+                <div className="overflow-auto rounded">
+                  <h2 className="text-lg font-semibold mb-4">
+                    Orders Risk Heatmap
+                  </h2>
+                  <table className="w-full col-span-2 text-sm text-center border border-gray-200">
                     <thead>
-                      <tr>
-                        <th className="border px-2 py-1 ">Week</th>
-                        {skus.map((sku) => (
-                          <th key={sku} className="border px-2 py-1">
-                            {sku}
+                      <tr className="bg-green-800 text-white">
+                        <th className="border px-2 py-1">SKU</th>
+                        {weeks.map((week) => (
+                          <th key={week} className="border px-2 py-1">
+                            {week}
                           </th>
                         ))}
                       </tr>
                     </thead>
                     <tbody>
-                      {heatmapData.map((row) => (
-                        <tr key={row.week}>
+                      {skus.map((sku) => (
+                        <tr key={sku}>
                           <td className="border px-2 py-1 font-medium">
-                            {row.week}
+                            {sku}
                           </td>
-                          {skus.map((sku) => (
-                            <td
-                              key={sku}
-                              className="border px-2 py-1"
-                              style={{
-                                backgroundColor: riskColor(row[sku]),
-                                color: row[sku] >= 4 ? "#fff" : "#000",
-                              }}
-                              title={`SKU: ${sku}\nWeek: ${row.week}\nAvg Risk Score: ${row[sku]?.toFixed(1) ?? "-"}`}
-                            >
-                              {row[sku]?.toFixed(1) || "-"}
-                            </td>
-                          ))}
+                          {weeks.map((week) => {
+                            const avgRisk =
+                              heatmapData.find((row) => row.week === week)?.[
+                                sku
+                              ] ?? 0;
+
+                            // Determine background color
+                            let bgColor = "";
+                            let textColor = "black";
+                            if (avgRisk >= 4) {
+                              bgColor = "#cc9aff"; // purple
+                            } else if (avgRisk >= 2) {
+                              bgColor = "#afd14d"; // greenish
+                            } else {
+                              bgColor = "#ff4e4e"; // red
+                              textColor = "white";
+                            }
+
+                            return (
+                              <td
+                                key={week}
+                                className="border px-2 py-1"
+                                style={{
+                                  backgroundColor: bgColor,
+                                  color: textColor,
+                                }}
+                                title={`SKU: ${sku}\nWeek: ${week}\nAvg Risk Score: ${avgRisk.toFixed(
+                                  1
+                                )}`}
+                              >
+                                {avgRisk.toFixed(1)}
+                              </td>
+                            );
+                          })}
                         </tr>
                       ))}
                     </tbody>
                   </table>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
 
               <Card>
                 <CardHeader>
@@ -401,7 +423,10 @@ const InventoryTracker = () => {
                 <CardContent className="h-[480px]">
                   <div className="flex flex-wrap gap-4 mb-4">
                     {forecastChartData.map((line) => (
-                      <div key={line.id} className="flex items-center space-x-2">
+                      <div
+                        key={line.id}
+                        className="flex items-center space-x-2"
+                      >
                         <Checkbox
                           id={`chk-${line.id}`}
                           checked={visibleSkus.includes(line.id)}
@@ -453,7 +478,9 @@ const InventoryTracker = () => {
                       <div className="bg-white p-2 rounded shadow text-xs">
                         {slice.points.map((point) => (
                           <div key={point.id}>
-                            <strong>{(point as any).serieId}</strong>: {point.data.yFormatted}t on {format(parseISO(point.data.x as string), "MMM d")}
+                            <strong>{(point as any).serieId}</strong>:{" "}
+                            {point.data.yFormatted}t on{" "}
+                            {format(parseISO(point.data.x as string), "MMM d")}
                           </div>
                         ))}
                       </div>
@@ -462,7 +489,11 @@ const InventoryTracker = () => {
                       {
                         axis: "x",
                         value: today,
-                        lineStyle: { stroke: "#000", strokeWidth: 1, strokeDasharray: "4 4" },
+                        lineStyle: {
+                          stroke: "#000",
+                          strokeWidth: 1,
+                          strokeDasharray: "4 4",
+                        },
                       },
                     ]}
                   />
