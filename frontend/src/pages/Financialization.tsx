@@ -24,11 +24,11 @@ const metrics = {
     total: 4,
   },
   donutChartData: [
-    { id: "Landfill Diversion", value: 30, color: "#005A32" },
-    { id: "Virgin Material Avoided", value: 25, color: "#238B45" },
-    { id: "Energy Recovered", value: 20, color: "#41AE76" },
-    { id: "Clean Water Pollution Avoided", value: 15, color: "#66C2A4" },
-    { id: "Incinerated Air Avoided", value: 10, color: "#99D8C9" },
+    { id: "Landfill Diversion", value: 30, color: "#204936" },
+    { id: "Virgin Material Avoided", value: 25, color: "#82A665" },
+    { id: "Energy Recovered", value: 20, color: "#D2E69A" },
+    { id: "Clean Water Pollution Avoided", value: 15, color: "#FDCC6F" },
+    { id: "Incinerated Air Avoided", value: 10, color: "#FFEABB" },
   ],
 };
 
