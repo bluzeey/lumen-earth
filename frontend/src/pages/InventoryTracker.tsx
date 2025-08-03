@@ -51,13 +51,9 @@ function getDefaultRange(dates: Date[]): DateRange | undefined {
 }
 
 const riskColor = (score: number) => {
-  const clamp = Math.max(0, Math.min(score, 5));
-  if (clamp <= 2) {
-    const t = clamp / 2;
-    return interpolateColor("#ffffff", "#fed7aa", t);
-  }
-  const t = (clamp - 2) / 3;
-  return interpolateColor("#fed7aa", "#f87171", t);
+  if (score >= 4) return "bg-[#cc9aff] text-black";
+  if (score >= 2) return "bg-[#afd14d] text-black";
+  return "bg-[#ff4e4e] text-white";
 };
 
 function interpolateColor(color1: string, color2: string, factor: number) {
@@ -218,7 +214,7 @@ const InventoryTracker = () => {
     }));
   }, [forecastData, dateRange]);
 
-  const chartColors = ["#cc9aff", "#afd14d", "#ff4e4e", "#60a5fa", "#fbbf24", "#34d399"];
+  const chartColors = ["#cc9aff", "#afd14d", "#ff4e4e"];
 
   const colorMap = useMemo(() => {
     const map: Record<string, string> = {};
