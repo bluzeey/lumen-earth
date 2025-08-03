@@ -50,9 +50,9 @@ function getDefaultRange(dates: Date[]): DateRange | undefined {
 }
 
 const riskColor = (score: number) => {
-  if (score >= 4) return "bg-red-500 text-white";
-  if (score >= 2) return "bg-yellow-300";
-  return "bg-green-300";
+  if (score >= 4) return "bg-[#cc9aff] text-black";
+  if (score >= 2) return "bg-[#afd14d] text-black";
+  return "bg-[#ff4e4e] text-white";
 };
 
 const InventoryTracker = () => {
@@ -169,16 +169,7 @@ const InventoryTracker = () => {
     }));
   }, [forecastData, dateRange]);
 
-  const chartColors = [
-    "#66c2a5",
-    "#fc8d62",
-    "#8da0cb",
-    "#e78ac3",
-    "#a6d854",
-    "#ffd92f",
-    "#e5c494",
-    "#b3b3b3",
-  ];
+  const chartColors = ["#cc9aff", "#afd14d", "#ff4e4e"];
 
   return (
     <AppLayout title="Inventory Tracker">
