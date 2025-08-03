@@ -330,8 +330,8 @@ const InventoryTracker = () => {
                     Orders At Risk (Value)
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="flex flex-col items-center justify-center space-y-2">
-                  <p className="text-5xl font-bold text-red-600">
+                <CardContent className="flex flex-col items-start justify-center space-y-2">
+                  <p className="text-left text-3xl font-bold text-red-600">
                     ₹{(totalAtRiskValue / 1000).toFixed(1)}K
                   </p>
                   <DeltaIndicator delta={valueDelta} />
@@ -343,8 +343,8 @@ const InventoryTracker = () => {
                     Orders At Risk (Qty)
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="flex flex-col items-center justify-center space-y-2">
-                  <p className="text-5xl font-bold text-red-600">
+                <CardContent className="flex flex-col items-start justify-center space-y-2">
+                  <p className="text-left text-3xl font-bold text-red-600">
                     ₹{(totalAtRiskQty / 1000).toFixed(1)}K
                   </p>
                   <DeltaIndicator delta={qtyDelta} />
