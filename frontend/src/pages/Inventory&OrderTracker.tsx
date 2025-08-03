@@ -50,19 +50,6 @@ function getDefaultRange(dates: Date[]): DateRange | undefined {
   return { from: sorted[0], to: addDays(sorted[sorted.length - 1], 1) };
 }
 
-const riskColor = (score: number) => {
-  if (score >= 4) return "bg-[#cc9aff] text-black";
-  if (score >= 2) return "bg-[#afd14d] text-black";
-  return "bg-[#ff4e4e] text-white";
-};
-
-function interpolateColor(color1: string, color2: string, factor: number) {
-  const c1 = color1.match(/\w\w/g)!.map((c) => parseInt(c, 16));
-  const c2 = color2.match(/\w\w/g)!.map((c) => parseInt(c, 16));
-  const result = c1.map((c, i) => Math.round(c + (c2[i] - c) * factor));
-  return `rgb(${result[0]}, ${result[1]}, ${result[2]})`;
-}
-
 const InventoryTracker = () => {
   const allInventory = useMemo(
     () =>
