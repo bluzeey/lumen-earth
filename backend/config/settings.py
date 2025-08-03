@@ -15,6 +15,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'marketplace',
+    'billing',
+    'raw_data',
+    'process_data',
+    'output_data',
 ]
 
 MIDDLEWARE = [
