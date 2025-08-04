@@ -129,3 +129,5 @@ async function fakeRegister(data: any) {
   if (!data.email.includes("@")) throw new Error("Invalid email");
   return true;
 }
+
+export { fakeRegister };
