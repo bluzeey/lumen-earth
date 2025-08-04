@@ -317,8 +317,8 @@ const InventoryTracker = () => {
                     Orders At Risk (Value)
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="flex flex-col items-center justify-center space-y-2">
-                  <p className="text-5xl font-bold text-red-600">
+                <CardContent className="flex flex-col items-start justify-center space-y-2">
+                  <p className="text-left text-3xl font-bold text-red-600">
                     ₹{(totalAtRiskValue / 1000).toFixed(1)}K
                   </p>
                   <DeltaIndicator delta={valueDelta} />
@@ -330,8 +330,8 @@ const InventoryTracker = () => {
                     Orders At Risk (Qty)
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="flex flex-col items-center justify-center space-y-2">
-                  <p className="text-5xl font-bold text-red-600">
+                <CardContent className="flex flex-col items-start justify-center space-y-2">
+                  <p className="text-left text-3xl font-bold text-red-600">
                     ₹{(totalAtRiskQty / 1000).toFixed(1)}K
                   </p>
                   <DeltaIndicator delta={qtyDelta} />
@@ -339,68 +339,66 @@ const InventoryTracker = () => {
               </Card>
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
-              <div className="grid grid-cols-2 gap-6">
-                <div className="overflow-auto rounded">
-                  <h2 className="text-lg font-semibold mb-4">
-                    Orders Risk Heatmap
-                  </h2>
-                  <table className="w-full col-span-2 text-sm text-center border border-gray-200">
-                    <thead>
-                      <tr className="bg-green-800 text-white">
-                        <th className="border px-2 py-1">SKU</th>
-                        {weeks.map((week) => (
-                          <th key={week} className="border px-2 py-1">
-                            {week}
-                          </th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {skus.map((sku) => (
-                        <tr key={sku}>
-                          <td className="border px-2 py-1 font-medium">
-                            {sku}
-                          </td>
-                          {weeks.map((week) => {
-                            const avgRisk =
-                              heatmapData.find((row) => row.week === week)?.[
-                                sku
-                              ] ?? 0;
-
-                            // Determine background color
-                            let bgColor = "";
-                            let textColor = "black";
-                            if (avgRisk >= 4) {
-                              bgColor = "#cc9aff"; // purple
-                            } else if (avgRisk >= 2) {
-                              bgColor = "#afd14d"; // greenish
-                            } else {
-                              bgColor = "#ff4e4e"; // red
-                              textColor = "white";
-                            }
-
-                            return (
-                              <td
-                                key={week}
-                                className="border px-2 py-1"
-                                style={{
-                                  backgroundColor: bgColor,
-                                  color: textColor,
-                                }}
-                                title={`SKU: ${sku}\nWeek: ${week}\nAvg Risk Score: ${avgRisk.toFixed(
-                                  1
-                                )}`}
-                              >
-                                {avgRisk.toFixed(1)}
-                              </td>
-                            );
-                          })}
-                        </tr>
+            <div className="space-y-6">
+              <div className="overflow-auto rounded">
+                <h2 className="text-lg font-semibold mb-4">
+                  Orders Risk Heatmap
+                </h2>
+                <table className="w-full text-sm text-center border border-gray-200">
+                  <thead>
+                    <tr className="bg-green-800 text-white">
+                      <th className="border px-2 py-1">SKU</th>
+                      {weeks.map((week) => (
+                        <th key={week} className="border px-2 py-1">
+                          {week}
+                        </th>
                       ))}
-                    </tbody>
-                  </table>
-                </div>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {skus.map((sku) => (
+                      <tr key={sku}>
+                        <td className="border px-2 py-1 font-medium">
+                          {sku}
+                        </td>
+                        {weeks.map((week) => {
+                          const avgRisk =
+                            heatmapData.find((row) => row.week === week)?.[
+                              sku
+                            ] ?? 0;
+
+                          // Determine background color
+                          let bgColor = "";
+                          let textColor = "black";
+                          if (avgRisk >= 4) {
+                            bgColor = "#cc9aff"; // purple
+                          } else if (avgRisk >= 2) {
+                            bgColor = "#afd14d"; // greenish
+                          } else {
+                            bgColor = "#ff4e4e"; // red
+                            textColor = "white";
+                          }
+
+                          return (
+                            <td
+                              key={week}
+                              className="border px-2 py-1"
+                              style={{
+                                backgroundColor: bgColor,
+                                color: textColor,
+                              }}
+                              title={`SKU: ${sku}\nWeek: ${week}\nAvg Risk Score: ${avgRisk.toFixed(
+                                1
+                              )}`}
+                            >
+                              {avgRisk.toFixed(1)}
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
 
               <Card>
