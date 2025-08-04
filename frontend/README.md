@@ -6,8 +6,14 @@ To run this application:
 
 ```bash
 pnpm install
-pnpm start  
+pnpm start
 ```
+
+# Authentication
+
+- **Register**: Visit `http://localhost:5173/register` and complete the form to create a new account.
+- **Login**: Navigate to `http://localhost:5173/login`, enter your credentials, and submit the form.
+- **Logout**: Use the user menu in the application header and select **Logout** to end your session.
 
 # Building For Production
 
