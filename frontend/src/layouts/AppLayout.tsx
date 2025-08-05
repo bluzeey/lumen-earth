@@ -23,7 +23,6 @@ import {
   LayoutGrid,
   Store,
   ShieldCheck,
-  Leaf,
   BadgeDollarSign,
   Landmark,
   Settings,
@@ -170,7 +169,7 @@ export default function AppLayout({
         <Collapsible asChild defaultOpen className="group/subcollapsible">
                 <SidebarMenuSubItem className="group ">
                   <CollapsibleTrigger asChild>
-                    <SidebarMenuSubButton tooltip="INCCTS">
+                    <SidebarMenuSubButton>
                       <ShieldCheck className="mr-2 h-4 w-4" />
                       <span className="text-md">INCCTS</span>
                       <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/subcollapsible:rotate-90" />
