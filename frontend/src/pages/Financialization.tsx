@@ -1,11 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardTitle,
-  CardHeader,
-  CardDescription,
-  CardFooter,
-} from "@/components/ui/card";
+import { Card, CardTitle, CardHeader, CardDescription, CardFooter } from "@/components/ui/card";
 import {
   Table,
   TableHeader,
