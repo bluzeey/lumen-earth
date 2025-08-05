@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import { login } from "@/lib/api";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -15,9 +16,10 @@ export default function LoginPage() {
     e.preventDefault();
     setLoading(true);
     try {
+      await login(email, password);
       navigate({ to: `/material-flow-tracer` });
     } catch (err: any) {
-      toast.error("Login failed: " + err.message);
+      toast.error(err.message || "Login failed");
     } finally {
       setLoading(false);
     }
