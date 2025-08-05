@@ -133,28 +133,28 @@ export default function UserInputsPage() {
   return (
     <AppLayout title="User Inputs">
       <div className="p-6 space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {insights.map((item, i) => (
-            <Card
-              key={i}
-              className="border bg-white p-4 flex items-center justify-between"
-            >
-              <div className="flex flex-col">
-                <CardTitle className="text-base font-bold">
-                  {item.label}
-                </CardTitle>
-                <p className="text-sm text-muted-foreground mt-1">
-                  {item.description}
-                </p>
-              </div>
-              <div
-                className={`w-16 h-16 rounded-full border-4 ${item.color} flex items-center justify-center text-sm font-bold`}
-              >
-                {item.score}/10
-              </div>
-            </Card>
-          ))}
-        </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {insights.map((item, i) => (
+        <Card
+          key={i}
+          className="border bg-white p-6 flex flex-row items-center"
+        >
+          <div className="flex flex-col">
+            <CardTitle className="text-base font-bold">
+              {item.label}
+            </CardTitle>
+            <p className="text-sm text-muted-foreground mt-1">
+              {item.description}
+            </p>
+          </div>
+          <div
+            className={`flex-shrink-0 w-20 h-20 rounded-full border-4 ${item.color} flex items-center justify-center text-lg font-bold`}
+          >
+            {item.score}/10
+          </div>
+        </Card>
+      ))}
+    </div>
 
         <Separator />
 
