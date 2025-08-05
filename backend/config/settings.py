@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'raw_data',
     'process_data',
     'output_data',
+    'rest_framework',
     'accounts',
 ]
 
