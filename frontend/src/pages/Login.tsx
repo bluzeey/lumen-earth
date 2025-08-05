@@ -16,8 +16,9 @@ export default function LoginPage() {
     e.preventDefault();
     setLoading(true);
     try {
-      await login(email, password);
       navigate({ to: `/material-flow-tracer` });
+      await login(email, password);
+     
     } catch (err: any) {
       toast.error(err.message || "Login failed");
     } finally {
