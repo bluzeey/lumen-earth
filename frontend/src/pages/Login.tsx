@@ -5,20 +5,21 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import { login } from "@/lib/api";
+import { login as apiLogin } from "@/lib/api";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login: authLogin } = useAuth();
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
     try {
-      await login(email, password);
+      const data = await apiLogin(email, password);
+      authLogin({ email }, data.token);
       navigate({ to: `/material-flow-tracer` });
     } catch (err: any) {
       toast.error(err.message || "Login failed");
