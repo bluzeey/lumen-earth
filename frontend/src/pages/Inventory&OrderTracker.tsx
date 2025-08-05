@@ -22,14 +22,17 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle,CardDescription, CardAction, CardContent, CardFooter } from "@/components/ui/card";
 import { CalendarIcon, ArrowDown, ArrowUp } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ResponsiveLine } from "@nivo/line";
 import { cn } from "@/lib/utils";
 import AppLayout from "@/layouts/AppLayout";
+import { Badge } from "@/components/ui/badge";
 import inventoryData from "@/data/inventory.json";
 import orderData from "@/data/orders.json";
+import { IconTrendingDown, IconTrendingUp } from "@tabler/icons-react"
+
 import forecastData from "@/data/inventory_forecast.json";
 
 function groupByKey<T>(
@@ -254,7 +257,8 @@ const InventoryTracker = () => {
     <AppLayout title="Inventory and Order Tracker">
       <div className="p-6">
         <div className="gap-6">
-          <div className="flex gap-2 w-full pb-6">
+          {/* Filters */}
+          <div className="flex gap-2 w-1/2 pb-6">
             <Popover>
               <PopoverTrigger asChild>
                 <Button
@@ -287,7 +291,7 @@ const InventoryTracker = () => {
                 />
               </PopoverContent>
             </Popover>
-
+  
             <Select value={region} onValueChange={setRegion}>
               <SelectTrigger className="w-full bg-white">
                 <SelectValue placeholder="Select Region" />
@@ -298,7 +302,7 @@ const InventoryTracker = () => {
                 <SelectItem value="Kerala">Kerala</SelectItem>
               </SelectContent>
             </Select>
-
+  
             <Select value={riskCategory} onValueChange={setRiskCategory}>
               <SelectTrigger className="w-full bg-white">
                 <SelectValue placeholder="Select Risk" />
@@ -311,42 +315,63 @@ const InventoryTracker = () => {
               </SelectContent>
             </Select>
           </div>
-          <div className="col-span-3 space-y-6">
-            <div className="grid grid-cols-2 gap-4">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-sm font-medium">
-                    Orders At Risk (Value)
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="flex flex-col items-start justify-center space-y-2">
-                  <p className="text-left text-3xl font-bold text-red-600">
-                    ₹{(totalAtRiskValue / 1000).toFixed(1)}K
-                  </p>
-                  <DeltaIndicator delta={valueDelta} />
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-sm font-medium">
-                    Orders At Risk (Qty)
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="flex flex-col items-start justify-center space-y-2">
-                  <p className="text-left text-3xl font-bold text-red-600">
-                    ₹{(totalAtRiskQty / 1000).toFixed(1)}K
-                  </p>
-                  <DeltaIndicator delta={qtyDelta} />
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="space-y-6">
-              <div className="overflow-auto rounded">
-                <h2 className="text-lg font-semibold mb-4">
+  
+          {/* Grid layout */}
+          <div className="grid grid-cols-1 xl:grid-cols-4 gap-4">
+            {/* Left side: Cards + Heatmap */}
+            <div className="space-y-4 col-span-1 xl:col-span-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Orders At Risk Value */}
+                <Card className="@container/card">
+                  <CardHeader>
+                    <CardDescription>Orders At Risk (Value)</CardDescription>
+                    <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl text-red-600">
+                      ₹{(totalAtRiskValue / 1000).toFixed(1)}K
+                    </CardTitle>
+                    <CardAction>
+                      <Badge variant="outline" className={cn(valueDelta >= 0 ? "text-green-600" : "text-red-600")}> 
+                        {valueDelta >= 0 ? <IconTrendingUp /> : <IconTrendingDown />} 
+                        {Math.abs(valueDelta).toFixed(1)}%
+                      </Badge>
+                    </CardAction>
+                  </CardHeader>
+                  <CardFooter className="flex-col items-start gap-1.5 text-sm">
+                    <div className="line-clamp-1 flex gap-2 font-medium">
+                      {valueDelta >= 0 ? "Increased from last week" : "Decreased from last week"}
+                    </div>
+                    <div className="text-muted-foreground">Week-over-week change</div>
+                  </CardFooter>
+                </Card>
+  
+                {/* Orders At Risk Qty */}
+                <Card className="@container/card">
+                  <CardHeader>
+                    <CardDescription>Orders At Risk (Qty)</CardDescription>
+                    <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl text-red-600">
+                      ₹{(totalAtRiskQty / 1000).toFixed(1)}K
+                    </CardTitle>
+                    <CardAction>
+                      <Badge variant="outline" className={cn(qtyDelta >= 0 ? "text-green-600" : "text-red-600")}> 
+                        {qtyDelta >= 0 ? <IconTrendingUp /> : <IconTrendingDown />} 
+                        {Math.abs(qtyDelta).toFixed(1)}%
+                      </Badge>
+                    </CardAction>
+                  </CardHeader>
+                  <CardFooter className="flex-col items-start gap-1.5 text-sm">
+                    <div className="line-clamp-1 flex gap-2 font-medium">
+                      {qtyDelta >= 0 ? "Increased from last week" : "Decreased from last week"}
+                    </div>
+                    <div className="text-muted-foreground">Week-over-week change</div>
+                  </CardFooter>
+                </Card>
+              </div>
+  
+              {/* Heatmap table */}
+              <div className="rounded-lg bg-white pt-2 border overflow-auto p-4">
+                <h2 className="text-lg font-semibold mt-2 mb-4">
                   Orders Risk Heatmap
                 </h2>
-                <table className="w-full text-sm text-center border border-gray-200">
+                <table className="w-full text-sm text-center border border-gray-200 pb-2">
                   <thead>
                     <tr className="bg-green-800 text-white">
                       <th className="border px-2 py-1">SKU</th>
@@ -365,22 +390,19 @@ const InventoryTracker = () => {
                         </td>
                         {weeks.map((week) => {
                           const avgRisk =
-                            heatmapData.find((row) => row.week === week)?.[
-                              sku
-                            ] ?? 0;
-
-                          // Determine background color
+                            heatmapData.find((row) => row.week === week)?.[sku] ?? 0;
+  
                           let bgColor = "";
                           let textColor = "black";
                           if (avgRisk >= 4) {
-                            bgColor = "#cc9aff"; // purple
+                            bgColor = "#cc9aff";
                           } else if (avgRisk >= 2) {
-                            bgColor = "#afd14d"; // greenish
+                            bgColor = "#afd14d";
                           } else {
-                            bgColor = "#ff4e4e"; // red
+                            bgColor = "#ff4e4e";
                             textColor = "white";
                           }
-
+  
                           return (
                             <td
                               key={week}
@@ -389,9 +411,7 @@ const InventoryTracker = () => {
                                 backgroundColor: bgColor,
                                 color: textColor,
                               }}
-                              title={`SKU: ${sku}\nWeek: ${week}\nAvg Risk Score: ${avgRisk.toFixed(
-                                1
-                              )}`}
+                              title={`SKU: ${sku}\nWeek: ${week}\nAvg Risk Score: ${avgRisk.toFixed(1)}`}
                             >
                               {avgRisk.toFixed(1)}
                             </td>
@@ -402,12 +422,15 @@ const InventoryTracker = () => {
                   </tbody>
                 </table>
               </div>
-
-              <Card>
+            </div>
+  
+            {/* Right side: Graph */}
+            <div className="h-3/4 w-full col-span-2">
+              <Card className="h-full">
                 <CardHeader>
                   <CardTitle>End Product Inventory Risk Profile</CardTitle>
                 </CardHeader>
-                <CardContent className="h-[480px]">
+                <CardContent className="h-[700px] flex flex-col">
                   <div className="flex flex-wrap gap-4 mb-4">
                     {forecastChartData.map((line) => (
                       <div
@@ -434,10 +457,10 @@ const InventoryTracker = () => {
                       </div>
                     ))}
                   </div>
-
+  
                   <ResponsiveLine
                     data={displayedForecastData}
-                    margin={{ top: 10, right: 50, bottom: 100, left: 50 }}
+                    margin={{ top: 10, right: 50, bottom: 160, left: 50 }}
                     xScale={{
                       type: "time",
                       format: "%Y-%m-%d",

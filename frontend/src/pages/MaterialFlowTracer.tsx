@@ -1,12 +1,12 @@
 import { useMemo, useState, useEffect } from "react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
   CalendarIcon,
-  ArrowDownRight,
-  ArrowUpRight,
   ArrowRightLeft,
 } from "lucide-react";
+import { IconTrendingDown, IconTrendingUp } from "@tabler/icons-react"
+
 import AppLayout from "@/layouts/AppLayout";
 import { SankeyChart } from "@/components/SankeyChart";
 import {
@@ -18,6 +18,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { format, parseISO, isWithinInterval, subDays } from "date-fns";
 import { cn } from "@/lib/utils";
 import { DataTable } from "@/components/data-table";
+import { Badge } from "@/components/ui/badge";
 
 type EnrichedBatch = {
   composition?: string;
@@ -201,102 +202,98 @@ export default function MaterialFlowTracer() {
             </Popover>
           </div>
 
-          <div className="flex gap-4">
-          <Card className="w-60">
-            <CardContent className="flex flex-col justify-start items-start p-4">
-              <div className="text-sm text-muted-foreground">Qty In</div>
-              <div className="text-3xl font-bold text-primary">
-                {totalIn.toFixed(2)} T
-              </div>
-              <div
-                className={cn(
-                  "text-sm font-medium flex items-center gap-1",
-                  ((totalIn / forecastIn) * 100 || 0) >= 100 ? "text-green-600" : "text-red-600"
-                )}
-              >
-                {((totalIn / forecastIn) * 100 || 0) === 100 ? (
-                  <ArrowRightLeft className="w-4 h-4" />
-                ) : ((totalIn / forecastIn) * 100 || 0) > 100 ? (
-                  <ArrowUpRight className="w-4 h-4" />
-                ) : (
-                  <ArrowDownRight className="w-4 h-4" />
-                )}
-                {((totalIn / forecastIn) * 100 - 100 || 0).toFixed(1)}%
-                {((totalIn / forecastIn) * 100 || 0) >= 100 ? " above" : " below"}
-              </div>
-              <div className="text-sm text-muted-foreground">
-                {forecastIn.toFixed(2)} T (Forecast)
-              </div>
-            </CardContent>
-          </Card>
+          <div className="grid grid-cols-1 gap-4 xl:grid-cols-2 2xl:grid-cols-4">
+  <Card>
+    <CardHeader>
+      <CardDescription>Qty In</CardDescription>
+      <CardTitle className="text-2xl font-semibold tabular-nums">
+        {totalIn.toFixed(2)} T
+      </CardTitle>
+      <CardAction>
+        <Badge variant="outline" className={cn(((totalIn / forecastIn) * 100 || 0) >= 100 ? "text-green-600" : "text-red-600")}> 
+          {((totalIn / forecastIn) * 100 || 0) >= 100 ? <IconTrendingUp /> : <IconTrendingDown />} 
+          {((totalIn / forecastIn) * 100 - 100 || 0).toFixed(1)}%
+        </Badge>
+      </CardAction>
+    </CardHeader>
+    <CardFooter className="flex-col items-start gap-1.5 text-sm">
+      <div className="line-clamp-1 flex gap-2 font-medium">
+        {((totalIn / forecastIn) * 100 || 0) >= 100 ? "Above forecast" : "Below forecast"}
+      </div>
+      <div className="text-muted-foreground">
+        Forecast: {forecastIn.toFixed(2)} T
+      </div>
+    </CardFooter>
+  </Card>
 
-      <Card>
-        <CardContent className="flex flex-col justify-start items-start p-4">
-          <div className="text-sm text-muted-foreground">Qty Out</div>
-          <div className="text-3xl font-bold text-primary">
-            {totalOut.toFixed(2)} T
-          </div>
-          <div
-            className={cn(
-              "text-sm font-medium flex items-center gap-1",
-              ((totalOut / forecastOut) * 100 || 0) >= 100 ? "text-green-600" : "text-red-600"
-            )}
-          >
-            {((totalOut / forecastOut) * 100 || 0) === 100 ? (
-              <ArrowRightLeft className="w-4 h-4" />
-            ) : ((totalOut / forecastOut) * 100 || 0) > 100 ? (
-              <ArrowUpRight className="w-4 h-4" />
-            ) : (
-              <ArrowDownRight className="w-4 h-4" />
-            )}
-            {((totalOut / forecastOut) * 100 - 100 || 0).toFixed(1)}%
-            {((totalOut / forecastOut) * 100 || 0) >= 100 ? " above" : " below"}
-          </div>
-          <div className="text-sm text-muted-foreground">
-            {forecastOut.toFixed(2)} T (Forecast)
-          </div>
-        </CardContent>
-      </Card>
+  <Card>
+    <CardHeader>
+      <CardDescription>Qty Out</CardDescription>
+      <CardTitle className="text-2xl font-semibold tabular-nums">
+        {totalOut.toFixed(2)} T
+      </CardTitle>
+      <CardAction>
+        <Badge variant="outline" className={cn(((totalOut / forecastOut) * 100 || 0) >= 100 ? "text-green-600" : "text-red-600")}> 
+          {((totalOut / forecastOut) * 100 || 0) >= 100 ? <IconTrendingUp /> : <IconTrendingDown />} 
+          {((totalOut / forecastOut) * 100 - 100 || 0).toFixed(1)}%
+        </Badge>
+      </CardAction>
+    </CardHeader>
+    <CardFooter className="flex-col items-start gap-1.5 text-sm">
+      <div className="line-clamp-1 flex gap-2 font-medium">
+        {((totalOut / forecastOut) * 100 || 0) >= 100 ? "Above forecast" : "Below forecast"}
+      </div>
+      <div className="text-muted-foreground">
+        Forecast: {forecastOut.toFixed(2)} T
+      </div>
+    </CardFooter>
+  </Card>
 
-      <Card>
-        <CardContent className="flex flex-col justify-start items-start p-4">
-          <div className="text-sm text-muted-foreground">Yield %</div>
-          <div className="text-3xl font-bold text-yellow">
-            {yieldActual.toFixed(1)}%
-          </div>
-          <div
-            className={cn(
-              "text-sm font-medium flex items-center gap-1",
-              yieldActual >= yieldForecast ? "text-green-600" : "text-red-600"
-            )}
-          >
-            {yieldActual === yieldForecast ? (
-              <ArrowRightLeft className="w-4 h-4" />
-            ) : yieldActual > yieldForecast ? (
-              <ArrowUpRight className="w-4 h-4" />
-            ) : (
-              <ArrowDownRight className="w-4 h-4" />
-            )}
-            {(yieldActual - yieldForecast).toFixed(1)}%
-            {yieldActual >= yieldForecast ? " above" : " below"}
-          </div>
-          <div className="text-sm text-muted-foreground">
-            {yieldForecast.toFixed(1)}% (Forecast)
-          </div>
-        </CardContent>
-      </Card>
+  <Card>
+    <CardHeader>
+      <CardDescription>Yield %</CardDescription>
+      <CardTitle className="text-2xl font-semibold tabular-nums">
+        {yieldActual.toFixed(1)}%
+      </CardTitle>
+      <CardAction>
+        <Badge variant="outline" className={cn(yieldActual >= yieldForecast ? "text-green-600" : "text-red-600")}> 
+          {yieldActual >= yieldForecast ? <IconTrendingUp /> : <IconTrendingDown />} 
+          {(yieldActual - yieldForecast).toFixed(1)}%
+        </Badge>
+      </CardAction>
+    </CardHeader>
+    <CardFooter className="flex-col items-start gap-1.5 text-sm">
+      <div className="line-clamp-1 flex gap-2 font-medium">
+        {yieldActual >= yieldForecast ? "Above forecast" : "Below forecast"}
+      </div>
+      <div className="text-muted-foreground">
+        Forecast: {yieldForecast.toFixed(1)}%
+      </div>
+    </CardFooter>
+  </Card>
 
-      <Card className="border-2 border-red">
-        <CardContent className="flex flex-col justify-start items-start p-4">
-          <div className="text-sm text-muted-foreground">Orders At Risk</div>
-          <div className="text-3xl font-bold text-red">₹28.9K</div>
-          <div className="text-sm font-medium text-muted-foreground flex items-center gap-1">
-            <ArrowRightLeft className="w-4 h-4" />0%
-          </div>
-        </CardContent>
-      </Card>
-    </div>
-
+  <Card className="border-2 border-red">
+    <CardHeader>
+      <CardDescription>Orders At Risk</CardDescription>
+      <CardTitle className="text-2xl font-semibold tabular-nums text-red">
+        ₹28.9K
+      </CardTitle>
+      <CardAction>
+        <Badge variant="outline" className="text-red-600">
+          <ArrowRightLeft className="size-4" /> 0%
+        </Badge>
+      </CardAction>
+    </CardHeader>
+    <CardFooter className="flex-col items-start gap-1.5 text-sm">
+      <div className="line-clamp-1 flex gap-2 font-medium">
+        Stable risk
+      </div>
+      <div className="text-muted-foreground">
+        Monitor closely
+      </div>
+    </CardFooter>
+  </Card>
+</div>
           <DataTable data={filteredBatches} />
 
           <Card>

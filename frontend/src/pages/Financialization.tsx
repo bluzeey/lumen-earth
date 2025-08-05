@@ -1,4 +1,11 @@
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardTitle,
+  CardHeader,
+  CardDescription,
+  CardFooter,
+} from "@/components/ui/card";
 import {
   Table,
   TableHeader,
@@ -89,85 +96,102 @@ export default function FinancializationPage() {
   return (
     <AppLayout title="Green Certification & Finance">
       <div className="p-4 sm:p-6 text-charcoal">
-        {/* Centralized Grid Layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-2 gap-x-8 gap-y-12 items-center justify-center my-8">
-          {/* Top row */}
-          <Card className="p-4 bg-white border rounded-xl shadow-sm md:row-start-1 md:col-start-1 text-center">
-            <CardTitle className="text-sm font-semibold">
-              Green Premium Actualized
-            </CardTitle>
-            <CardContent className="text-2xl font-bold text-red-600">
-              ₹1.7L
-            </CardContent>
-            <p className="text-xs text-muted-foreground mt-1">
-              Added revenues from Green premiums, EPR certificates
-            </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 my-8 px-2">
+          <Card className="@container/card my-auto">
+            <CardHeader>
+              <CardDescription>Green Premium Actualized</CardDescription>
+              <CardTitle className="text-2xl font-semibold tabular-nums text-red-600 @[250px]/card:text-3xl">
+                ₹1.7L
+              </CardTitle>
+            </CardHeader>
+            <CardFooter className="flex-col items-start gap-1.5 text-sm">
+              <div className="line-clamp-1 font-medium">
+                Revenue from Green Premiums
+              </div>
+              <div className="text-muted-foreground">
+                EPR certificates included
+              </div>
+            </CardFooter>
           </Card>
 
-          <Card className="p-4 bg-white border rounded-xl shadow-sm md:row-start-2 md:col-start-2 text-center">
-            <CardTitle className="text-sm font-semibold">
-              Green Certifications
-            </CardTitle>
-            <CardContent className="text-2xl font-bold text-purple-700">
-              1 / 4
-            </CardContent>
-            <p className="text-xs text-muted-foreground mt-1">
-              Active Green Recycling Standard Certificates present vs potential
-            </p>
-          </Card>
-
-          <Card className="p-4 bg-white border rounded-xl shadow-sm md:row-start-1 md:col-start-3 text-center">
-            <CardTitle className="text-sm font-semibold">
-              Green Premium Potential
-            </CardTitle>
-            <CardContent className="text-2xl font-bold text-green-700">
-              ₹20.3L
-            </CardContent>
-            <p className="text-xs text-muted-foreground mt-1">
-              Key inputs on raw material supply by Institutional providers
-            </p>
-          </Card>
-
-          {/* Middle row */}
-          <Card className="p-4 bg-white border rounded-xl shadow-sm md:row-start-2 md:col-start-1 text-center">
-            <CardTitle className="text-sm font-semibold">
-              Green Insets Qualifying Product Count
-            </CardTitle>
-            <CardContent className="text-2xl font-bold text-blue-600">
-              2 / 4
-            </CardContent>
-            <p className="text-xs text-muted-foreground mt-1">
-              Products verifiably performing better than baseline material PCF
-              metrics
-            </p>
-          </Card>
-
-          {/* Donut chart in center */}
-          {/* Donut chart in center with space for legend */}
-          <div className="md:row-start-1 md:col-start-2 flex justify-center items-center h-full w-full">
-            <div className="w-2/5 h-2/5 absolute">
+          <Card className="h-full w-full bg-transparent shadow-none border-transparent flex items-center justify-center">
+            <div className="w-full h-64">
               <ResponsivePie
                 data={metrics.donutChartData}
                 innerRadius={0.6}
-                margin={{ top: 80, right: 80, bottom: 80, left: 80 }} // leave bottom space for legend
+                margin={{ top: 20, right: 20, bottom: 40, left: 20 }}
                 colors={(d) => d.data.color as string}
                 enableArcLinkLabels={true}
+                arcLabelsTextColor="#333333"
               />
             </div>
-          </div>
-
-          <Card className="p-4 bg-white border rounded-xl shadow-sm md:row-start-2 md:col-start-3 text-center">
-            <CardTitle className="text-sm font-semibold">
-              Green Inset Projects
-            </CardTitle>
-            <CardContent className="text-2xl font-bold text-blue-600">
-              4
-            </CardContent>
-            <p className="text-xs text-muted-foreground mt-1">
-              Total number of Green Inset Projects set up that are possible to
-              fund
-            </p>
           </Card>
+
+          <Card className="@container/card mt-8 my-auto">
+            <CardHeader>
+              <CardDescription>Green Premium Potential</CardDescription>
+              <CardTitle className="text-2xl font-semibold tabular-nums text-green-700 @[250px]/card:text-3xl">
+                ₹20.3L
+              </CardTitle>
+            </CardHeader>
+            <CardFooter className="flex-col items-start gap-1.5 text-sm">
+              <div className="line-clamp-1 font-medium">
+                Institutional input opportunity
+              </div>
+              <div className="text-muted-foreground">
+                Raw material source value
+              </div>
+            </CardFooter>
+          </Card>
+
+          <Card className="@container/card">
+            <CardHeader>
+              <CardDescription>Green Certifications</CardDescription>
+              <CardTitle className="text-2xl font-semibold tabular-nums text-purple-700 @[250px]/card:text-3xl">
+                1 / 4
+              </CardTitle>
+            </CardHeader>
+            <CardFooter className="flex-col items-start gap-1.5 text-sm">
+              <div className="line-clamp-1 font-medium">GRS active vs possible</div>
+              <div className="text-muted-foreground">
+                Green Recycling Standard
+              </div>
+            </CardFooter>
+          </Card>
+
+          <Card className="@container/card">
+            <CardHeader>
+              <CardDescription>Qualifying Product Count</CardDescription>
+              <CardTitle className="text-2xl font-semibold tabular-nums text-blue-600 @[250px]/card:text-3xl">
+                2 / 4
+              </CardTitle>
+            </CardHeader>
+            <CardFooter className="flex-col items-start gap-1.5 text-sm">
+              <div className="line-clamp-1 font-medium">
+                Above PCF material baseline
+              </div>
+              <div className="text-muted-foreground">
+                Certified product count
+              </div>
+            </CardFooter>
+          </Card>
+
+          <Card className="@container/card">
+            <CardHeader>
+              <CardDescription>Green Inset Projects</CardDescription>
+              <CardTitle className="text-2xl font-semibold tabular-nums text-blue-600 @[250px]/card:text-3xl">
+                4
+              </CardTitle>
+            </CardHeader>
+            <CardFooter className="flex-col items-start gap-1.5 text-sm">
+              <div className="line-clamp-1 font-medium">Fundable initiatives</div>
+              <div className="text-muted-foreground">
+                Climate-linked infrastructure
+              </div>
+            </CardFooter>
+          </Card>
+
+          
         </div>
 
         {/* Suggestions and Registry */}
