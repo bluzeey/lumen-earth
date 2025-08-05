@@ -206,7 +206,7 @@ export default function MaterialFlowTracer() {
   <Card>
     <CardHeader>
       <CardDescription>Qty In</CardDescription>
-      <CardTitle className="text-2xl font-semibold tabular-nums">
+      <CardTitle className="text-3xl font-semibold tabular-nums ">
         {totalIn.toFixed(2)} T
       </CardTitle>
       <CardAction>
@@ -229,7 +229,7 @@ export default function MaterialFlowTracer() {
   <Card>
     <CardHeader>
       <CardDescription>Qty Out</CardDescription>
-      <CardTitle className="text-2xl font-semibold tabular-nums">
+      <CardTitle className="text-3xl font-semibold tabular-nums">
         {totalOut.toFixed(2)} T
       </CardTitle>
       <CardAction>
@@ -252,7 +252,7 @@ export default function MaterialFlowTracer() {
   <Card>
     <CardHeader>
       <CardDescription>Yield %</CardDescription>
-      <CardTitle className="text-2xl font-semibold tabular-nums">
+      <CardTitle className="text-3xl font-semibold tabular-nums">
         {yieldActual.toFixed(1)}%
       </CardTitle>
       <CardAction>
@@ -275,7 +275,7 @@ export default function MaterialFlowTracer() {
   <Card className="border-2 border-red">
     <CardHeader>
       <CardDescription>Orders At Risk</CardDescription>
-      <CardTitle className="text-2xl font-semibold tabular-nums text-red">
+      <CardTitle className="text-3xl font-semibold tabular-nums text-red">
         ₹28.9K
       </CardTitle>
       <CardAction>
