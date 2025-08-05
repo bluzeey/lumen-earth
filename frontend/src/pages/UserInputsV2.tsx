@@ -148,7 +148,7 @@ export default function UserInputsPage() {
             </p>
           </div>
           <div
-            className={`flex-shrink-0 w-20 h-20 rounded-full border-4 ${item.color} flex items-center justify-center text-lg font-bold`}
+            className={`flex-shrink-0 w-20 h-20 rounded-full border-10 ${item.color} flex items-center justify-center text-lg font-bold`}
           >
             {item.score}/10
           </div>

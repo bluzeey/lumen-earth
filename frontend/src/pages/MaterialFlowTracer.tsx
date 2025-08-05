@@ -201,101 +201,101 @@ export default function MaterialFlowTracer() {
             </Popover>
           </div>
 
-          <div className="grid grid-cols-4 gap-4">
-  <Card>
-    <CardContent className="flex flex-col justify-start items-start p-4">
-      <div className="text-sm text-muted-foreground">Qty In</div>
-      <div className="text-3xl font-bold text-primary">
-        {totalIn.toFixed(2)} T
-      </div>
-      <div
-        className={cn(
-          "text-sm font-medium flex items-center gap-1",
-          ((totalIn / forecastIn) * 100 || 0) >= 100 ? "text-green-600" : "text-red-600"
-        )}
-      >
-        {((totalIn / forecastIn) * 100 || 0) === 100 ? (
-          <ArrowRightLeft className="w-4 h-4" />
-        ) : ((totalIn / forecastIn) * 100 || 0) > 100 ? (
-          <ArrowUpRight className="w-4 h-4" />
-        ) : (
-          <ArrowDownRight className="w-4 h-4" />
-        )}
-        {((totalIn / forecastIn) * 100 - 100 || 0).toFixed(1)}%
-        {((totalIn / forecastIn) * 100 || 0) >= 100 ? " above" : " below"}
-      </div>
-      <div className="text-sm text-muted-foreground">
-        {forecastIn.toFixed(2)} T (Forecast)
-      </div>
-    </CardContent>
-  </Card>
+          <div className="flex gap-4">
+          <Card className="w-60">
+            <CardContent className="flex flex-col justify-start items-start p-4">
+              <div className="text-sm text-muted-foreground">Qty In</div>
+              <div className="text-3xl font-bold text-primary">
+                {totalIn.toFixed(2)} T
+              </div>
+              <div
+                className={cn(
+                  "text-sm font-medium flex items-center gap-1",
+                  ((totalIn / forecastIn) * 100 || 0) >= 100 ? "text-green-600" : "text-red-600"
+                )}
+              >
+                {((totalIn / forecastIn) * 100 || 0) === 100 ? (
+                  <ArrowRightLeft className="w-4 h-4" />
+                ) : ((totalIn / forecastIn) * 100 || 0) > 100 ? (
+                  <ArrowUpRight className="w-4 h-4" />
+                ) : (
+                  <ArrowDownRight className="w-4 h-4" />
+                )}
+                {((totalIn / forecastIn) * 100 - 100 || 0).toFixed(1)}%
+                {((totalIn / forecastIn) * 100 || 0) >= 100 ? " above" : " below"}
+              </div>
+              <div className="text-sm text-muted-foreground">
+                {forecastIn.toFixed(2)} T (Forecast)
+              </div>
+            </CardContent>
+          </Card>
 
-  <Card>
-    <CardContent className="flex flex-col justify-start items-start p-4">
-      <div className="text-sm text-muted-foreground">Qty Out</div>
-      <div className="text-3xl font-bold text-primary">
-        {totalOut.toFixed(2)} T
-      </div>
-      <div
-        className={cn(
-          "text-sm font-medium flex items-center gap-1",
-          ((totalOut / forecastOut) * 100 || 0) >= 100 ? "text-green-600" : "text-red-600"
-        )}
-      >
-        {((totalOut / forecastOut) * 100 || 0) === 100 ? (
-          <ArrowRightLeft className="w-4 h-4" />
-        ) : ((totalOut / forecastOut) * 100 || 0) > 100 ? (
-          <ArrowUpRight className="w-4 h-4" />
-        ) : (
-          <ArrowDownRight className="w-4 h-4" />
-        )}
-        {((totalOut / forecastOut) * 100 - 100 || 0).toFixed(1)}%
-        {((totalOut / forecastOut) * 100 || 0) >= 100 ? " above" : " below"}
-      </div>
-      <div className="text-sm text-muted-foreground">
-        {forecastOut.toFixed(2)} T (Forecast)
-      </div>
-    </CardContent>
-  </Card>
+      <Card>
+        <CardContent className="flex flex-col justify-start items-start p-4">
+          <div className="text-sm text-muted-foreground">Qty Out</div>
+          <div className="text-3xl font-bold text-primary">
+            {totalOut.toFixed(2)} T
+          </div>
+          <div
+            className={cn(
+              "text-sm font-medium flex items-center gap-1",
+              ((totalOut / forecastOut) * 100 || 0) >= 100 ? "text-green-600" : "text-red-600"
+            )}
+          >
+            {((totalOut / forecastOut) * 100 || 0) === 100 ? (
+              <ArrowRightLeft className="w-4 h-4" />
+            ) : ((totalOut / forecastOut) * 100 || 0) > 100 ? (
+              <ArrowUpRight className="w-4 h-4" />
+            ) : (
+              <ArrowDownRight className="w-4 h-4" />
+            )}
+            {((totalOut / forecastOut) * 100 - 100 || 0).toFixed(1)}%
+            {((totalOut / forecastOut) * 100 || 0) >= 100 ? " above" : " below"}
+          </div>
+          <div className="text-sm text-muted-foreground">
+            {forecastOut.toFixed(2)} T (Forecast)
+          </div>
+        </CardContent>
+      </Card>
 
-  <Card>
-    <CardContent className="flex flex-col justify-start items-start p-4">
-      <div className="text-sm text-muted-foreground">Yield %</div>
-      <div className="text-3xl font-bold text-yellow">
-        {yieldActual.toFixed(1)}%
-      </div>
-      <div
-        className={cn(
-          "text-sm font-medium flex items-center gap-1",
-          yieldActual >= yieldForecast ? "text-green-600" : "text-red-600"
-        )}
-      >
-        {yieldActual === yieldForecast ? (
-          <ArrowRightLeft className="w-4 h-4" />
-        ) : yieldActual > yieldForecast ? (
-          <ArrowUpRight className="w-4 h-4" />
-        ) : (
-          <ArrowDownRight className="w-4 h-4" />
-        )}
-        {(yieldActual - yieldForecast).toFixed(1)}%
-        {yieldActual >= yieldForecast ? " above" : " below"}
-      </div>
-      <div className="text-sm text-muted-foreground">
-        {yieldForecast.toFixed(1)}% (Forecast)
-      </div>
-    </CardContent>
-  </Card>
+      <Card>
+        <CardContent className="flex flex-col justify-start items-start p-4">
+          <div className="text-sm text-muted-foreground">Yield %</div>
+          <div className="text-3xl font-bold text-yellow">
+            {yieldActual.toFixed(1)}%
+          </div>
+          <div
+            className={cn(
+              "text-sm font-medium flex items-center gap-1",
+              yieldActual >= yieldForecast ? "text-green-600" : "text-red-600"
+            )}
+          >
+            {yieldActual === yieldForecast ? (
+              <ArrowRightLeft className="w-4 h-4" />
+            ) : yieldActual > yieldForecast ? (
+              <ArrowUpRight className="w-4 h-4" />
+            ) : (
+              <ArrowDownRight className="w-4 h-4" />
+            )}
+            {(yieldActual - yieldForecast).toFixed(1)}%
+            {yieldActual >= yieldForecast ? " above" : " below"}
+          </div>
+          <div className="text-sm text-muted-foreground">
+            {yieldForecast.toFixed(1)}% (Forecast)
+          </div>
+        </CardContent>
+      </Card>
 
-  <Card className="border-2 border-red">
-    <CardContent className="flex flex-col justify-start items-start p-4">
-      <div className="text-sm text-muted-foreground">Orders At Risk</div>
-      <div className="text-3xl font-bold text-red">₹28.9K</div>
-      <div className="text-sm font-medium text-muted-foreground flex items-center gap-1">
-        <ArrowRightLeft className="w-4 h-4" />0%
-      </div>
-    </CardContent>
-  </Card>
-</div>
+      <Card className="border-2 border-red">
+        <CardContent className="flex flex-col justify-start items-start p-4">
+          <div className="text-sm text-muted-foreground">Orders At Risk</div>
+          <div className="text-3xl font-bold text-red">₹28.9K</div>
+          <div className="text-sm font-medium text-muted-foreground flex items-center gap-1">
+            <ArrowRightLeft className="w-4 h-4" />0%
+          </div>
+        </CardContent>
+      </Card>
+    </div>
 
           <DataTable data={filteredBatches} />
 

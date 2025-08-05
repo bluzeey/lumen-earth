@@ -321,7 +321,7 @@ export function DataTable({
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody>
+          <TableBody className="bg-white">
             {table.getRowModel().rows.length ? (
               <SortableContext
                 items={dataIds}
@@ -332,7 +332,7 @@ export function DataTable({
                 ))}
               </SortableContext>
             ) : (
-              <TableRow>
+              <TableRow className="">
                 <TableCell colSpan={columns.length} className="text-center">
                   No data.
                 </TableCell>

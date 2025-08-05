@@ -182,10 +182,11 @@ export default function AppLayout({
                         <SidebarMenuSubButton asChild>
                           <Link
                             to="/credits/comply"
+                            className="mr-2"
                             activeProps={{ className: "text-primary font-medium bg-[#D2E69A]" }}
                             inactiveProps={{ className: "text-muted-foreground" }}
                           >
-                            <span>INCCTS Comply</span>
+                            INCCTS Comply
                           </Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
@@ -193,6 +194,7 @@ export default function AppLayout({
                         <SidebarMenuSubButton asChild>
                           <Link
                             to="/credits/offset"
+                            className="mr-2"
                             activeProps={{ className: "text-primary font-medium bg-[#D2E69A]" }}
                             inactiveProps={{ className: "text-muted-foreground" }}
                           >
@@ -205,6 +207,7 @@ export default function AppLayout({
                         <SidebarMenuSubButton asChild>
                           <Link
                             to="/credits/grs"
+                            className="mr-2"
                             activeProps={{ className: "text-primary font-medium bg-[#D2E69A]" }}
                             inactiveProps={{ className: "text-muted-foreground" }}
                           >
