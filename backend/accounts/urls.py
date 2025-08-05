@@ -15,3 +15,4 @@ urlpatterns = [
     path('refresh', TokenRefreshView.as_view(), name='token_refresh'),
     path('protected', ProtectedView.as_view(), name='protected'),
 ]
+
