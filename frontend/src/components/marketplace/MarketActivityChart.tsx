@@ -27,7 +27,7 @@ export default function MarketActivityChart({
   scatterPoints,
 }: MarketActivityProps) {
   return (
-    <Card className="rounded-md shadow-sm p-4 bg-white">
+    <Card className="rounded-md shadow-sm  bg-white">
       <CardHeader>
         <CardTitle className="text-charcoal font-semibold">
           Market Activity
@@ -39,7 +39,7 @@ export default function MarketActivityChart({
           Transactions This Month: {transactionsThisMonth}
         </div>
         <div className="text-sm">Total Volume: {totalVolumes}</div>
-        <ResponsiveContainer width="100%" height={300}>
+        <ResponsiveContainer width="100%" height={300} className="p-2">
           <ScatterChart>
             <XAxis
               type="number"

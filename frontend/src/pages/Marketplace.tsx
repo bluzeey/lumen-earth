@@ -119,7 +119,7 @@ export default function Marketplace() {
   return (
     <AppLayout title="Marketplace">
       <div className="flex flex-col lg:flex-row gap-4 mt-6">
-        <div className="flex-1 space-y-4">
+        <div className="flex-1 space-y-4 mx-6">
           <SearchFilterBar
             searchQuery={searchQuery}
             onSearchChange={setSearchQuery}
@@ -136,7 +136,7 @@ export default function Marketplace() {
             ))}
           </div>
         </div>
-        <div className="lg:w-1/3 w-full">
+        <div className="lg:w-1/3 my-auto w-full mx-6">
           <MarketActivityChart {...marketActivity} />
         </div>
       </div>
