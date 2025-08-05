@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import { login } from "@/lib/api";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -17,11 +18,10 @@ export default function LoginPage() {
     e.preventDefault();
     setLoading(true);
     try {
-      const fakeToken = "fake-jwt";
-      login({ email }, fakeToken);
+      await login(email, password);
       navigate({ to: `/material-flow-tracer` });
     } catch (err: any) {
-      toast.error("Login failed: " + err.message);
+      toast.error(err.message || "Login failed");
     } finally {
       setLoading(false);
     }
@@ -101,7 +101,7 @@ export default function LoginPage() {
           <p className="text-sm text-center text-charcoal/70">
             Don’t have an account?{" "}
             <a
-              href="/signup"
+              href="/register"
               className="text-primary font-medium hover:underline"
             >
               Sign up
