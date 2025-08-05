@@ -55,7 +55,8 @@ const InventoryTracker = () => {
     () =>
       inventoryData.map((item) => ({
         ...item,
-        parsedDate: parseISO(item.expected_restock_date),
+        // Ensure the date is parsed from a string to avoid `split` errors
+        parsedDate: parseISO(String(item.expected_restock_date)),
       })),
     []
   );
@@ -64,7 +65,8 @@ const InventoryTracker = () => {
     () =>
       orderData.map((order) => ({
         ...order,
-        parsedDate: parseISO(order.delivery_due_date),
+        // Coerce delivery date to string before parsing
+        parsedDate: parseISO(String(order.delivery_due_date)),
         risk_score:
           order.risk_status === "High"
             ? 5
@@ -193,7 +195,7 @@ const InventoryTracker = () => {
           };
         })
         .filter((point) => {
-          const date = parseISO(point.x);
+          const date = parseISO(String(point.x));
           return (
             (!dateRange?.from || !isBefore(date, dateRange.from)) &&
             (!dateRange?.to || !isAfter(date, dateRange.to))
@@ -465,7 +467,12 @@ const InventoryTracker = () => {
                           <div key={point.id}>
                             <strong>{(point as any).serieId}</strong>:{" "}
                             {point.data.yFormatted}t on{" "}
-                            {format(parseISO(point.data.x as string), "MMM d")}
+                            {format(
+                              typeof point.data.x === "string"
+                                ? parseISO(point.data.x)
+                                : (point.data.x as Date),
+                              "MMM d"
+                            )}
                           </div>
                         ))}
                       </div>
