@@ -34,6 +34,7 @@ import orderData from "@/data/orders.json";
 import { IconTrendingDown, IconTrendingUp } from "@tabler/icons-react"
 
 import forecastData from "@/data/inventory_forecast.json";
+import { RiskHeatmapTable } from "@/components/inventory-order-tracker/RiskHeatmapTable";
 
 function groupByKey<T>(
   array: T[],
@@ -329,7 +330,7 @@ const InventoryTracker = () => {
                       ₹{(totalAtRiskValue / 1000).toFixed(1)}K
                     </CardTitle>
                     <CardAction>
-                      <Badge variant="outline" className={cn(valueDelta >= 0 ? "text-green-600" : "text-red-600")}> 
+                      <Badge variant="outline" className={cn(valueDelta >= 0 ?  "text-red-600" : "text-green-600")}> 
                         {valueDelta >= 0 ? <IconTrendingUp /> : <IconTrendingDown />} 
                         {Math.abs(valueDelta).toFixed(1)}%
                       </Badge>
@@ -351,7 +352,7 @@ const InventoryTracker = () => {
                       ₹{(totalAtRiskQty / 1000).toFixed(1)}K
                     </CardTitle>
                     <CardAction>
-                      <Badge variant="outline" className={cn(qtyDelta >= 0 ? "text-green-600" : "text-red-600")}> 
+                      <Badge variant="outline" className={cn(qtyDelta >= 0 ? "text-red-600" : "text-green-600")}> 
                         {qtyDelta >= 0 ? <IconTrendingUp /> : <IconTrendingDown />} 
                         {Math.abs(qtyDelta).toFixed(1)}%
                       </Badge>
@@ -371,56 +372,11 @@ const InventoryTracker = () => {
                 <h2 className="text-lg font-semibold mt-2 mb-4">
                   Orders Risk Heatmap
                 </h2>
-                <table className="w-full text-sm text-center border border-gray-200 pb-2">
-                  <thead>
-                    <tr className="bg-green-800 text-white">
-                      <th className="border px-2 py-1">SKU</th>
-                      {weeks.map((week) => (
-                        <th key={week} className="border px-2 py-1">
-                          {week}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {skus.map((sku) => (
-                      <tr key={sku}>
-                        <td className="border px-2 py-1 font-medium">
-                          {sku}
-                        </td>
-                        {weeks.map((week) => {
-                          const avgRisk =
-                            heatmapData.find((row) => row.week === week)?.[sku] ?? 0;
-  
-                          let bgColor = "";
-                          let textColor = "black";
-                          if (avgRisk >= 4) {
-                            bgColor = "#cc9aff";
-                          } else if (avgRisk >= 2) {
-                            bgColor = "#afd14d";
-                          } else {
-                            bgColor = "#ff4e4e";
-                            textColor = "white";
-                          }
-  
-                          return (
-                            <td
-                              key={week}
-                              className="border px-2 py-1"
-                              style={{
-                                backgroundColor: bgColor,
-                                color: textColor,
-                              }}
-                              title={`SKU: ${sku}\nWeek: ${week}\nAvg Risk Score: ${avgRisk.toFixed(1)}`}
-                            >
-                              {avgRisk.toFixed(1)}
-                            </td>
-                          );
-                        })}
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                <RiskHeatmapTable
+                  heatmapData={heatmapData}
+                  weeks={weeks}
+                  skus={skus}
+                />
               </div>
             </div>
   
