@@ -142,48 +142,50 @@ export default function AppLayout({
               <SidebarSeparator className="my-2 bg-gray-200" />
 
               {/* Group: LumenScape */}
-              <Collapsible asChild defaultOpen className="group/collapsible">
-                <SidebarMenuItem className="group mt-4">
+<Collapsible asChild defaultOpen className="group/collapsible">
+  <SidebarMenuItem className="group mt-4">
+    <CollapsibleTrigger asChild>
+      <SidebarMenuButton tooltip="LumenScape">
+        <LayoutGrid className="h-4 w-4" />
+        <span className="text-lg">LumenScape</span>
+        <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+      </SidebarMenuButton>
+    </CollapsibleTrigger>
+    <CollapsibleContent>
+      <SidebarMenuSub>
+        <SidebarMenuSubItem>
+          <SidebarMenuSubButton asChild>
+            <Link
+              to="/marketplace"
+              activeProps={{ className: "text-primary font-medium bg-[#D2E69A]" }}
+              inactiveProps={{ className: "text-muted-foreground" }}
+            >
+              <Store className="mr-2 h-4 w-4" />
+              Goods Marketplace
+            </Link>
+          </SidebarMenuSubButton>
+        </SidebarMenuSubItem>
+
+        {/* Subgroup: INCCTS */}
+        <Collapsible asChild defaultOpen className="group/subcollapsible">
+                <SidebarMenuSubItem className="group ">
                   <CollapsibleTrigger asChild>
-                    <SidebarMenuButton tooltip="LumenScape">
-                      <LayoutGrid className="h-4 w-4" />
-                      <span className="text-lg">LumenScape</span>
-                      <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-                    </SidebarMenuButton>
+                    <SidebarMenuSubButton tooltip="INCCTS">
+                      <ShieldCheck className="mr-2 h-4 w-4" />
+                      <span className="text-md">INCCTS</span>
+                      <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/subcollapsible:rotate-90" />
+                    </SidebarMenuSubButton>
                   </CollapsibleTrigger>
                   <CollapsibleContent>
                     <SidebarMenuSub>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
                           <Link
-                            to="/marketplace"
-                            activeProps={{
-                              className:
-                                "text-primary font-medium bg-[#D2E69A]",
-                            }}
-                            inactiveProps={{
-                              className: "text-muted-foreground",
-                            }}
-                          >
-                            <Store className="mr-2 h-4 w-4" />
-                            Goods Marketplace
-                          </Link>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                      <SidebarMenuSubItem>
-                        <SidebarMenuSubButton asChild>
-                          <Link
                             to="/credits/comply"
-                            activeProps={{
-                              className:
-                                "text-primary font-medium bg-[#D2E69A]",
-                            }}
-                            inactiveProps={{
-                              className: "text-muted-foreground",
-                            }}
+                            activeProps={{ className: "text-primary font-medium bg-[#D2E69A]" }}
+                            inactiveProps={{ className: "text-muted-foreground" }}
                           >
-                            <ShieldCheck className="mr-2 h-4 w-4" />
-                            INCCTS Comply
+                            <span>INCCTS Comply</span>
                           </Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
@@ -191,15 +193,10 @@ export default function AppLayout({
                         <SidebarMenuSubButton asChild>
                           <Link
                             to="/credits/offset"
-                            activeProps={{
-                              className:
-                                "text-primary font-medium bg-[#D2E69A]",
-                            }}
-                            inactiveProps={{
-                              className: "text-muted-foreground",
-                            }}
+                            activeProps={{ className: "text-primary font-medium bg-[#D2E69A]" }}
+                            inactiveProps={{ className: "text-muted-foreground" }}
                           >
-                            <Leaf className="mr-2 h-4 w-4" />
+                            
                             INCCTS Offset
                           </Link>
                         </SidebarMenuSubButton>
@@ -208,23 +205,22 @@ export default function AppLayout({
                         <SidebarMenuSubButton asChild>
                           <Link
                             to="/credits/grs"
-                            activeProps={{
-                              className:
-                                "text-primary font-medium bg-[#D2E69A]",
-                            }}
-                            inactiveProps={{
-                              className: "text-muted-foreground",
-                            }}
+                            activeProps={{ className: "text-primary font-medium bg-[#D2E69A]" }}
+                            inactiveProps={{ className: "text-muted-foreground" }}
                           >
-                            <Leaf className="mr-2 h-4 w-4" />
                             GRS
                           </Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                     </SidebarMenuSub>
                   </CollapsibleContent>
-                </SidebarMenuItem>
+                </SidebarMenuSubItem>
               </Collapsible>
+
+            </SidebarMenuSub>
+          </CollapsibleContent>
+        </SidebarMenuItem>
+</Collapsible>
               <SidebarSeparator className="my-2 bg-gray-200" />
 
               {/* Group: LumenCredits */}
