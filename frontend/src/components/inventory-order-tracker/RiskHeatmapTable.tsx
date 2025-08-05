@@ -1,7 +1,12 @@
 import React from "react";
 
+interface HeatmapRow {
+  week: string;
+  [sku: string]: number | string;
+}
+
 type RiskHeatmapTableProps = {
-  heatmapData: { week: string; [sku: string]: number }[];
+  heatmapData: HeatmapRow[];
   weeks: string[];
   skus: string[];
 };
@@ -29,8 +34,9 @@ export const RiskHeatmapTable: React.FC<RiskHeatmapTableProps> = ({
             <tr key={sku}>
               <td className="border px-2 py-1 font-medium text-left">{sku}</td>
               {weeks.map((week) => {
-                const avgRisk =
-                  heatmapData.find((row) => row.week === week)?.[sku] ?? 0;
+                const avgRisk = Number(
+                  heatmapData.find((row) => row.week === week)?.[sku] ?? 0
+                );
 
                 let bgColor = "";
                 let textColor = "black";

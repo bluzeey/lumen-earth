@@ -23,7 +23,7 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { Card, CardHeader, CardTitle,CardDescription, CardAction, CardContent, CardFooter } from "@/components/ui/card";
-import { CalendarIcon, ArrowDown, ArrowUp } from "lucide-react";
+import { CalendarIcon } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ResponsiveLine } from "@nivo/line";
 import { cn } from "@/lib/utils";
@@ -151,16 +151,21 @@ const InventoryTracker = () => {
     ? ((totalAtRiskQty - prevTotalAtRiskQty) / prevTotalAtRiskQty) * 100
     : 0;
 
+  interface HeatmapRow {
+    week: string;
+    [sku: string]: number | string;
+  }
+
   const weeks = Array.from(
-    new Set(filteredOrders.map((o) => o.delivery_due_week))
+    new Set(filteredOrders.map((o) => String(o.delivery_due_week)))
   ).sort();
   const skus = Array.from(new Set(filteredOrders.map((o) => o.sku)));
 
-  const heatmapData = weeks.map((week) => {
-    const row: Record<string, any> = { week };
+  const heatmapData: HeatmapRow[] = weeks.map((week) => {
+    const row: HeatmapRow = { week };
     for (const sku of skus) {
       const orders = filteredOrders.filter(
-        (o) => o.delivery_due_week === week && o.sku === sku
+        (o) => String(o.delivery_due_week) === week && o.sku === sku
       );
       const avgRisk = orders.length
         ? orders.reduce((sum, o) => sum + o.risk_score, 0) / orders.length
@@ -235,24 +240,6 @@ const InventoryTracker = () => {
   );
 
   const today = formatISO(new Date(), { representation: "date" });
-
-  const DeltaIndicator = ({ delta }: { delta: number }) => {
-    const positive = delta >= 0;
-    const Icon = positive ? ArrowUp : ArrowDown;
-    return (
-      <div
-        className={cn(
-          "flex items-center",
-          positive ? "text-green-600" : "text-red-600"
-        )}
-      >
-        <Icon className="h-4 w-4 mr-1" />
-        <span className="text-sm">
-          {Math.abs(delta).toFixed(1)}% vs last week
-        </span>
-      </div>
-    );
-  };
 
   return (
     <AppLayout title="Inventory and Order Tracker">
