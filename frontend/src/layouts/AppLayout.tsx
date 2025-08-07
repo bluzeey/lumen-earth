@@ -156,8 +156,13 @@ export default function AppLayout({
                         <SidebarMenuSubButton asChild>
                           <Link
                             to="/marketplace"
-                            activeProps={{ className: "text-primary font-medium bg-[#D2E69A]" }}
-                            inactiveProps={{ className: "text-muted-foreground" }}
+                            activeProps={{
+                              className:
+                                "text-primary font-medium bg-[#D2E69A]",
+                            }}
+                            inactiveProps={{
+                              className: "text-muted-foreground",
+                            }}
                           >
                             <Store className="mr-2 h-4 w-4" />
                             Goods Marketplace
@@ -168,8 +173,13 @@ export default function AppLayout({
                         <SidebarMenuSubButton asChild>
                           <Link
                             to="/credits/comply"
-                            activeProps={{ className: "text-primary font-medium bg-[#D2E69A]" }}
-                            inactiveProps={{ className: "text-muted-foreground" }}
+                            activeProps={{
+                              className:
+                                "text-primary font-medium bg-[#D2E69A]",
+                            }}
+                            inactiveProps={{
+                              className: "text-muted-foreground",
+                            }}
                           >
                             <ShieldCheck className="mr-2 h-4 w-4" />
                             INCCTS Comply
@@ -177,7 +187,11 @@ export default function AppLayout({
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
 
-                      <Collapsible asChild defaultOpen className="group/subcollapsible">
+                      <Collapsible
+                        asChild
+                        defaultOpen
+                        className="group/subcollapsible"
+                      >
                         <SidebarMenuSubItem className="group">
                           <CollapsibleTrigger asChild>
                             <SidebarMenuSubButton>
@@ -192,10 +206,14 @@ export default function AppLayout({
                                 <SidebarMenuSubButton asChild>
                                   <Link
                                     to="/voluntary/pacm"
-                                    activeProps={{ className: "text-primary font-medium bg-[#D2E69A]" }}
-                                    inactiveProps={{ className: "text-muted-foreground" }}
+                                    activeProps={{
+                                      className:
+                                        "text-primary font-medium bg-[#D2E69A]",
+                                    }}
+                                    inactiveProps={{
+                                      className: "text-muted-foreground",
+                                    }}
                                   >
-                                    <Layers3 className="mr-2 h-4 w-4" />
                                     PACM
                                   </Link>
                                 </SidebarMenuSubButton>
@@ -204,21 +222,30 @@ export default function AppLayout({
                                 <SidebarMenuSubButton asChild>
                                   <Link
                                     to="/voluntary/inccts-offset"
-                                    activeProps={{ className: "text-primary font-medium bg-[#D2E69A]" }}
-                                    inactiveProps={{ className: "text-muted-foreground" }}
+                                    activeProps={{
+                                      className:
+                                        "text-primary font-medium bg-[#D2E69A]",
+                                    }}
+                                    inactiveProps={{
+                                      className: "text-muted-foreground",
+                                    }}
                                   >
-                                    <ShieldCheck className="mr-2 h-4 w-4" />
-                                    IN CCTS Offset
+                                    INCCTS Offset
                                   </Link>
                                 </SidebarMenuSubButton>
                               </SidebarMenuSubItem>
 
-                              <Collapsible asChild defaultOpen className="group/subcollapsible">
+                              <Collapsible
+                                asChild
+                                defaultOpen
+                                className="group/subcollapsible"
+                              >
                                 <SidebarMenuSubItem className="group">
                                   <CollapsibleTrigger asChild>
                                     <SidebarMenuSubButton>
-                                      <Landmark className="mr-2 h-4 w-4" />
-                                      <span className="text-md">Private Registries</span>
+                                      <span className="text-md w-24 absolute">
+                                        Pvt Registries
+                                      </span>
                                       <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/subcollapsible:rotate-90" />
                                     </SidebarMenuSubButton>
                                   </CollapsibleTrigger>
@@ -228,10 +255,15 @@ export default function AppLayout({
                                         <SidebarMenuSubButton asChild>
                                           <Link
                                             to="/voluntary/private/grs"
-                                            activeProps={{ className: "text-primary font-medium bg-[#D2E69A]" }}
-                                            inactiveProps={{ className: "text-muted-foreground" }}
+                                            activeProps={{
+                                              className:
+                                                "text-primary font-medium bg-[#D2E69A]",
+                                            }}
+                                            inactiveProps={{
+                                              className:
+                                                "text-muted-foreground",
+                                            }}
                                           >
-                                            <ShieldCheck className="mr-2 h-4 w-4" />
                                             GRS
                                           </Link>
                                         </SidebarMenuSubButton>
@@ -240,10 +272,15 @@ export default function AppLayout({
                                         <SidebarMenuSubButton asChild>
                                           <Link
                                             to="/voluntary/private/verra"
-                                            activeProps={{ className: "text-primary font-medium bg-[#D2E69A]" }}
-                                            inactiveProps={{ className: "text-muted-foreground" }}
+                                            activeProps={{
+                                              className:
+                                                "text-primary font-medium bg-[#D2E69A]",
+                                            }}
+                                            inactiveProps={{
+                                              className:
+                                                "text-muted-foreground",
+                                            }}
                                           >
-                                            <Landmark className="mr-2 h-4 w-4" />
                                             Verra
                                           </Link>
                                         </SidebarMenuSubButton>
@@ -252,11 +289,16 @@ export default function AppLayout({
                                         <SidebarMenuSubButton asChild>
                                           <Link
                                             to="/voluntary/private/gold-standard"
-                                            activeProps={{ className: "text-primary font-medium bg-[#D2E69A]" }}
-                                            inactiveProps={{ className: "text-muted-foreground" }}
+                                            activeProps={{
+                                              className:
+                                                "text-primary font-medium bg-[#D2E69A]",
+                                            }}
+                                            inactiveProps={{
+                                              className:
+                                                "text-muted-foreground",
+                                            }}
                                           >
-                                            <Landmark className="mr-2 h-4 w-4" />
-                                            Gold Standard
+                                            Gold Std
                                           </Link>
                                         </SidebarMenuSubButton>
                                       </SidebarMenuSubItem>
@@ -264,10 +306,15 @@ export default function AppLayout({
                                         <SidebarMenuSubButton asChild>
                                           <Link
                                             to="/voluntary/private/klimadao"
-                                            activeProps={{ className: "text-primary font-medium bg-[#D2E69A]" }}
-                                            inactiveProps={{ className: "text-muted-foreground" }}
+                                            activeProps={{
+                                              className:
+                                                "text-primary font-medium bg-[#D2E69A]",
+                                            }}
+                                            inactiveProps={{
+                                              className:
+                                                "text-muted-foreground",
+                                            }}
                                           >
-                                            <Landmark className="mr-2 h-4 w-4" />
                                             KlimaDAO
                                           </Link>
                                         </SidebarMenuSubButton>
@@ -276,10 +323,15 @@ export default function AppLayout({
                                         <SidebarMenuSubButton asChild>
                                           <Link
                                             to="/voluntary/private/atlantis"
-                                            activeProps={{ className: "text-primary font-medium bg-[#D2E69A]" }}
-                                            inactiveProps={{ className: "text-muted-foreground" }}
+                                            activeProps={{
+                                              className:
+                                                "text-primary font-medium bg-[#D2E69A]",
+                                            }}
+                                            inactiveProps={{
+                                              className:
+                                                "text-muted-foreground",
+                                            }}
                                           >
-                                            <Landmark className="mr-2 h-4 w-4" />
                                             AtlantisP2P
                                           </Link>
                                         </SidebarMenuSubButton>
