@@ -35,43 +35,95 @@ const TAB_CONFIGS = {
 
 type TabKey = keyof typeof TAB_CONFIGS;
 
+function ScoreCircle({
+  score,
+  colorClass,
+}: {
+  score: number;
+  colorClass: string;
+}) {
+  const radius = 35;
+  const circumference = 2 * Math.PI * radius;
+  const [offset, setOffset] = useState(circumference);
+
+  useEffect(() => {
+    const progress = (score / 10) * circumference;
+    const timeout = setTimeout(
+      () => setOffset(circumference - progress),
+      100
+    );
+    return () => clearTimeout(timeout);
+  }, [score, circumference]);
+
+  return (
+    <div className="relative w-20 h-20">
+      <svg className="w-20 h-20 -rotate-90">
+        <circle
+          className="text-gray-200"
+          stroke="currentColor"
+          strokeWidth="10"
+          fill="transparent"
+          r={radius}
+          cx="40"
+          cy="40"
+        />
+        <circle
+          className={`${colorClass} transition-[stroke-dashoffset] duration-700 ease-out`}
+          stroke="currentColor"
+          strokeWidth="10"
+          strokeLinecap="round"
+          fill="transparent"
+          r={radius}
+          cx="40"
+          cy="40"
+          strokeDasharray={circumference}
+          strokeDashoffset={offset}
+        />
+      </svg>
+      <div className="absolute inset-0 flex items-center justify-center text-lg font-bold">
+        {score}/10
+      </div>
+    </div>
+  );
+}
+
 export default function UserInputsPage() {
   const insights = [
     {
       label: "Collection",
       score: 7,
-      color: "border-yellow-500",
+      colorClass: "text-yellow-500",
       description:
         "Key inputs on raw material supply by institutional providers",
     },
     {
       label: "Environmental Protection",
       score: 7,
-      color: "border-yellow-500",
+      colorClass: "text-yellow-500",
       description: "KPIs on Energy, Water, Air, Waste and chemical emissions",
     },
     {
       label: "Categorization",
       score: 8,
-      color: "border-red-500",
+      colorClass: "text-red-500",
       description: "Key batching, sorting and composition metric tracking",
     },
     {
       label: "Responsible Consumer Engagement",
       score: 9,
-      color: "border-green-600",
+      colorClass: "text-green-600",
       description: "KPIs on consumer complaints, feedback, data privacy",
     },
     {
       label: "Recycling",
       score: 8,
-      color: "border-green-600",
+      colorClass: "text-green-600",
       description: "Recycling metrics including yield, buffer, at-risk demand",
     },
     {
       label: "Human Rights & Employee Wellbeing",
       score: 9,
-      color: "border-green-600",
+      colorClass: "text-green-600",
       description: "Fair wages, benefits, accessibility, unionization",
     },
   ];
@@ -133,28 +185,24 @@ export default function UserInputsPage() {
   return (
     <AppLayout title="User Inputs">
       <div className="p-6 space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {insights.map((item, i) => (
-        <Card
-          key={i}
-          className="border bg-white p-6 flex flex-row items-center"
-        >
-          <div className="flex flex-col">
-            <CardTitle className="text-base font-bold">
-              {item.label}
-            </CardTitle>
-            <p className="text-sm text-muted-foreground mt-1">
-              {item.description}
-            </p>
-          </div>
-          <div
-            className={`flex-shrink-0 w-20 h-20 rounded-full border-10 ${item.color} flex items-center justify-center text-lg font-bold`}
-          >
-            {item.score}/10
-          </div>
-        </Card>
-      ))}
-    </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {insights.map((item, i) => (
+            <Card
+              key={i}
+              className="border bg-white p-6 flex flex-row items-center justify-between"
+            >
+              <div className="flex flex-col">
+                <CardTitle className="text-base font-bold">
+                  {item.label}
+                </CardTitle>
+                <p className="text-sm text-muted-foreground mt-1">
+                  {item.description}
+                </p>
+              </div>
+              <ScoreCircle score={item.score} colorClass={item.colorClass} />
+            </Card>
+          ))}
+        </div>
 
         <Separator />
 
