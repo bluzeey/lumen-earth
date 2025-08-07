@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ResponsiveSankey } from "@nivo/sankey";
 
 type SankeyNode = { id: string };
@@ -111,9 +111,17 @@ export const SankeyChart: React.FC<Props> = ({ batches }) => {
     return <div className="text-red-500">Error: Invalid batch data</div>;
   }
 
-  const { nodes, links, originColors } = generateSankeyDataFromBatches(batches);
+  const [chartData, setChartData] = useState<SankeyResult | null>(null);
 
-  if (!nodes.length || !links.length) {
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setChartData(generateSankeyDataFromBatches(batches));
+    }, 100);
+
+    return () => clearTimeout(timeout);
+  }, [batches]);
+
+  if (chartData && (!chartData.nodes.length || !chartData.links.length)) {
     return <div className="text-gray-500">No flows to visualize</div>;
   }
 
@@ -126,38 +134,40 @@ export const SankeyChart: React.FC<Props> = ({ batches }) => {
         overflowX: "auto",
       }}
     >
-      <ResponsiveSankey
-        data={{ nodes, links }}
-        margin={{ top: 20, right: 60, bottom: 20, left: 60 }}
-        align="justify"
-        nodeOpacity={1}
-        nodeThickness={12}
-        nodeInnerPadding={6}
-        nodeSpacing={16}
-        nodeBorderWidth={1}
-        nodeBorderColor={{ from: "color", modifiers: [["darker", 0.8]] }}
-        linkOpacity={1}
-        linkHoverOpacity={1}
-        linkHoverOthersOpacity={0.1}
-        enableLinkGradient={false}
-        labelPosition="inside"
-        labelOrientation="horizontal"
-        labelPadding={6}
-        labelTextColor={{ from: "color", modifiers: [["darker", 1.2]] }}
-        animate={true}
-        motionConfig="gentle"
-        colors={(item: SankeyNode | SankeyLink) => {
-          if ("id" in item) {
-            const id = item.id;
-            if (id.startsWith("Origin:")) {
-              return originColors[id] || "#a6cee3";
+      {chartData && (
+        <ResponsiveSankey
+          data={{ nodes: chartData.nodes, links: chartData.links }}
+          margin={{ top: 20, right: 60, bottom: 20, left: 60 }}
+          align="justify"
+          nodeOpacity={1}
+          nodeThickness={12}
+          nodeInnerPadding={6}
+          nodeSpacing={16}
+          nodeBorderWidth={1}
+          nodeBorderColor={{ from: "color", modifiers: [["darker", 0.8]] }}
+          linkOpacity={1}
+          linkHoverOpacity={1}
+          linkHoverOthersOpacity={0.1}
+          enableLinkGradient={false}
+          labelPosition="inside"
+          labelOrientation="horizontal"
+          labelPadding={6}
+          labelTextColor={{ from: "color", modifiers: [["darker", 1.2]] }}
+          animate={true}
+          motionConfig="gentle"
+          colors={(item: SankeyNode | SankeyLink) => {
+            if ("id" in item) {
+              const id = item.id;
+              if (id.startsWith("Origin:")) {
+                return chartData.originColors[id] || "#a6cee3";
+              }
+              return getStageColor(id);
+            } else {
+              return getStageColor(item.source);
             }
-            return getStageColor(id);
-          } else {
-            return getStageColor(item.source);
-          }
-        }}
-      />
+          }}
+        />
+      )}
     </div>
   );
 };
