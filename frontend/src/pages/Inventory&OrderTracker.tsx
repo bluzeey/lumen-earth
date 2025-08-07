@@ -403,6 +403,8 @@ const InventoryTracker = () => {
   
                   <ResponsiveLine
                     data={displayedForecastData}
+                    animate={true}
+                    motionConfig="gentle"
                     margin={{ top: 10, right: 50, bottom: 160, left: 50 }}
                     xScale={{
                       type: "time",
