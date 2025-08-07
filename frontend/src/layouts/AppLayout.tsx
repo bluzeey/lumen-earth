@@ -141,88 +141,161 @@ export default function AppLayout({
               <SidebarSeparator className="my-2 bg-gray-200" />
 
               {/* Group: LumenScape */}
-<Collapsible asChild defaultOpen className="group/collapsible">
-  <SidebarMenuItem className="group mt-4">
-    <CollapsibleTrigger asChild>
-      <SidebarMenuButton tooltip="LumenScape">
-        <LayoutGrid className="h-4 w-4" />
-        <span className="text-lg">LumenScape</span>
-        <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-      </SidebarMenuButton>
-    </CollapsibleTrigger>
-    <CollapsibleContent>
-      <SidebarMenuSub>
-        <SidebarMenuSubItem>
-          <SidebarMenuSubButton asChild>
-            <Link
-              to="/marketplace"
-              activeProps={{ className: "text-primary font-medium bg-[#D2E69A]" }}
-              inactiveProps={{ className: "text-muted-foreground" }}
-            >
-              <Store className="mr-2 h-4 w-4" />
-              Goods Marketplace
-            </Link>
-          </SidebarMenuSubButton>
-        </SidebarMenuSubItem>
-
-        {/* Subgroup: INCCTS */}
-        <Collapsible asChild defaultOpen className="group/subcollapsible">
-                <SidebarMenuSubItem className="group ">
+              <Collapsible asChild defaultOpen className="group/collapsible">
+                <SidebarMenuItem className="group mt-4">
                   <CollapsibleTrigger asChild>
-                    <SidebarMenuSubButton>
-                      <ShieldCheck className="mr-2 h-4 w-4" />
-                      <span className="text-md">INCCTS</span>
-                      <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/subcollapsible:rotate-90" />
-                    </SidebarMenuSubButton>
+                    <SidebarMenuButton tooltip="LumenScape">
+                      <LayoutGrid className="h-4 w-4" />
+                      <span className="text-lg">LumenScape</span>
+                      <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                    </SidebarMenuButton>
                   </CollapsibleTrigger>
                   <CollapsibleContent>
                     <SidebarMenuSub>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
                           <Link
-                            to="/credits/comply"
-                            className="mr-2"
+                            to="/marketplace"
                             activeProps={{ className: "text-primary font-medium bg-[#D2E69A]" }}
                             inactiveProps={{ className: "text-muted-foreground" }}
                           >
+                            <Store className="mr-2 h-4 w-4" />
+                            Goods Marketplace
+                          </Link>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton asChild>
+                          <Link
+                            to="/credits/comply"
+                            activeProps={{ className: "text-primary font-medium bg-[#D2E69A]" }}
+                            inactiveProps={{ className: "text-muted-foreground" }}
+                          >
+                            <ShieldCheck className="mr-2 h-4 w-4" />
                             INCCTS Comply
                           </Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
-                      <SidebarMenuSubItem>
-                        <SidebarMenuSubButton asChild>
-                          <Link
-                            to="/credits/offset"
-                            className="mr-2"
-                            activeProps={{ className: "text-primary font-medium bg-[#D2E69A]" }}
-                            inactiveProps={{ className: "text-muted-foreground" }}
-                          >
-                            
-                            INCCTS Offset
-                          </Link>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                      <SidebarMenuSubItem>
-                        <SidebarMenuSubButton asChild>
-                          <Link
-                            to="/credits/grs"
-                            className="mr-2"
-                            activeProps={{ className: "text-primary font-medium bg-[#D2E69A]" }}
-                            inactiveProps={{ className: "text-muted-foreground" }}
-                          >
-                            GRS
-                          </Link>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
+
+                      <Collapsible asChild defaultOpen className="group/subcollapsible">
+                        <SidebarMenuSubItem className="group">
+                          <CollapsibleTrigger asChild>
+                            <SidebarMenuSubButton>
+                              <ClipboardList className="mr-2 h-4 w-4" />
+                              <span className="text-md">Voluntary Markets</span>
+                              <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/subcollapsible:rotate-90" />
+                            </SidebarMenuSubButton>
+                          </CollapsibleTrigger>
+                          <CollapsibleContent>
+                            <SidebarMenuSub>
+                              <SidebarMenuSubItem>
+                                <SidebarMenuSubButton asChild>
+                                  <Link
+                                    to="/voluntary/pacm"
+                                    activeProps={{ className: "text-primary font-medium bg-[#D2E69A]" }}
+                                    inactiveProps={{ className: "text-muted-foreground" }}
+                                  >
+                                    <Layers3 className="mr-2 h-4 w-4" />
+                                    PACM
+                                  </Link>
+                                </SidebarMenuSubButton>
+                              </SidebarMenuSubItem>
+                              <SidebarMenuSubItem>
+                                <SidebarMenuSubButton asChild>
+                                  <Link
+                                    to="/voluntary/inccts-offset"
+                                    activeProps={{ className: "text-primary font-medium bg-[#D2E69A]" }}
+                                    inactiveProps={{ className: "text-muted-foreground" }}
+                                  >
+                                    <ShieldCheck className="mr-2 h-4 w-4" />
+                                    IN CCTS Offset
+                                  </Link>
+                                </SidebarMenuSubButton>
+                              </SidebarMenuSubItem>
+
+                              <Collapsible asChild defaultOpen className="group/subcollapsible">
+                                <SidebarMenuSubItem className="group">
+                                  <CollapsibleTrigger asChild>
+                                    <SidebarMenuSubButton>
+                                      <Landmark className="mr-2 h-4 w-4" />
+                                      <span className="text-md">Private Registries</span>
+                                      <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/subcollapsible:rotate-90" />
+                                    </SidebarMenuSubButton>
+                                  </CollapsibleTrigger>
+                                  <CollapsibleContent>
+                                    <SidebarMenuSub>
+                                      <SidebarMenuSubItem>
+                                        <SidebarMenuSubButton asChild>
+                                          <Link
+                                            to="/voluntary/private/grs"
+                                            activeProps={{ className: "text-primary font-medium bg-[#D2E69A]" }}
+                                            inactiveProps={{ className: "text-muted-foreground" }}
+                                          >
+                                            <ShieldCheck className="mr-2 h-4 w-4" />
+                                            GRS
+                                          </Link>
+                                        </SidebarMenuSubButton>
+                                      </SidebarMenuSubItem>
+                                      <SidebarMenuSubItem>
+                                        <SidebarMenuSubButton asChild>
+                                          <Link
+                                            to="/voluntary/private/verra"
+                                            activeProps={{ className: "text-primary font-medium bg-[#D2E69A]" }}
+                                            inactiveProps={{ className: "text-muted-foreground" }}
+                                          >
+                                            <Landmark className="mr-2 h-4 w-4" />
+                                            Verra
+                                          </Link>
+                                        </SidebarMenuSubButton>
+                                      </SidebarMenuSubItem>
+                                      <SidebarMenuSubItem>
+                                        <SidebarMenuSubButton asChild>
+                                          <Link
+                                            to="/voluntary/private/gold-standard"
+                                            activeProps={{ className: "text-primary font-medium bg-[#D2E69A]" }}
+                                            inactiveProps={{ className: "text-muted-foreground" }}
+                                          >
+                                            <Landmark className="mr-2 h-4 w-4" />
+                                            Gold Standard
+                                          </Link>
+                                        </SidebarMenuSubButton>
+                                      </SidebarMenuSubItem>
+                                      <SidebarMenuSubItem>
+                                        <SidebarMenuSubButton asChild>
+                                          <Link
+                                            to="/voluntary/private/klimadao"
+                                            activeProps={{ className: "text-primary font-medium bg-[#D2E69A]" }}
+                                            inactiveProps={{ className: "text-muted-foreground" }}
+                                          >
+                                            <Landmark className="mr-2 h-4 w-4" />
+                                            KlimaDAO
+                                          </Link>
+                                        </SidebarMenuSubButton>
+                                      </SidebarMenuSubItem>
+                                      <SidebarMenuSubItem>
+                                        <SidebarMenuSubButton asChild>
+                                          <Link
+                                            to="/voluntary/private/atlantis"
+                                            activeProps={{ className: "text-primary font-medium bg-[#D2E69A]" }}
+                                            inactiveProps={{ className: "text-muted-foreground" }}
+                                          >
+                                            <Landmark className="mr-2 h-4 w-4" />
+                                            AtlantisP2P
+                                          </Link>
+                                        </SidebarMenuSubButton>
+                                      </SidebarMenuSubItem>
+                                    </SidebarMenuSub>
+                                  </CollapsibleContent>
+                                </SidebarMenuSubItem>
+                              </Collapsible>
+                            </SidebarMenuSub>
+                          </CollapsibleContent>
+                        </SidebarMenuSubItem>
+                      </Collapsible>
                     </SidebarMenuSub>
                   </CollapsibleContent>
-                </SidebarMenuSubItem>
+                </SidebarMenuItem>
               </Collapsible>
-
-            </SidebarMenuSub>
-          </CollapsibleContent>
-        </SidebarMenuItem>
-</Collapsible>
               <SidebarSeparator className="my-2 bg-gray-200" />
 
               {/* Group: LumenCredits */}
