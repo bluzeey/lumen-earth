@@ -1,4 +1,11 @@
-import { Card, CardTitle, CardHeader, CardDescription, CardFooter } from "@/components/ui/card";
+import { useEffect, useState } from "react";
+import {
+  Card,
+  CardTitle,
+  CardHeader,
+  CardDescription,
+  CardFooter,
+} from "@/components/ui/card";
 import {
   Table,
   TableHeader,
@@ -86,6 +93,15 @@ const greenInsetsRegistry = [
 ];
 
 export default function FinancializationPage() {
+  const [chartData, setChartData] = useState([]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setChartData(metrics.donutChartData);
+    }, 100);
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <AppLayout title="Green Certification & Finance">
       <div className="p-4 sm:p-6 text-charcoal">
@@ -108,17 +124,19 @@ export default function FinancializationPage() {
           </Card>
 
           <Card className="h-full w-full bg-transparent shadow-none border-transparent flex items-center justify-center">
-            <div className="w-full h-64">
-              <ResponsivePie
-                data={metrics.donutChartData}
-                innerRadius={0.6}
-                margin={{ top: 20, right: 20, bottom: 40, left: 20 }}
-                colors={(d) => d.data.color as string}
-                enableArcLinkLabels={true}
-                arcLabelsTextColor="#333333"
-                animate={true}
-                motionConfig="wobbly"
-              />
+            <div className="w-full h-64 relative">
+              {chartData && (
+                <ResponsivePie
+                  data={chartData}
+                  innerRadius={0.6}
+                  margin={{ top: 20, right: 20, bottom: 40, left: 20 }}
+                  colors={(d) => d.data.color as string}
+                  enableArcLinkLabels={true}
+                  arcLabelsTextColor="#333333"
+                  animate={true}
+                  motionConfig="wobbly"
+                />
+              )}
             </div>
           </Card>
 
@@ -147,7 +165,9 @@ export default function FinancializationPage() {
               </CardTitle>
             </CardHeader>
             <CardFooter className="flex-col items-start gap-1.5 text-sm">
-              <div className="line-clamp-1 font-medium">GRS active vs possible</div>
+              <div className="line-clamp-1 font-medium">
+                GRS active vs possible
+              </div>
               <div className="text-muted-foreground">
                 Green Recycling Standard
               </div>
@@ -179,14 +199,14 @@ export default function FinancializationPage() {
               </CardTitle>
             </CardHeader>
             <CardFooter className="flex-col items-start gap-1.5 text-sm">
-              <div className="line-clamp-1 font-medium">Fundable initiatives</div>
+              <div className="line-clamp-1 font-medium">
+                Fundable initiatives
+              </div>
               <div className="text-muted-foreground">
                 Climate-linked infrastructure
               </div>
             </CardFooter>
           </Card>
-
-          
         </div>
 
         {/* Suggestions and Registry */}
