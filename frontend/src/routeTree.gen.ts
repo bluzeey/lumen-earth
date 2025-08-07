@@ -26,12 +26,19 @@ import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as BoundaryRouteImport } from './routes/boundary'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MaterialIndexRouteImport } from './routes/material/index'
+import { Route as VoluntaryPacmRouteImport } from './routes/voluntary/pacm'
+import { Route as VoluntaryIncctsOffsetRouteImport } from './routes/voluntary/inccts-offset'
 import { Route as MaterialNewRouteImport } from './routes/material/new'
 import { Route as MaterialBatchIdRouteImport } from './routes/material/$batchId'
 import { Route as InsetsProjectIdRouteImport } from './routes/insets/$projectId'
 import { Route as CreditsOffsetRouteImport } from './routes/credits/offset'
 import { Route as CreditsGrsRouteImport } from './routes/credits/grs'
 import { Route as CreditsComplyRouteImport } from './routes/credits/comply'
+import { Route as VoluntaryPrivateVerraRouteImport } from './routes/voluntary/private/verra'
+import { Route as VoluntaryPrivateKlimadaoRouteImport } from './routes/voluntary/private/klimadao'
+import { Route as VoluntaryPrivateGrsRouteImport } from './routes/voluntary/private/grs'
+import { Route as VoluntaryPrivateGoldStandardRouteImport } from './routes/voluntary/private/gold-standard'
+import { Route as VoluntaryPrivateAtlantisRouteImport } from './routes/voluntary/private/atlantis'
 
 const UserInputsRoute = UserInputsRouteImport.update({
   id: '/user-inputs',
@@ -119,6 +126,16 @@ const MaterialIndexRoute = MaterialIndexRouteImport.update({
   path: '/material/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VoluntaryPacmRoute = VoluntaryPacmRouteImport.update({
+  id: '/voluntary/pacm',
+  path: '/voluntary/pacm',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VoluntaryIncctsOffsetRoute = VoluntaryIncctsOffsetRouteImport.update({
+  id: '/voluntary/inccts-offset',
+  path: '/voluntary/inccts-offset',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MaterialNewRoute = MaterialNewRouteImport.update({
   id: '/material/new',
   path: '/material/new',
@@ -149,6 +166,34 @@ const CreditsComplyRoute = CreditsComplyRouteImport.update({
   path: '/credits/comply',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VoluntaryPrivateVerraRoute = VoluntaryPrivateVerraRouteImport.update({
+  id: '/voluntary/private/verra',
+  path: '/voluntary/private/verra',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VoluntaryPrivateKlimadaoRoute =
+  VoluntaryPrivateKlimadaoRouteImport.update({
+    id: '/voluntary/private/klimadao',
+    path: '/voluntary/private/klimadao',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const VoluntaryPrivateGrsRoute = VoluntaryPrivateGrsRouteImport.update({
+  id: '/voluntary/private/grs',
+  path: '/voluntary/private/grs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VoluntaryPrivateGoldStandardRoute =
+  VoluntaryPrivateGoldStandardRouteImport.update({
+    id: '/voluntary/private/gold-standard',
+    path: '/voluntary/private/gold-standard',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const VoluntaryPrivateAtlantisRoute =
+  VoluntaryPrivateAtlantisRouteImport.update({
+    id: '/voluntary/private/atlantis',
+    path: '/voluntary/private/atlantis',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -173,7 +218,14 @@ export interface FileRoutesByFullPath {
   '/insets/$projectId': typeof InsetsProjectIdRoute
   '/material/$batchId': typeof MaterialBatchIdRoute
   '/material/new': typeof MaterialNewRoute
+  '/voluntary/inccts-offset': typeof VoluntaryIncctsOffsetRoute
+  '/voluntary/pacm': typeof VoluntaryPacmRoute
   '/material': typeof MaterialIndexRoute
+  '/voluntary/private/atlantis': typeof VoluntaryPrivateAtlantisRoute
+  '/voluntary/private/gold-standard': typeof VoluntaryPrivateGoldStandardRoute
+  '/voluntary/private/grs': typeof VoluntaryPrivateGrsRoute
+  '/voluntary/private/klimadao': typeof VoluntaryPrivateKlimadaoRoute
+  '/voluntary/private/verra': typeof VoluntaryPrivateVerraRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -198,7 +250,14 @@ export interface FileRoutesByTo {
   '/insets/$projectId': typeof InsetsProjectIdRoute
   '/material/$batchId': typeof MaterialBatchIdRoute
   '/material/new': typeof MaterialNewRoute
+  '/voluntary/inccts-offset': typeof VoluntaryIncctsOffsetRoute
+  '/voluntary/pacm': typeof VoluntaryPacmRoute
   '/material': typeof MaterialIndexRoute
+  '/voluntary/private/atlantis': typeof VoluntaryPrivateAtlantisRoute
+  '/voluntary/private/gold-standard': typeof VoluntaryPrivateGoldStandardRoute
+  '/voluntary/private/grs': typeof VoluntaryPrivateGrsRoute
+  '/voluntary/private/klimadao': typeof VoluntaryPrivateKlimadaoRoute
+  '/voluntary/private/verra': typeof VoluntaryPrivateVerraRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -224,7 +283,14 @@ export interface FileRoutesById {
   '/insets/$projectId': typeof InsetsProjectIdRoute
   '/material/$batchId': typeof MaterialBatchIdRoute
   '/material/new': typeof MaterialNewRoute
+  '/voluntary/inccts-offset': typeof VoluntaryIncctsOffsetRoute
+  '/voluntary/pacm': typeof VoluntaryPacmRoute
   '/material/': typeof MaterialIndexRoute
+  '/voluntary/private/atlantis': typeof VoluntaryPrivateAtlantisRoute
+  '/voluntary/private/gold-standard': typeof VoluntaryPrivateGoldStandardRoute
+  '/voluntary/private/grs': typeof VoluntaryPrivateGrsRoute
+  '/voluntary/private/klimadao': typeof VoluntaryPrivateKlimadaoRoute
+  '/voluntary/private/verra': typeof VoluntaryPrivateVerraRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -251,7 +317,14 @@ export interface FileRouteTypes {
     | '/insets/$projectId'
     | '/material/$batchId'
     | '/material/new'
+    | '/voluntary/inccts-offset'
+    | '/voluntary/pacm'
     | '/material'
+    | '/voluntary/private/atlantis'
+    | '/voluntary/private/gold-standard'
+    | '/voluntary/private/grs'
+    | '/voluntary/private/klimadao'
+    | '/voluntary/private/verra'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -276,7 +349,14 @@ export interface FileRouteTypes {
     | '/insets/$projectId'
     | '/material/$batchId'
     | '/material/new'
+    | '/voluntary/inccts-offset'
+    | '/voluntary/pacm'
     | '/material'
+    | '/voluntary/private/atlantis'
+    | '/voluntary/private/gold-standard'
+    | '/voluntary/private/grs'
+    | '/voluntary/private/klimadao'
+    | '/voluntary/private/verra'
   id:
     | '__root__'
     | '/'
@@ -301,7 +381,14 @@ export interface FileRouteTypes {
     | '/insets/$projectId'
     | '/material/$batchId'
     | '/material/new'
+    | '/voluntary/inccts-offset'
+    | '/voluntary/pacm'
     | '/material/'
+    | '/voluntary/private/atlantis'
+    | '/voluntary/private/gold-standard'
+    | '/voluntary/private/grs'
+    | '/voluntary/private/klimadao'
+    | '/voluntary/private/verra'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -327,7 +414,14 @@ export interface RootRouteChildren {
   InsetsProjectIdRoute: typeof InsetsProjectIdRoute
   MaterialBatchIdRoute: typeof MaterialBatchIdRoute
   MaterialNewRoute: typeof MaterialNewRoute
+  VoluntaryIncctsOffsetRoute: typeof VoluntaryIncctsOffsetRoute
+  VoluntaryPacmRoute: typeof VoluntaryPacmRoute
   MaterialIndexRoute: typeof MaterialIndexRoute
+  VoluntaryPrivateAtlantisRoute: typeof VoluntaryPrivateAtlantisRoute
+  VoluntaryPrivateGoldStandardRoute: typeof VoluntaryPrivateGoldStandardRoute
+  VoluntaryPrivateGrsRoute: typeof VoluntaryPrivateGrsRoute
+  VoluntaryPrivateKlimadaoRoute: typeof VoluntaryPrivateKlimadaoRoute
+  VoluntaryPrivateVerraRoute: typeof VoluntaryPrivateVerraRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -451,6 +545,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MaterialIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/voluntary/pacm': {
+      id: '/voluntary/pacm'
+      path: '/voluntary/pacm'
+      fullPath: '/voluntary/pacm'
+      preLoaderRoute: typeof VoluntaryPacmRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/voluntary/inccts-offset': {
+      id: '/voluntary/inccts-offset'
+      path: '/voluntary/inccts-offset'
+      fullPath: '/voluntary/inccts-offset'
+      preLoaderRoute: typeof VoluntaryIncctsOffsetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/material/new': {
       id: '/material/new'
       path: '/material/new'
@@ -493,6 +601,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CreditsComplyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/voluntary/private/verra': {
+      id: '/voluntary/private/verra'
+      path: '/voluntary/private/verra'
+      fullPath: '/voluntary/private/verra'
+      preLoaderRoute: typeof VoluntaryPrivateVerraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/voluntary/private/klimadao': {
+      id: '/voluntary/private/klimadao'
+      path: '/voluntary/private/klimadao'
+      fullPath: '/voluntary/private/klimadao'
+      preLoaderRoute: typeof VoluntaryPrivateKlimadaoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/voluntary/private/grs': {
+      id: '/voluntary/private/grs'
+      path: '/voluntary/private/grs'
+      fullPath: '/voluntary/private/grs'
+      preLoaderRoute: typeof VoluntaryPrivateGrsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/voluntary/private/gold-standard': {
+      id: '/voluntary/private/gold-standard'
+      path: '/voluntary/private/gold-standard'
+      fullPath: '/voluntary/private/gold-standard'
+      preLoaderRoute: typeof VoluntaryPrivateGoldStandardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/voluntary/private/atlantis': {
+      id: '/voluntary/private/atlantis'
+      path: '/voluntary/private/atlantis'
+      fullPath: '/voluntary/private/atlantis'
+      preLoaderRoute: typeof VoluntaryPrivateAtlantisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -519,7 +662,14 @@ const rootRouteChildren: RootRouteChildren = {
   InsetsProjectIdRoute: InsetsProjectIdRoute,
   MaterialBatchIdRoute: MaterialBatchIdRoute,
   MaterialNewRoute: MaterialNewRoute,
+  VoluntaryIncctsOffsetRoute: VoluntaryIncctsOffsetRoute,
+  VoluntaryPacmRoute: VoluntaryPacmRoute,
   MaterialIndexRoute: MaterialIndexRoute,
+  VoluntaryPrivateAtlantisRoute: VoluntaryPrivateAtlantisRoute,
+  VoluntaryPrivateGoldStandardRoute: VoluntaryPrivateGoldStandardRoute,
+  VoluntaryPrivateGrsRoute: VoluntaryPrivateGrsRoute,
+  VoluntaryPrivateKlimadaoRoute: VoluntaryPrivateKlimadaoRoute,
+  VoluntaryPrivateVerraRoute: VoluntaryPrivateVerraRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
