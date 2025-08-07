@@ -40,7 +40,6 @@ import {
   YAxis,
   Tooltip,
   ResponsiveContainer,
-  Legend,
   CartesianGrid,
   ReferenceLine,
 } from "recharts";
