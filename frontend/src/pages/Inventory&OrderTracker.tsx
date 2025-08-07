@@ -22,16 +22,34 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
-import { Card, CardHeader, CardTitle,CardDescription, CardAction, CardContent, CardFooter } from "@/components/ui/card";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardAction,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
 import { CalendarIcon } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ResponsiveLine } from "@nivo/line";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  Legend,
+  CartesianGrid,
+  ReferenceLine,
+} from "recharts";
 import { cn } from "@/lib/utils";
 import AppLayout from "@/layouts/AppLayout";
 import { Badge } from "@/components/ui/badge";
 import inventoryData from "@/data/inventory.json";
 import orderData from "@/data/orders.json";
-import { IconTrendingDown, IconTrendingUp } from "@tabler/icons-react"
+import { IconTrendingDown, IconTrendingUp } from "@tabler/icons-react";
 
 import forecastData from "@/data/inventory_forecast.json";
 import { RiskHeatmapTable } from "@/components/inventory-order-tracker/RiskHeatmapTable";
@@ -213,6 +231,25 @@ const InventoryTracker = () => {
     }));
   }, [forecastData, dateRange]);
 
+  const rechartsData = useMemo(() => {
+    const dateMap: Record<string, Record<string, number>> = {};
+
+    forecastChartData.forEach((line) => {
+      line.data.forEach((point) => {
+        const date = point.x;
+        if (!dateMap[date]) dateMap[date] = {};
+        dateMap[date][line.id] = point.y;
+      });
+    });
+
+    return Object.entries(dateMap)
+      .map(([date, skuValues]) => ({
+        date,
+        ...skuValues,
+      }))
+      .sort((a, b) => parseISO(a.date).getTime() - parseISO(b.date).getTime());
+  }, [forecastChartData]);
+
   const chartColors = ["#cc9aff", "#afd14d", "#ff4e4e"];
 
   const colorMap = useMemo(() => {
@@ -234,10 +271,6 @@ const InventoryTracker = () => {
       prev.includes(sku) ? prev.filter((s) => s !== sku) : [...prev, sku]
     );
   };
-
-  const displayedForecastData = forecastChartData.filter((line) =>
-    visibleSkus.includes(line.id)
-  );
 
   const today = formatISO(new Date(), { representation: "date" });
 
@@ -279,7 +312,7 @@ const InventoryTracker = () => {
                 />
               </PopoverContent>
             </Popover>
-  
+
             <Select value={region} onValueChange={setRegion}>
               <SelectTrigger className="w-full bg-white">
                 <SelectValue placeholder="Select Region" />
@@ -290,7 +323,7 @@ const InventoryTracker = () => {
                 <SelectItem value="Kerala">Kerala</SelectItem>
               </SelectContent>
             </Select>
-  
+
             <Select value={riskCategory} onValueChange={setRiskCategory}>
               <SelectTrigger className="w-full bg-white">
                 <SelectValue placeholder="Select Risk" />
@@ -303,7 +336,7 @@ const InventoryTracker = () => {
               </SelectContent>
             </Select>
           </div>
-  
+
           {/* Grid layout */}
           <div className="grid grid-cols-1 xl:grid-cols-4 gap-4">
             {/* Left side: Cards + Heatmap */}
@@ -317,20 +350,33 @@ const InventoryTracker = () => {
                       ₹{(totalAtRiskValue / 1000).toFixed(1)}K
                     </CardTitle>
                     <CardAction>
-                      <Badge variant="outline" className={cn(valueDelta >= 0 ?  "text-red-600" : "text-green-600")}> 
-                        {valueDelta >= 0 ? <IconTrendingUp /> : <IconTrendingDown />} 
+                      <Badge
+                        variant="outline"
+                        className={cn(
+                          valueDelta >= 0 ? "text-red-600" : "text-green-600"
+                        )}
+                      >
+                        {valueDelta >= 0 ? (
+                          <IconTrendingUp />
+                        ) : (
+                          <IconTrendingDown />
+                        )}
                         {Math.abs(valueDelta).toFixed(1)}%
                       </Badge>
                     </CardAction>
                   </CardHeader>
                   <CardFooter className="flex-col items-start gap-1.5 text-sm">
                     <div className="line-clamp-1 flex gap-2 font-medium">
-                      {valueDelta >= 0 ? "Increased from last week" : "Decreased from last week"}
+                      {valueDelta >= 0
+                        ? "Increased from last week"
+                        : "Decreased from last week"}
                     </div>
-                    <div className="text-muted-foreground">Week-over-week change</div>
+                    <div className="text-muted-foreground">
+                      Week-over-week change
+                    </div>
                   </CardFooter>
                 </Card>
-  
+
                 {/* Orders At Risk Qty */}
                 <Card className="@container/card">
                   <CardHeader>
@@ -339,21 +385,34 @@ const InventoryTracker = () => {
                       ₹{(totalAtRiskQty / 1000).toFixed(1)}K
                     </CardTitle>
                     <CardAction>
-                      <Badge variant="outline" className={cn(qtyDelta >= 0 ? "text-red-600" : "text-green-600")}> 
-                        {qtyDelta >= 0 ? <IconTrendingUp /> : <IconTrendingDown />} 
+                      <Badge
+                        variant="outline"
+                        className={cn(
+                          qtyDelta >= 0 ? "text-red-600" : "text-green-600"
+                        )}
+                      >
+                        {qtyDelta >= 0 ? (
+                          <IconTrendingUp />
+                        ) : (
+                          <IconTrendingDown />
+                        )}
                         {Math.abs(qtyDelta).toFixed(1)}%
                       </Badge>
                     </CardAction>
                   </CardHeader>
                   <CardFooter className="flex-col items-start gap-1.5 text-sm">
                     <div className="line-clamp-1 flex gap-2 font-medium">
-                      {qtyDelta >= 0 ? "Increased from last week" : "Decreased from last week"}
+                      {qtyDelta >= 0
+                        ? "Increased from last week"
+                        : "Decreased from last week"}
                     </div>
-                    <div className="text-muted-foreground">Week-over-week change</div>
+                    <div className="text-muted-foreground">
+                      Week-over-week change
+                    </div>
                   </CardFooter>
                 </Card>
               </div>
-  
+
               {/* Heatmap table */}
               <div className="rounded-lg bg-white pt-2 border overflow-auto p-4">
                 <h2 className="text-lg font-semibold mt-2 mb-4">
@@ -366,7 +425,7 @@ const InventoryTracker = () => {
                 />
               </div>
             </div>
-  
+
             {/* Right side: Graph */}
             <div className="h-3/4 w-full col-span-2">
               <Card className="h-full">
@@ -400,63 +459,61 @@ const InventoryTracker = () => {
                       </div>
                     ))}
                   </div>
-  
-                  <ResponsiveLine
-                    data={displayedForecastData}
-                    animate={true}
-                    motionConfig="gentle"
-                    margin={{ top: 10, right: 50, bottom: 160, left: 50 }}
-                    xScale={{
-                      type: "time",
-                      format: "%Y-%m-%d",
-                      precision: "day",
-                    }}
-                    yScale={{ type: "linear", min: 0 }}
-                    axisBottom={{
-                      format: "%b %d",
-                      tickValues: "every 1 week",
-                      legend: "Forecast Date",
-                      legendOffset: 36,
-                      legendPosition: "middle",
-                    }}
-                    axisLeft={{
-                      legend: "Tonnage",
-                      legendOffset: -40,
-                      legendPosition: "middle",
-                    }}
-                    pointSize={6}
-                    useMesh
-                    enableSlices="x"
-                    curve="monotoneX"
-                    colors={({ id }) => colorMap[id as string]}
-                    sliceTooltip={({ slice }) => (
-                      <div className="bg-white p-2 rounded shadow text-xs">
-                        {slice.points.map((point) => (
-                          <div key={point.id}>
-                            <strong>{(point as any).serieId}</strong>:{" "}
-                            {point.data.yFormatted}t on{" "}
-                            {format(
-                              typeof point.data.x === "string"
-                                ? parseISO(point.data.x)
-                                : (point.data.x as Date),
-                              "MMM d"
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                    markers={[
-                      {
-                        axis: "x",
-                        value: today,
-                        lineStyle: {
-                          stroke: "#000",
-                          strokeWidth: 1,
-                          strokeDasharray: "4 4",
-                        },
-                      },
-                    ]}
-                  />
+
+                  <ResponsiveContainer width="100%" height={500}>
+                    <LineChart
+                      data={rechartsData}
+                      margin={{ top: 40, right: 50, bottom: 80, left: 50 }}
+                    >
+                      <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                      <XAxis
+                        dataKey="date"
+                        tickFormatter={(date) =>
+                          format(parseISO(date), "MMM d")
+                        }
+                        angle={-45}
+                        textAnchor="end"
+                        height={80}
+                      />
+                      <YAxis
+                        label={{
+                          value: "Tonnage",
+                          angle: -90,
+                          position: "insideLeft",
+                        }}
+                      />
+                      <Tooltip
+                        formatter={(value: number) => `${value}t`}
+                        labelFormatter={(label: string) =>
+                          format(parseISO(label), "PPP")
+                        }
+                      />
+
+                      {visibleSkus.map((sku) => (
+                        <Line
+                          key={sku}
+                          type="monotone"
+                          dataKey={sku}
+                          stroke={colorMap[sku]}
+                          strokeWidth={2}
+                          dot={false}
+                          isAnimationActive={true}
+                        />
+                      ))}
+
+                      <ReferenceLine
+                        x={today}
+                        stroke="black"
+                        strokeDasharray="4 4"
+                        label={{
+                          value: "Today",
+                          position: "top",
+                          fill: "#000",
+                          fontSize: 12,
+                        }}
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
                 </CardContent>
               </Card>
             </div>

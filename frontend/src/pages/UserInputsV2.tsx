@@ -48,10 +48,7 @@ function ScoreCircle({
 
   useEffect(() => {
     const progress = (score / 10) * circumference;
-    const timeout = setTimeout(
-      () => setOffset(circumference - progress),
-      100
-    );
+    const timeout = setTimeout(() => setOffset(circumference - progress), 100);
     return () => clearTimeout(timeout);
   }, [score, circumference]);
 
@@ -211,7 +208,7 @@ export default function UserInputsPage() {
           onValueChange={(val) => setActiveTab(val as TabKey)}
           className="w-full"
         >
-          <TabsList>
+          <TabsList className="rounded-none rounded-t-sm">
             <TabsTrigger value="collection" className="flex items-center gap-2">
               <Folder className="w-4 h-4" /> Collection
             </TabsTrigger>
@@ -227,7 +224,11 @@ export default function UserInputsPage() {
           </TabsList>
 
           {Object.keys(TAB_CONFIGS).map((tab) => (
-            <TabsContent key={tab} value={tab} className="pt-4 space-y-4">
+            <TabsContent
+              key={tab}
+              value={tab}
+              className="pt-4 space-y-4 bg-white shadow-md  border border-gray-200 -mt-2 p-6"
+            >
               <Tabs defaultValue="manual" className="w-full">
                 <TabsList>
                   <TabsTrigger value="manual">Manual Inputs</TabsTrigger>
