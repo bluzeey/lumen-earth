@@ -24,9 +24,30 @@ export default function RegisterPage() {
 
     setLoading(true);
     try {
-      await fakeRegister({ name, email, password });
+      const res = await fetch("http://localhost:8000/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ name, email, password }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        if (data?.errors) {
+          const errors = Array.isArray(data.errors)
+            ? data.errors
+            : Object.values(data.errors).flat();
+          errors.forEach((msg: any) => toast.error(String(msg)));
+        } else if (data?.message) {
+          toast.error(data.message);
+        } else {
+          toast.error("Registration failed");
+        }
+        return;
+      }
+
       toast.success("Registration successful");
-      navigate({ to: "/onboarding" });
+      navigate({ to: "/login" });
     } catch (err: any) {
       toast.error("Registration failed: " + err.message);
     } finally {
@@ -121,11 +142,4 @@ export default function RegisterPage() {
       </div>
     </div>
   );
-}
-
-// Fake registration function (replace with real API call)
-async function fakeRegister(data: any) {
-  await new Promise((r) => setTimeout(r, 1000));
-  if (!data.email.includes("@")) throw new Error("Invalid email");
-  return true;
 }
