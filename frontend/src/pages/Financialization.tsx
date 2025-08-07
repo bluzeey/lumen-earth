@@ -92,8 +92,10 @@ const greenInsetsRegistry = [
   },
 ];
 
+type DonutDatum = { id: string; value: number; color: string };
+
 export default function FinancializationPage() {
-  const [chartData, setChartData] = useState([]);
+  const [chartData, setChartData] = useState<DonutDatum[]>([]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
