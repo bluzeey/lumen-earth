@@ -18,6 +18,8 @@ import AppLayout from "@/layouts/AppLayout";
 import { ArrowUpRight } from "lucide-react";
 import { ResponsivePie } from "@nivo/pie";
 
+type ChartDatum = { id: string; value: number; color: string };
+
 const metrics = {
   greenPremiumActualized: 170000,
   greenPremiumPotential: 2030000,
@@ -36,7 +38,7 @@ const metrics = {
     { id: "Energy Recovered", value: 20, color: "#D2E69A" },
     { id: "Clean Water Pollution Avoided", value: 15, color: "#FDCC6F" },
     { id: "Incinerated Air Avoided", value: 10, color: "#FFEABB" },
-  ],
+  ] as ChartDatum[],
 };
 
 const premiumSuggestions = [
@@ -93,7 +95,7 @@ const greenInsetsRegistry = [
 ];
 
 export default function FinancializationPage() {
-  const [chartData, setChartData] = useState([]);
+  const [chartData, setChartData] = useState<ChartDatum[]>([]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
