@@ -116,6 +116,8 @@ export default function FinancializationPage() {
                 colors={(d) => d.data.color as string}
                 enableArcLinkLabels={true}
                 arcLabelsTextColor="#333333"
+                animate={true}
+                motionConfig="wobbly"
               />
             </div>
           </Card>
