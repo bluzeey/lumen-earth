@@ -229,13 +229,16 @@ export default function UserInputsPage() {
               value={tab}
               className="pt-4 space-y-4 bg-white shadow-md  border border-gray-200 -mt-2 p-6"
             >
-              <Tabs defaultValue="manual" className="w-full">
-                <TabsList>
+              <Tabs defaultValue="manual" className="bg-white p-2">
+                <TabsList className="rounded-none rounded-t-sm">
                   <TabsTrigger value="manual">Manual Inputs</TabsTrigger>
                   <TabsTrigger value="rfid">RFID / Mahota Edits</TabsTrigger>
                 </TabsList>
 
-                <TabsContent value="manual" className="space-y-4">
+                <TabsContent
+                  value="manual"
+                  className="space-y-4 p-4 shadow-md border border-gray-200 -mt-2"
+                >
                   <h3 className="text-lg font-semibold">
                     Manual Inputs & Excel Table
                   </h3>
