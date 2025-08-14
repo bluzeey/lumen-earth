@@ -160,6 +160,62 @@ export default function MaterialFlowTracer() {
   const yieldActual = totalIn ? (totalOut / totalIn) * 100 : 0;
   const yieldForecast = forecastIn ? (forecastOut / forecastIn) * 100 : 0;
 
+  const getDeviationColor = (actual: number, forecast: number) => {
+    if (!forecast) return "bg-gray-100";
+    const deviation = Math.abs(actual - forecast) / forecast;
+    if (deviation <= 0.2) {
+      const greens = [
+        "bg-green-500",
+        "bg-green-400",
+        "bg-green-300",
+        "bg-green-200",
+        "bg-green-100",
+      ];
+      const index = Math.min(
+        greens.length - 1,
+        Math.floor((deviation / 0.2) * (greens.length - 1))
+      );
+      return greens[index];
+    }
+    const reds = [
+      "bg-red-100",
+      "bg-red-200",
+      "bg-red-300",
+      "bg-red-400",
+      "bg-red-500",
+    ];
+    const index = Math.min(
+      reds.length - 1,
+      Math.floor(((deviation - 0.2) / 0.8) * (reds.length - 1))
+    );
+    return reds[index];
+  };
+
+  const getYieldColor = (value: number) => {
+    const colors = [
+      "bg-red-500",
+      "bg-red-400",
+      "bg-red-300",
+      "bg-red-200",
+      "bg-red-100",
+      "bg-green-100",
+      "bg-green-200",
+      "bg-green-300",
+      "bg-green-400",
+      "bg-green-500",
+    ];
+    const index = Math.min(
+      colors.length - 1,
+      Math.floor((value / 100) * (colors.length - 1))
+    );
+    return colors[index];
+  };
+
+  const getRiskColor = (risk: number) =>
+    risk > 0 ? "bg-red-500" : "bg-green-500";
+
+  const ordersAtRisk = 28900;
+
   return (
     <AppLayout title="Material Flow Tracer">
       <div className="flex min-h-screen w-full bg-beige text-charcoal">
@@ -206,19 +262,37 @@ export default function MaterialFlowTracer() {
   <Card>
     <CardHeader>
       <CardDescription>Qty In</CardDescription>
-      <CardTitle className="text-3xl font-semibold tabular-nums ">
+      <CardTitle
+        className={cn(
+          "text-3xl font-semibold tabular-nums rounded px-2",
+          getDeviationColor(totalIn, forecastIn)
+        )}
+      >
         {totalIn.toFixed(2)} T
       </CardTitle>
       <CardAction>
-        <Badge variant="outline" className={cn(((totalIn / forecastIn) * 100 || 0) >= 100 ? "text-green-600" : "text-red-600")}> 
-          {((totalIn / forecastIn) * 100 || 0) >= 100 ? <IconTrendingUp /> : <IconTrendingDown />} 
+        <Badge
+          variant="outline"
+          className={cn(
+            ((totalIn / forecastIn) * 100 || 0) >= 100
+              ? "text-green-600"
+              : "text-red-600"
+          )}
+        >
+          {((totalIn / forecastIn) * 100 || 0) >= 100 ? (
+            <IconTrendingUp />
+          ) : (
+            <IconTrendingDown />
+          )}
           {((totalIn / forecastIn) * 100 - 100 || 0).toFixed(1)}%
         </Badge>
       </CardAction>
     </CardHeader>
     <CardFooter className="flex-col items-start gap-1.5 text-sm">
       <div className="line-clamp-1 flex gap-2 font-medium">
-        {((totalIn / forecastIn) * 100 || 0) >= 100 ? "Above forecast" : "Below forecast"}
+        {((totalIn / forecastIn) * 100 || 0) >= 100
+          ? "Above forecast"
+          : "Below forecast"}
       </div>
       <div className="text-muted-foreground">
         Forecast: {forecastIn.toFixed(2)} T
@@ -229,19 +303,37 @@ export default function MaterialFlowTracer() {
   <Card>
     <CardHeader>
       <CardDescription>Qty Out</CardDescription>
-      <CardTitle className="text-3xl font-semibold tabular-nums">
+      <CardTitle
+        className={cn(
+          "text-3xl font-semibold tabular-nums rounded px-2",
+          getDeviationColor(totalOut, forecastOut)
+        )}
+      >
         {totalOut.toFixed(2)} T
       </CardTitle>
       <CardAction>
-        <Badge variant="outline" className={cn(((totalOut / forecastOut) * 100 || 0) >= 100 ? "text-green-600" : "text-red-600")}> 
-          {((totalOut / forecastOut) * 100 || 0) >= 100 ? <IconTrendingUp /> : <IconTrendingDown />} 
+        <Badge
+          variant="outline"
+          className={cn(
+            ((totalOut / forecastOut) * 100 || 0) >= 100
+              ? "text-green-600"
+              : "text-red-600"
+          )}
+        >
+          {((totalOut / forecastOut) * 100 || 0) >= 100 ? (
+            <IconTrendingUp />
+          ) : (
+            <IconTrendingDown />
+          )}
           {((totalOut / forecastOut) * 100 - 100 || 0).toFixed(1)}%
         </Badge>
       </CardAction>
     </CardHeader>
     <CardFooter className="flex-col items-start gap-1.5 text-sm">
       <div className="line-clamp-1 flex gap-2 font-medium">
-        {((totalOut / forecastOut) * 100 || 0) >= 100 ? "Above forecast" : "Below forecast"}
+        {((totalOut / forecastOut) * 100 || 0) >= 100
+          ? "Above forecast"
+          : "Below forecast"}
       </div>
       <div className="text-muted-foreground">
         Forecast: {forecastOut.toFixed(2)} T
@@ -252,12 +344,26 @@ export default function MaterialFlowTracer() {
   <Card>
     <CardHeader>
       <CardDescription>Yield %</CardDescription>
-      <CardTitle className="text-3xl font-semibold tabular-nums">
+      <CardTitle
+        className={cn(
+          "text-3xl font-semibold tabular-nums rounded px-2",
+          getYieldColor(yieldActual)
+        )}
+      >
         {yieldActual.toFixed(1)}%
       </CardTitle>
       <CardAction>
-        <Badge variant="outline" className={cn(yieldActual >= yieldForecast ? "text-green-600" : "text-red-600")}> 
-          {yieldActual >= yieldForecast ? <IconTrendingUp /> : <IconTrendingDown />} 
+        <Badge
+          variant="outline"
+          className={cn(
+            yieldActual >= yieldForecast ? "text-green-600" : "text-red-600"
+          )}
+        >
+          {yieldActual >= yieldForecast ? (
+            <IconTrendingUp />
+          ) : (
+            <IconTrendingDown />
+          )}
           {(yieldActual - yieldForecast).toFixed(1)}%
         </Badge>
       </CardAction>
@@ -272,11 +378,16 @@ export default function MaterialFlowTracer() {
     </CardFooter>
   </Card>
 
-  <Card className="border-2 border-red">
+  <Card className="border-2">
     <CardHeader>
       <CardDescription>Orders At Risk</CardDescription>
-      <CardTitle className="text-3xl font-semibold tabular-nums text-red">
-        ₹28.9K
+      <CardTitle
+        className={cn(
+          "text-3xl font-semibold tabular-nums rounded px-2",
+          getRiskColor(ordersAtRisk)
+        )}
+      >
+        ₹{(ordersAtRisk / 1000).toFixed(1)}K
       </CardTitle>
       <CardAction>
         <Badge variant="outline" className="text-red-600">
@@ -285,12 +396,8 @@ export default function MaterialFlowTracer() {
       </CardAction>
     </CardHeader>
     <CardFooter className="flex-col items-start gap-1.5 text-sm">
-      <div className="line-clamp-1 flex gap-2 font-medium">
-        Stable risk
-      </div>
-      <div className="text-muted-foreground">
-        Monitor closely
-      </div>
+      <div className="line-clamp-1 flex gap-2 font-medium">Stable risk</div>
+      <div className="text-muted-foreground">Monitor closely</div>
     </CardFooter>
   </Card>
 </div>
