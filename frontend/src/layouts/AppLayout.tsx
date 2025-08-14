@@ -206,6 +206,7 @@ export default function AppLayout({
                                 <SidebarMenuSubButton asChild>
                                   <Link
                                     to="/voluntary/pacm"
+                                    className="ml-3"
                                     activeProps={{
                                       className:
                                         "text-primary font-medium bg-[#D2E69A]",
@@ -222,6 +223,7 @@ export default function AppLayout({
                                 <SidebarMenuSubButton asChild>
                                   <Link
                                     to="/voluntary/inccts-offset"
+                                    className="ml-3"
                                     activeProps={{
                                       className:
                                         "text-primary font-medium bg-[#D2E69A]",
@@ -242,8 +244,8 @@ export default function AppLayout({
                               >
                                 <SidebarMenuSubItem className="group">
                                   <CollapsibleTrigger asChild>
-                                    <SidebarMenuSubButton>
-                                      <span className="text-md w-24 absolute">
+                                    <SidebarMenuSubButton className="ml-3 w-34">
+                                      <span className="text-md absolute ">
                                         Pvt Registries
                                       </span>
                                       <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/subcollapsible:rotate-90" />
