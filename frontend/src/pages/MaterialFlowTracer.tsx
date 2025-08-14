@@ -165,11 +165,11 @@ export default function MaterialFlowTracer() {
     const deviation = Math.abs(actual - forecast) / forecast;
     if (deviation <= 0.2) {
       const greens = [
+        "text-green-700",
+        "text-green-600",
         "text-green-500",
         "text-green-400",
         "text-green-300",
-        "text-green-200",
-        "text-green-100",
       ];
       const index = Math.min(
         greens.length - 1,
@@ -178,11 +178,11 @@ export default function MaterialFlowTracer() {
       return greens[index];
     }
     const reds = [
-      "text-red-100",
-      "text-red-200",
       "text-red-300",
       "text-red-400",
       "text-red-500",
+      "text-red-600",
+      "text-red-700",
     ];
     const index = Math.min(
       reds.length - 1,
@@ -193,16 +193,16 @@ export default function MaterialFlowTracer() {
 
   const getYieldColor = (value: number) => {
     const colors = [
+      "text-red-700",
+      "text-red-600",
       "text-red-500",
       "text-red-400",
       "text-red-300",
-      "text-red-200",
-      "text-red-100",
-      "text-green-100",
-      "text-green-200",
       "text-green-300",
       "text-green-400",
       "text-green-500",
+      "text-green-600",
+      "text-green-700",
     ];
     const index = Math.min(
       colors.length - 1,
