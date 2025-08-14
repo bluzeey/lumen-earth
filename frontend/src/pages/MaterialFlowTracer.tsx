@@ -161,15 +161,15 @@ export default function MaterialFlowTracer() {
   const yieldForecast = forecastIn ? (forecastOut / forecastIn) * 100 : 0;
 
   const getDeviationColor = (actual: number, forecast: number) => {
-    if (!forecast) return "bg-gray-100";
+    if (!forecast) return "text-gray-500";
     const deviation = Math.abs(actual - forecast) / forecast;
     if (deviation <= 0.2) {
       const greens = [
-        "bg-green-500",
-        "bg-green-400",
-        "bg-green-300",
-        "bg-green-200",
-        "bg-green-100",
+        "text-green-500",
+        "text-green-400",
+        "text-green-300",
+        "text-green-200",
+        "text-green-100",
       ];
       const index = Math.min(
         greens.length - 1,
@@ -178,11 +178,11 @@ export default function MaterialFlowTracer() {
       return greens[index];
     }
     const reds = [
-      "bg-red-100",
-      "bg-red-200",
-      "bg-red-300",
-      "bg-red-400",
-      "bg-red-500",
+      "text-red-100",
+      "text-red-200",
+      "text-red-300",
+      "text-red-400",
+      "text-red-500",
     ];
     const index = Math.min(
       reds.length - 1,
@@ -193,16 +193,16 @@ export default function MaterialFlowTracer() {
 
   const getYieldColor = (value: number) => {
     const colors = [
-      "bg-red-500",
-      "bg-red-400",
-      "bg-red-300",
-      "bg-red-200",
-      "bg-red-100",
-      "bg-green-100",
-      "bg-green-200",
-      "bg-green-300",
-      "bg-green-400",
-      "bg-green-500",
+      "text-red-500",
+      "text-red-400",
+      "text-red-300",
+      "text-red-200",
+      "text-red-100",
+      "text-green-100",
+      "text-green-200",
+      "text-green-300",
+      "text-green-400",
+      "text-green-500",
     ];
     const index = Math.min(
       colors.length - 1,
@@ -212,7 +212,7 @@ export default function MaterialFlowTracer() {
   };
 
   const getRiskColor = (risk: number) =>
-    risk > 0 ? "bg-red-500" : "bg-green-500";
+    risk > 0 ? "text-red-500" : "text-green-500";
 
   const ordersAtRisk = 28900;
 
@@ -264,7 +264,7 @@ export default function MaterialFlowTracer() {
       <CardDescription>Qty In</CardDescription>
       <CardTitle
         className={cn(
-          "text-3xl font-semibold tabular-nums rounded px-2",
+          "text-3xl font-semibold tabular-nums",
           getDeviationColor(totalIn, forecastIn)
         )}
       >
@@ -305,7 +305,7 @@ export default function MaterialFlowTracer() {
       <CardDescription>Qty Out</CardDescription>
       <CardTitle
         className={cn(
-          "text-3xl font-semibold tabular-nums rounded px-2",
+          "text-3xl font-semibold tabular-nums",
           getDeviationColor(totalOut, forecastOut)
         )}
       >
@@ -346,7 +346,7 @@ export default function MaterialFlowTracer() {
       <CardDescription>Yield %</CardDescription>
       <CardTitle
         className={cn(
-          "text-3xl font-semibold tabular-nums rounded px-2",
+          "text-3xl font-semibold tabular-nums",
           getYieldColor(yieldActual)
         )}
       >
@@ -383,7 +383,7 @@ export default function MaterialFlowTracer() {
       <CardDescription>Orders At Risk</CardDescription>
       <CardTitle
         className={cn(
-          "text-3xl font-semibold tabular-nums rounded px-2",
+          "text-3xl font-semibold tabular-nums",
           getRiskColor(ordersAtRisk)
         )}
       >
